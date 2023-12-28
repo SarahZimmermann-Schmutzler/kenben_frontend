@@ -13,7 +13,7 @@ export class AuthService {
   // http Client wird erst geladen, wenn wir ihn brauchen
 
   public loginWithUserAndPassword(username:string, password:string) {
-    const url = environment.baseURL + '/login/';
+    const url = environment.baseURL + '';
     const body = {
       'username': username,
       'password': password

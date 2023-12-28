@@ -1,7 +1,8 @@
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, catchError, throwError } from 'rxjs';
-import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,7 @@ export class AuthInterceptorService implements HttpInterceptor {
       catchError((err) => {
         if(err instanceof HttpErrorResponse) {
           if (err.status === 401) {
-            this.router.navigateByUrl('/login')
+            this.router.navigateByUrl('')
             // wenn kein Token, dann zurück zum Login
           }
         }

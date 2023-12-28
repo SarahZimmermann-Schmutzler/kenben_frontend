@@ -19,7 +19,7 @@ export class LoginComponent {
       let resp = await this.authservice.loginWithUserAndPassword(this.username, this.password);
       console.log(resp);
       localStorage.setItem('token', resp['token'])
-      this.router.navigateByUrl('/todos');
+      this.router.navigateByUrl('/login');
     } catch(e) {
       console.error(e);
     }
