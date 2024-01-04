@@ -1,5 +1,41 @@
-<form (ngSubmit)="login()">
+<!-- <form (ngSubmit)="login()">
     <input type="text" name="username" [(ngModel)]="username" required>
     <input type="password" name="password" [(ngModel)]="password" required>
     <button>Login</button>
-</form>
+</form> -->
+
+<div class="content-container-login">
+    <div class="left-container-login">
+        <div class="text-container-login">
+            <span>Hi, we are Ken and Ben.<br><br>Welcome to our little organisation tool!</span>
+        </div>
+
+        <div>
+            <img class="kenben-login" src="assets/img/kenben.png">
+        </div>
+    </div>
+
+    <div class="right-container-login">
+        <form class="form-login" (ngSubmit)="login()">
+            <span>Please login</span>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name="username" [(ngModel)]="username" required>
+                <label class="mdl-textfield__label" for="username">Username</label>
+            </div>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="password" name="password" [(ngModel)]="password" required>
+                <label class="mdl-textfield__label" for="password">Password</label>
+            </div>
+
+            <div>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Login</button>
+            </div>
+        </form>
+
+        <form class="sign-in-login">
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Sign
+                in</button>
+        </form>
+    </div>
+</div>
