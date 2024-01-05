@@ -22,7 +22,6 @@
         width: 100%;
         align-items: center;
         justify-content: center;
-        margin-top: 30px;
         margin-right: 0;
     }
 }
@@ -39,8 +38,10 @@
     margin-bottom: 40px;
     font-size: 18px;
     text-align: end;
+    color: #3F51B5;
 
     @media(max-width: 899px) {
+        margin-top: 60px;
         text-align: center;
     }
 }
@@ -81,6 +82,7 @@
     }
 
     @media(max-width: 899px) {
+        margin-top: 150px;
         align-items: center;
         justify-content: center;
         width: 100%;
@@ -94,7 +96,7 @@
 
     @media(max-width: 899px) {
         position: static;
-        margin-top: 50px;
+        margin-top: 20px;
     }
 }
 
