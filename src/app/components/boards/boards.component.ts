@@ -33,6 +33,6 @@ export class BoardsComponent implements OnInit {
     } catch (e) {
       console.error(e);
     }
-
   }
+
 }
