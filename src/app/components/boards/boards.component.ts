@@ -23,7 +23,7 @@ export class BoardsComponent implements OnInit {
       let resp = await this.boardService.createBoard(this.title);
       // console.log(resp);
       this.clearTitleField();
-      this.ngOnInit();
+      // this.ngOnInit();
     } catch (e) {
       console.error(e);
     }
