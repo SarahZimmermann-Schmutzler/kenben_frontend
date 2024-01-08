@@ -28,9 +28,13 @@
       <div class="page-content">
         <!-- Your content goes here -->
         <form (ngSubmit)="createBoard()">
-            <input type="text" name="title" [(ngModel)]="title" required>
+            <input type="text" name="title" [(ngModel)]="title" id='titlefield' required>
             <button>Create</button>
         </form>
+
+        <div *ngFor="let board of boards">
+          {{board.title}}
+        </div>
     </div>
     </main>
   </div>

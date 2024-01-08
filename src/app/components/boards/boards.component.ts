@@ -17,7 +17,7 @@ export class BoardsComponent implements OnInit {
 
   async ngOnInit() {
     this.boards = await this.loadBoards();
-    console.log(this.boards);
+    // console.log(this.boards);
   }
 
   loadBoards() {
@@ -29,10 +29,15 @@ export class BoardsComponent implements OnInit {
   async createBoard() {
     try {
       let resp = await this.boardService.createBoard(this.title);
-      console.log(resp);
+      // console.log(resp);
+      this.clearTitleField()
     } catch (e) {
       console.error(e);
     }
+  }
+
+  clearTitleField() {
+    this.title = '';
   }
 
 }
