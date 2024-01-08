@@ -1,7 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { environment } from 'src/environments/environment';
-import { lastValueFrom } from 'rxjs';
 import { BoardService } from 'src/app/services/board.service';
 
 @Component({
@@ -20,12 +18,6 @@ export class BoardsComponent implements OnInit {
     // console.log(this.boards);
   }
 
-  // loadBoards() {
-  //   const url = environment.baseURL + '/api/boards/';
-  //   return lastValueFrom(this.http.get(url));
-  //   // lastValueFrom wandelt es in Promise um
-  // }
-
   async createBoard() {
     try {
       let resp = await this.boardService.createBoard(this.title);
@@ -37,8 +29,8 @@ export class BoardsComponent implements OnInit {
     }
   }
 
+
   clearTitleField() {
     this.title = '';
   }
-
 }
