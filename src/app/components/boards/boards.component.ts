@@ -16,21 +16,22 @@ export class BoardsComponent implements OnInit {
   constructor(private http: HttpClient, public boardService: BoardService) { }
 
   async ngOnInit() {
-    this.boards = await this.loadBoards();
+    this.boards = await this.boardService.loadBoards();
     // console.log(this.boards);
   }
 
-  loadBoards() {
-    const url = environment.baseURL + '/api/boards/';
-    return lastValueFrom(this.http.get(url));
-    // lastValueFrom wandelt es in Promise um
-  }
+  // loadBoards() {
+  //   const url = environment.baseURL + '/api/boards/';
+  //   return lastValueFrom(this.http.get(url));
+  //   // lastValueFrom wandelt es in Promise um
+  // }
 
   async createBoard() {
     try {
       let resp = await this.boardService.createBoard(this.title);
       // console.log(resp);
-      this.clearTitleField()
+      this.clearTitleField();
+      this.ngOnInit();
     } catch (e) {
       console.error(e);
     }
