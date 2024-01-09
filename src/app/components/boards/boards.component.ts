@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BoardService } from 'src/app/services/board.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class BoardsComponent implements OnInit {
   newBoards: any = [];
   title: any = '';
 
-  constructor(private http: HttpClient, public boardService: BoardService) { }
+  constructor(private http: HttpClient, public boardService: BoardService, private router: Router) { }
 
   async ngOnInit() {
     this.boards = await this.boardService.loadBoards();
@@ -34,7 +35,7 @@ export class BoardsComponent implements OnInit {
 
 
   clearTitleField() {
-    // löscht Inputfeld
+    // löscht Inhalt Inputfeld
     this.title = '';
   }
 
@@ -43,5 +44,10 @@ export class BoardsComponent implements OnInit {
     // pusht titel des boards in mein Array newBoards
     this.newBoards.push(resp['title'])
     // console.log(this.newBoards)
+  }
+
+
+  logout() {
+    this.router.navigateByUrl('/');
   }
 }

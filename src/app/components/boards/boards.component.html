@@ -6,30 +6,26 @@
       <!-- Add spacer, to align navigation to the right -->
       <div class="mdl-layout-spacer"></div>
       <!-- Navigation. We hide it in small screens. -->
-      <nav class="mdl-navigation mdl-layout--large-screen-only">
+      <!-- <nav class="mdl-navigation mdl-layout--large-screen-only">
         <a class="mdl-navigation__link" href="">Link</a>
         <a class="mdl-navigation__link" href="">Link</a>
         <a class="mdl-navigation__link" href="">Link</a>
         <a class="mdl-navigation__link" href="">LOGOUT</a>
-      </nav>
+      </nav> -->
     </div>
   </header>
   <div class="mdl-layout__drawer">
     <span class="mdl-layout-title">MY BOARDS</span>
-    <nav class="mdl-navigation" *ngFor="let board of boards">
-      <span>{{board.title}}</span>
-      <!-- <a class="mdl-navigation__link" href="">{{board.title}}</a> -->
-    </nav>
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" (click)="logout()">Logout</button>
+    <!-- <nav class="mdl-navigation" *ngFor="let board of boards">
+      <a class="mdl-navigation__link" href="">{{board.title}}</a>
+    </nav> -->
   </div>
 
   <main class="mdl-layout__content">
     <div class="page-content">
       <!-- Your content goes here -->
       <div class="board-list">
-        <!-- <div *ngFor="let board of boards">
-          <span>{{board.title}}</span>
-        </div> -->
-
         <ul class="demo-list-item mdl-list">
           <li class="mdl-list__item" *ngFor="let board of boards">
             <span class="mdl-list__item-primary-content">
