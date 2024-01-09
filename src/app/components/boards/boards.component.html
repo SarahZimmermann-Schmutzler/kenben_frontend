@@ -26,15 +26,38 @@
     <div class="page-content">
       <!-- Your content goes here -->
       <div class="board-list">
-        <div class="board-list" *ngFor="let board of boards">
+        <!-- <div *ngFor="let board of boards">
           <span>{{board.title}}</span>
-        </div>
+        </div> -->
+
+        <ul class="demo-list-item mdl-list">
+          <li class="mdl-list__item" *ngFor="let board of boards">
+            <span class="mdl-list__item-primary-content">
+              {{board.title}}
+            </span>
+          </li>
+          <li class="mdl-list__item" *ngFor="let newBoard of newBoards">
+            <span class="mdl-list__item-primary-content">
+              {{newBoard}}
+            </span>
+          </li>
+        </ul>
       </div>
 
-      <div class="create">
+      <div class="create-container">
         <form (ngSubmit)="createBoard()">
-          <input type="text" name="title" [(ngModel)]="title" id='titlefield' required>
-          <button>Create</button>
+          <!-- <input type="text" name="title" [(ngModel)]="title" id='titlefield' required> -->
+          <div class="create">
+            <span class="title">New Board</span>
+
+            <div class="mdl-textfield mdl-js-textfield">
+              <input class="mdl-textfield__input" type="text" name="title" [(ngModel)]="title" required>
+              <label class="mdl-textfield__label" for="sample1">name...</label>
+            </div>
+          </div>
+
+          <button
+            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Create</button>
         </form>
       </div>
     </div>
