@@ -42,12 +42,17 @@ export class BoardsComponent implements OnInit {
 
   showNewBoard(resp) {
     // pusht titel des boards in mein Array newBoards
-    this.newBoards.push(resp['title'])
-    // console.log(this.newBoards)
+    this.newBoards.push(resp)
+    console.log(this.newBoards)
   }
 
 
   logout() {
     this.router.navigateByUrl('/');
+  }
+
+  openCurrentBoard(boardId) {
+    localStorage.setItem('boardId', boardId);
+    this.router.navigateByUrl('currentBoard');
   }
 }

@@ -23,4 +23,10 @@ export class BoardService {
     return lastValueFrom(this.http.get(url));
     // lastValueFrom wandelt es in Promise um
   }
+
+  loadCurrentBoard(boardId) {
+    const url = `${environment.baseURL} + '/api/boards/${boardId}'`;
+    return lastValueFrom(this.http.get(url));
+    // lastValueFrom wandelt es in Promise um
+  }
 }

@@ -28,14 +28,10 @@
       <div class="board-list">
         <ul class="demo-list-item mdl-list">
           <li class="mdl-list__item" *ngFor="let board of boards">
-            <span class="mdl-list__item-primary-content">
-              {{board.title}}
-            </span>
+            <span class="mdl-list__item-primary-content board" (click)="openCurrentBoard(board.id)">{{board.title}}</span>
           </li>
           <li class="mdl-list__item" *ngFor="let newBoard of newBoards">
-            <span class="mdl-list__item-primary-content">
-              {{newBoard}}
-            </span>
+            <span class="mdl-list__item-primary-content board" (click)="openCurrentBoard(newBoard.id)">{{newBoard.title}}</span>
           </li>
         </ul>
       </div>
