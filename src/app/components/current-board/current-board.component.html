@@ -1,2 +1,80 @@
-<p>current-board works!</p>
-<span>Name of Board: {{board}}</span>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title">Name Of Board</span>
+            <!-- Add spacer, to align navigation to the right -->
+            <div class="mdl-layout-spacer"></div>
+            <!-- Navigation. We hide it in small screens. -->
+            <!-- <nav class="mdl-navigation mdl-layout--large-screen-only">
+          <a class="mdl-navigation__link" href="">Link</a>
+          <a class="mdl-navigation__link" href="">Link</a>
+          <a class="mdl-navigation__link" href="">Link</a>
+          <a class="mdl-navigation__link" href="">LOGOUT</a>
+        </nav> -->
+        </div>
+    </header>
+    <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Name of Board</span>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent logout-btn"
+            (click)="logout()">Logout</button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+            (click)="backToWorkspace()">Back to Workspace</button>
+        <!-- <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" href=""></a>
+      </nav> -->
+    </div>
+
+    <main class="mdl-layout__content">
+        <div class="page-content">
+            <!-- Your content goes here -->
+            <span>Name of Board: {{board}}</span>
+
+            <div class="task-main-container">
+                <!------ to do ------>
+                <div class="task-sub-container">
+                    <div class="container-headline">
+                        <span>To do</span>
+                    </div>
+                    <div class="card-container" id="todo">
+                        <div class="card">
+                            <span>Titel</span>
+                            <span>Description</span>
+                            <span>Due Date</span>
+                            <span>Priority</span>
+                            <span>Assigned to</span>
+                            <span>Subtasks</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!------ in progress ------>
+                <div class="task-sub-container">
+                    <div class="container-headline">
+                        <span>In Progress</span>
+                    </div>
+                    <div class="card-container" id="progress">
+                    </div>
+                </div>
+
+                <!------ awaiting feedback ------>
+                <div class="task-sub-container">
+                    <div class="container-headline">
+                        <span>Awaiting Feedback</span>
+                    </div>
+                    <div class="card-container" id="feedback">
+                    </div>
+                </div>
+
+                <!------ done ------>
+                <div class="task-sub-container">
+                    <div class="container-headline">
+                        <span>Done</span>
+                    </div>
+                    <div class="card-container" id="done">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

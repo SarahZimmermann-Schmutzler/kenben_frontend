@@ -1,0 +1,56 @@
+.logout-btn {
+    margin-bottom: 30px;
+}
+
+.page-content {
+    padding: 50px;
+}
+
+.task-main-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+    // background-color: aqua;
+}
+
+.task-sub-container {
+    // position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 25%;
+    min-height: 500px;
+    border-right: 1px solid #3F51B5;
+    border-left: 1px solid #3F51B5;
+    // background-color: yellow;
+}
+
+.container-headline {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+    color: #3F51B5;
+    font-size: 18px;
+    // background-color: aqua;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 30px;
+    height: 100%;
+    padding: 30px;
+    background-color:antiquewhite;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: white;
+    border-radius: 30px;
+}
