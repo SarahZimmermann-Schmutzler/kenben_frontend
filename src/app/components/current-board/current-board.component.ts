@@ -17,7 +17,7 @@ export class CurrentBoardComponent {
     this.boardId = localStorage.getItem('boardId')
     console.log(this.boardId)
     this.board = await this.boardService.loadCurrentBoard(this.boardId);
-    // console.log(this.boards);
+    console.log(this.board);
   }
 
   logout() {
