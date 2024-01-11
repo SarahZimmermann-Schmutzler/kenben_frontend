@@ -2,7 +2,7 @@
     <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
             <!-- Title -->
-            <span class="mdl-layout-title">Name Of Board</span>
+            <span class="mdl-layout-title">MyBoard: {{board.title}}</span>
             <!-- Add spacer, to align navigation to the right -->
             <div class="mdl-layout-spacer"></div>
             <!-- Navigation. We hide it in small screens. -->
@@ -15,7 +15,7 @@
         </div>
     </header>
     <div class="mdl-layout__drawer">
-        <span class="mdl-layout-title">Name of Board</span>
+        <span class="mdl-layout-title">{{board.title}}</span>
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent logout-btn"
             (click)="logout()">Logout</button>
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
@@ -28,8 +28,6 @@
     <main class="mdl-layout__content">
         <div class="page-content">
             <!-- Your content goes here -->
-            <span>Name of Board: {{board.title}}</span>
-
             <div class="task-main-container">
                 <!------ to do ------>
                 <div class="task-sub-container">
@@ -37,8 +35,8 @@
                         <span>To do</span>
                     </div>
                     <div class="card-container" id="todo">
-                        <div class="card">
-                            <span>Titel</span>
+                        <div class="card" *ngFor="let ticket of ticketsOfThisBoard" id='{{ticket.id}}'>
+                            <span>Titel: {{ticket.title}}</span>
                             <span>Description</span>
                             <span>Due Date</span>
                             <span>Priority</span>

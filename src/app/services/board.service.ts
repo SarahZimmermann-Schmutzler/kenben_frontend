@@ -25,8 +25,7 @@ export class BoardService {
   }
 
   loadCurrentBoard(boardId) {
-    const url = `${environment.baseURL} + '/api/boards/${boardId}'`;
-    // const url = environment.baseURL + '/api/boards/';
+    const url = `${environment.baseURL}/api/boards/${boardId}/`;
     return lastValueFrom(this.http.get(url));
     // lastValueFrom wandelt es in Promise um
   }
