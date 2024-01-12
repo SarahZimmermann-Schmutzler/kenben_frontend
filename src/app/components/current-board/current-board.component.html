@@ -38,7 +38,7 @@
                         <div class="card" *ngFor="let ticket of todoTickets" id='{{ticket.id}}'>
                             <div class="one-row">
                                 <div class="c-title"><span>{{ticket.title}}</span></div>
-                                <div><span>Due Date</span></div>
+                                <div><span>{{ticket.time_till_due}}</span></div>
                             </div>
                             <div class="c-description"><span>{{ticket.description}}</span></div>
                             <div class="one-row">
