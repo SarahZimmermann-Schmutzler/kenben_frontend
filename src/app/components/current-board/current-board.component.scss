@@ -4,6 +4,9 @@
 
 .page-content {
     padding: 50px;
+    background-color: #F6F7F8;
+    height: 81.25vh;
+    
 }
 
 .task-main-container {
@@ -41,16 +44,40 @@
     flex-direction: column;
     width: 100%;
     box-sizing: border-box;
-    border-radius: 30px;
+    // border-radius: 30px;
     height: 100%;
-    padding: 30px;
-    background-color:antiquewhite;
+    padding: 10px;
+    // background-color:antiquewhite;
 }
 
 .card {
     display: flex;
     flex-direction: column;
     padding: 10px;
-    background-color: white;
-    border-radius: 30px;
+    border-radius: 20px;
+    background-color:white;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.04);
+}
+
+.one-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.c-title {
+    background-color: #3F51B5;
+    color: white;
+    width: fit-content;
+    border-radius: 10px;
+    padding: 2px 5px;
+}
+
+.c-description {
+    color: rgba(0,0,0,0.4);
+    margin-bottom: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    // color: grey;
 }

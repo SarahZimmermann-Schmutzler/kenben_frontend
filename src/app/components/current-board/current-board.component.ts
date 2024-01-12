@@ -12,7 +12,10 @@ export class CurrentBoardComponent {
   board: any = '';
   boardId = '';
   tickets: any = [];
-  ticketsOfThisBoard: any = [];
+  todoTickets: any = [];
+  progressTickets: any = [];
+  awaitTickets: any = [];
+  doneTickets: any = [];
 
   constructor(public boardService: BoardService, public ticketsService: TicketsService, private router: Router) { }
   
@@ -23,8 +26,18 @@ export class CurrentBoardComponent {
     // console.log(this.board);
     this.tickets = await this.ticketsService.loadTickets();
     console.log(this.tickets);
-    this.ticketsOfThisBoard = this.tickets.filter(s => s.board == this.boardId);
-    console.log(this.ticketsOfThisBoard);
+    this.filterTickets();
+  }
+
+  filterTickets() {
+    this.todoTickets = this.tickets.filter(s => s.board == this.boardId && s.status == 'Todo');
+    this.progressTickets = this.tickets.filter(s => s.board == this.boardId && s.status == 'In Progress');
+    this.awaitTickets = this.tickets.filter(s => s.board == this.boardId && s.status == 'Awaiting Feedback');
+    this.doneTickets = this.tickets.filter(s => s.board == this.boardId && s.status == 'Done');
+    console.log(this.todoTickets);
+    console.log(this.progressTickets);
+    console.log(this.awaitTickets);
+    console.log(this.doneTickets);
   }
 
   logout() {

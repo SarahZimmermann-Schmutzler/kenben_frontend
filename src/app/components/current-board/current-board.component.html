@@ -35,12 +35,18 @@
                         <span>To do</span>
                     </div>
                     <div class="card-container" id="todo">
-                        <div class="card" *ngFor="let ticket of ticketsOfThisBoard" id='{{ticket.id}}'>
-                            <span>Titel: {{ticket.title}}</span>
-                            <span>Description</span>
-                            <span>Due Date</span>
-                            <span>Priority</span>
-                            <span>Assigned to</span>
+                        <div class="card" *ngFor="let ticket of todoTickets" id='{{ticket.id}}'>
+                            <div class="one-row">
+                                <div class="c-title"><span>{{ticket.title}}</span></div>
+                                <div><span>Due Date</span></div>
+                            </div>
+                            <div class="c-description"><span>{{ticket.description}}</span></div>
+                            <div class="one-row">
+                                <span>Assigned to</span>
+                                <span>Priority</span>
+                            </div>
+                            
+                            
                             <span>Subtasks</span>
                         </div>
                     </div>
