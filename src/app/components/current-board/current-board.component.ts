@@ -16,6 +16,7 @@ export class CurrentBoardComponent {
   progressTickets: any = [];
   awaitTickets: any = [];
   doneTickets: any = [];
+  assigned: any = [];
 
   constructor(public boardService: BoardService, public ticketsService: TicketsService, private router: Router) { }
   
@@ -38,6 +39,10 @@ export class CurrentBoardComponent {
     console.log(this.progressTickets);
     console.log(this.awaitTickets);
     console.log(this.doneTickets);
+  }
+
+  capitalsOfAssigned() {
+    this.assigned = this.todoTickets.filter(s => s.assigned_to)
   }
 
   logout() {

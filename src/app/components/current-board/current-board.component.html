@@ -42,11 +42,16 @@
                             </div>
                             <div class="c-description"><span>{{ticket.description}}</span></div>
                             <div class="one-row">
-                                <span>Assigned to</span>
-                                <span>Priority</span>
+                                <div class="c-assigned-container">
+                                    <div class="c-margin" *ngFor="let assigned of ticket.assigned_to">
+                                        <div class="c-assigned">{{assigned}}</div>
+                                    </div>
+                                </div>
+
+                                <span [ngClass]="{'c-low': ticket.priority === 'Low'}">{{ticket.priority}}</span>
                             </div>
-                            
-                            
+
+
                             <span>Subtasks</span>
                         </div>
                     </div>

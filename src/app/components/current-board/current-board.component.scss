@@ -64,6 +64,8 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 8px;
+    align-items: center;
+    // background-color: aqua;
 }
 
 .c-title {
@@ -81,3 +83,37 @@
     text-overflow: ellipsis;
     // color: grey;
 }
+
+.c-assigned-container {
+    display: flex;
+    width: 75%;
+    // background-color: chartreuse;
+}
+
+.c-assigned {
+    border-radius: 100%;
+    color: white;
+    font-size: 12px;
+    background-color: #FF4081;
+    padding: 2px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
+    margin-left: -5px;
+}
+
+.c-low {
+    background-image: url('^assets/img/low.png');
+}
+
+.c-yellow {
+    color: yellow;
+}
+
+.c-red {
+    color: red;
+}
+
