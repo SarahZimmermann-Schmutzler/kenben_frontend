@@ -27,4 +27,8 @@ export class RegisterComponent {
       console.error(e);
     }
   }
+
+  backToLogin() {
+    this.router.navigateByUrl('/login');
+  }
 }
