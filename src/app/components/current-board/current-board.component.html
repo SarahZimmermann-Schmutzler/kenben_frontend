@@ -35,7 +35,7 @@
                         <span>To do</span>
                     </div>
                     <div class="card-container" id="todo">
-                        <div class="card" *ngFor="let ticket of todoTickets" id='{{ticket.id}}'>
+                        <div class="card" *ngFor="let ticket of todoTickets" id='{{ticket.id}}' (click)="openDetailView(ticket.id)">
                             <div class="one-row">
                                 <div class="c-title"><span>{{ticket.title}}</span></div>
                                 <div><span>{{ticket.time_till_due}}</span></div>
@@ -86,6 +86,12 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <!-- Detail View -->
+        <div *ngIf="detailView" class="pop-up-container" (click)="closeDetailView()">
+                <div class="popUp-content-container" (click)="doNotClose($event)">
+                    Hallo
+                </div>
         </div>
     </main>
 </div>

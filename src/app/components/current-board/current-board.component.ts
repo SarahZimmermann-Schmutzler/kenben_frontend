@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { BoardService } from 'src/app/services/board.service';
+import { SubtasksService } from 'src/app/services/subtasks.service';
 import { TicketsService } from 'src/app/services/tickets.service';
 
 @Component({
@@ -17,8 +18,16 @@ export class CurrentBoardComponent {
   awaitTickets: any = [];
   doneTickets: any = [];
   assigned: any = [];
+  subtasks: any = [];
+  todoSubtasks: any = [];
+  ticketId: any = '';
+  detailView: boolean = false;
 
-  constructor(public boardService: BoardService, public ticketsService: TicketsService, private router: Router) { }
+  constructor(
+    public boardService: BoardService, 
+    public ticketsService: TicketsService, 
+    public subtaskService: SubtasksService,
+    private router: Router) { }
   
   async ngOnInit() {
     this.boardId = localStorage.getItem('boardId')
@@ -28,6 +37,8 @@ export class CurrentBoardComponent {
     this.tickets = await this.ticketsService.loadTickets();
     console.log(this.tickets);
     this.filterTickets();
+    this.subtasks = await this.subtaskService.loadSubtasks();
+    console.log(this.subtasks);
   }
 
   filterTickets() {
@@ -45,6 +56,11 @@ export class CurrentBoardComponent {
     this.assigned = this.todoTickets.filter(s => s.assigned_to)
   }
 
+
+  filterSubtasks() {
+    // this.todoSubtasks = this.ticketId
+  }
+
   logout() {
     this.router.navigateByUrl('/');
   }
@@ -52,5 +68,19 @@ export class CurrentBoardComponent {
   backToWorkspace() {
     localStorage.setItem('boardId', '');
     this.router.navigateByUrl('boards');
+  }
+
+  openDetailView(ticketId) {
+    this.ticketId = ticketId;
+    this.detailView = true;
+    console.log(this.detailView)
+  }
+
+  closeDetailView() {
+    this.detailView = false;
+  }
+
+  doNotClose(e:Event) {
+    e.stopPropagation();
   }
 }
