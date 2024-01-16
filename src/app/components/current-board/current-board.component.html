@@ -48,11 +48,13 @@
                                     </div>
                                 </div>
 
-                                <span [ngClass]="{'c-low': ticket.priority === 'Low'}">{{ticket.priority}}</span>
+                                <div class="c-prio" [ngClass]="{'c-low': ticket.priority === 'Low', 'c-middle': ticket.priority === 'Middle', 'c-high': ticket.priority === 'High'}">
+                                    <span>{{ticket.priority}}</span>
+                                </div>
                             </div>
 
 
-                            <span>Subtasks</span>
+                            <span>Subtasks {{ticket.subtasks}}</span>
                         </div>
                     </div>
                 </div>
