@@ -18,10 +18,11 @@ export class CurrentBoardComponent {
   awaitTickets: any = [];
   doneTickets: any = [];
   assigned: any = [];
+  allSubtasks: any = [];
   subtasks: any = [];
-  todoSubtasks: any = [];
   ticketId: any = '';
   detailView: boolean = false;
+  currentTicket: any = [];
 
   constructor(
     public boardService: BoardService, 
@@ -37,8 +38,8 @@ export class CurrentBoardComponent {
     this.tickets = await this.ticketsService.loadTickets();
     console.log(this.tickets);
     this.filterTickets();
-    this.subtasks = await this.subtaskService.loadSubtasks();
-    console.log(this.subtasks);
+    this.allSubtasks = await this.subtaskService.loadSubtasks();
+    console.log(this.allSubtasks);
   }
 
   filterTickets() {
@@ -58,7 +59,8 @@ export class CurrentBoardComponent {
 
 
   filterSubtasks() {
-    // this.todoSubtasks = this.ticketId
+    this.subtasks = this.allSubtasks.filter(s => s.tickets == this.ticketId);
+    console.log(this.subtasks);
   }
 
   logout() {
@@ -70,10 +72,13 @@ export class CurrentBoardComponent {
     this.router.navigateByUrl('boards');
   }
 
-  openDetailView(ticketId) {
+  async openDetailView(ticketId) {
     this.ticketId = ticketId;
     this.detailView = true;
-    console.log(this.detailView)
+    console.log(this.detailView);
+    this.currentTicket = await this.ticketsService.loadCurrentTicket(ticketId);
+    console.log(this.currentTicket);
+    this.filterSubtasks();
   }
 
   closeDetailView() {

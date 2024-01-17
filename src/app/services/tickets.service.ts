@@ -14,4 +14,9 @@ export class TicketsService {
     const url = environment.baseURL + '/api/tickets/';
     return lastValueFrom(this.http.get(url));
   }
+
+  loadCurrentTicket(ticketId) {
+    const url = `${environment.baseURL}/api/tickets/${ticketId}/`;
+    return lastValueFrom(this.http.get(url));
+  }
 }

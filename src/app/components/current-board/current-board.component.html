@@ -35,7 +35,8 @@
                         <span>To do</span>
                     </div>
                     <div class="card-container" id="todo">
-                        <div class="card" *ngFor="let ticket of todoTickets" id='{{ticket.id}}' (click)="openDetailView(ticket.id)">
+                        <div class="card" *ngFor="let ticket of todoTickets" id='{{ticket.id}}'
+                            (click)="openDetailView(ticket.id)">
                             <div class="one-row">
                                 <div class="c-title"><span>{{ticket.title}}</span></div>
                                 <div><span>{{ticket.time_till_due}}</span></div>
@@ -48,7 +49,8 @@
                                     </div>
                                 </div>
 
-                                <div class="c-prio" [ngClass]="{'c-low': ticket.priority === 'Low', 'c-middle': ticket.priority === 'Middle', 'c-high': ticket.priority === 'High'}">
+                                <div class="c-prio"
+                                    [ngClass]="{'c-low': ticket.priority === 'Low', 'c-middle': ticket.priority === 'Middle', 'c-high': ticket.priority === 'High'}">
                                     <span>{{ticket.priority}}</span>
                                 </div>
                             </div>
@@ -89,9 +91,22 @@
         </div>
         <!-- Detail View -->
         <div *ngIf="detailView" class="pop-up-container" (click)="closeDetailView()">
-                <div class="popUp-content-container" (click)="doNotClose($event)">
-                    Hallo
+            <div class="popUp-content-container" (click)="doNotClose($event)">
+                <div>
+                    <div>X</div>
                 </div>
+                <div>{{currentTicket.title}}</div>
+                <div>Description</div>
+                <div>DueDate</div>
+                <div>Assigned to</div>
+                <div *ngFor="let subtask of subtasks">
+                    <div>{{subtask.title}}</div>
+                </div>
+                <div>
+                    <div>Delete</div>
+                    <div>Edit</div>
+                </div>
+            </div>
         </div>
     </main>
 </div>
