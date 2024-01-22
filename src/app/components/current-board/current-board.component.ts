@@ -23,7 +23,6 @@ export class CurrentBoardComponent {
   ticketId: any = '';
   detailView: boolean = false;
   currentTicket: any = [];
-  numberOfSubtasks = '';
 
   constructor(
     public boardService: BoardService, 
@@ -64,10 +63,6 @@ export class CurrentBoardComponent {
     console.log(this.subtasks);
   }
 
-  // countSubtasks() {
-  //   this.numberOfSubtasks = this.subtasks.length;
-  //   console.log(this.numberOfSubtasks);
-  // }
 
   logout() {
     this.router.navigateByUrl('/');
@@ -85,7 +80,6 @@ export class CurrentBoardComponent {
     this.currentTicket = await this.ticketsService.loadCurrentTicket(ticketId);
     console.log(this.currentTicket);
     this.filterSubtasks();
-    // this.countSubtasks();
   }
 
   closeDetailView() {
