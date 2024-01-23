@@ -4,36 +4,47 @@
             <div (click)="closeAddTicket()">X</div>
         </div>
 
-        <!-- <div class="dv-title dv-margin-bottom">{{currentTicket.title}}</div>
+        <form>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" name="title" [(ngModel)]="title" required>
+                <label class="mdl-textfield__label" for="sample1">title...</label>
+            </div>
 
-        <div class="dv-description">{{currentTicket.description}}</div>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" name="description" [(ngModel)]="description">
+                <label class="mdl-textfield__label" for="sample1">description... (optional)</label>
+            </div>
 
-        <div class="dv-dd-container dv-margin-bottom">
-            <div class="dv-dd-title">Due date:</div>
-            <div class="dv-dd-date">{{currentTicket.due_date}}</div>
-        </div>
+            <div>creator = user</div>
+            <div>created at = today</div>
+            <div>Status Todo</div>
+            <div>board = current board</div>
 
-        <div class="dv-dd-container dv-margin-bottom">
-            <div class="dv-dd-title">Priority:</div>
-            <div class="dv-dd-date">{{currentTicket.priority}}</div>
-        </div>
+            <div class="dv-dd-container dv-margin-bottom">
+                <div class="dv-dd-title">Due date:</div>
+                <div class="dv-dd-date"></div>
+            </div>
 
-        <div class="dv-margin8">Assigned to:</div>
-        <div *ngFor="let member of currentTicket.assigned_to" class="dv-assigned dv-margin8">
-            <div>{{member}}</div>
-        </div>
+            <div class="dv-dd-container dv-margin-bottom">
+                <div class="dv-dd-title">Priority:</div>
+                <div class="dv-dd-date">Auswahl</div>
+            </div>
 
-        <div class="dv-margin8 dv-subtask-container">Subtasks:</div>
-        <div *ngFor="let subtask of subtasks" class="dv-subtask dv-margin8">
-            <input type="checkbox">
-            <div>{{subtask.title}}</div>
-        </div> -->
-        
-        <div class="dv-btn-container">
-            <div>Add</div>
-            <!-- <div class="dv-btn-line">|</div>
-            <div>Edit</div> -->
-        </div>
+            <div class="dv-margin8">Assigned to:</div>
+            <div class="dv-assigned dv-margin8">
+                <div>Auswahl</div>
+            </div>
+
+            <div class="dv-margin8 dv-subtask-container">Subtasks:</div>
+            <div class="dv-subtask dv-margin8">
+                <input type="checkbox">
+                <div>Auswahl</div>
+            </div>
+
+            <div class="dv-btn-container">
+                <button
+                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Save</button>
+            </div>
+        </form>
     </div>
 </div>
-

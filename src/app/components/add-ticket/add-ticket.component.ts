@@ -7,6 +7,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class AddTicketComponent {
   @Output() addTask = new EventEmitter();
+  title = '';
+  description = '';
 
   closeAddTicket() {
     this.addTask.emit(false);
