@@ -12,6 +12,7 @@ import { BoardsComponent } from './components/boards/boards.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CurrentBoardComponent } from './components/current-board/current-board.component';
 import { CardDetailViewComponent } from './components/card-detail-view/card-detail-view.component';
+import { AddTicketComponent } from './components/add-ticket/add-ticket.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { CardDetailViewComponent } from './components/card-detail-view/card-deta
     RegisterComponent,
     CurrentBoardComponent,
     CardDetailViewComponent,
+    AddTicketComponent,
   ],
   imports: [
     BrowserModule,

@@ -28,6 +28,11 @@
     <main class="mdl-layout__content">
         <div class="page-content">
             <!-- Your content goes here -->
+            <div class="add-btn-container">
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" (click)="openTaskCreateView()">Add Task</button>
+            </div>
+
+
             <div class="task-main-container">
                 <!------ to do ------>
                 <div class="task-sub-container">
@@ -91,8 +96,12 @@
         </div>
 
 
-        <!-- card detail view -->
-        <app-card-detail-view *ngIf="detailView" (detailView)="closeView($event)" [ticketId]="ticketId"></app-card-detail-view>
+        <!-- card detail view popup -->
+        <app-card-detail-view *ngIf="detailView" (detailView)="closeView($event)"
+            [ticketId]="ticketId"></app-card-detail-view>
+        
+        <!-- add task popup -->
+        <app-add-ticket *ngIf="addTask" (addTask)="closeAddTaskView($event)"></app-add-ticket>
 
         <!-- <div *ngIf="detailView" class="pop-up-container" (click)="closeDetailView()">
             <div class="popUp-content-container" (click)="doNotClose($event)">

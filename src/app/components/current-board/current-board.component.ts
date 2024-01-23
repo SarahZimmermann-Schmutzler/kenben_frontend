@@ -23,6 +23,7 @@ export class CurrentBoardComponent {
   ticketId: any = '';
   detailView: boolean = false;
   // currentTicket: any = [];
+  addTask: boolean = false;
 
   constructor(
     public boardService: BoardService, 
@@ -87,6 +88,14 @@ export class CurrentBoardComponent {
 
   closeView($event) {
     this.detailView = $event;
+  }
+
+  closeAddTaskView($event) {
+    this.addTask = $event;
+  }
+
+  openTaskCreateView() {
+    this.addTask = true;
   }
 
   // closeDetailView() {
