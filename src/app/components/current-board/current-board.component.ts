@@ -18,11 +18,11 @@ export class CurrentBoardComponent {
   awaitTickets: any = [];
   doneTickets: any = [];
   assigned: any = [];
-  allSubtasks: any = [];
-  subtasks: any = [];
+  // allSubtasks: any = [];
+  // subtasks: any = [];
   ticketId: any = '';
   detailView: boolean = false;
-  currentTicket: any = [];
+  // currentTicket: any = [];
 
   constructor(
     public boardService: BoardService, 
@@ -38,8 +38,8 @@ export class CurrentBoardComponent {
     this.tickets = await this.ticketsService.loadTickets();
     console.log(this.tickets);
     this.filterTickets();
-    this.allSubtasks = await this.subtaskService.loadSubtasks();
-    console.log(this.allSubtasks);
+    // this.allSubtasks = await this.subtaskService.loadSubtasks();
+    // console.log(this.allSubtasks);
   }
 
   filterTickets() {
@@ -58,10 +58,10 @@ export class CurrentBoardComponent {
   }
 
 
-  filterSubtasks() {
-    this.subtasks = this.allSubtasks.filter(s => s.tickets == this.ticketId);
-    console.log(this.subtasks);
-  }
+  // filterSubtasks() {
+  //   this.subtasks = this.allSubtasks.filter(s => s.tickets == this.ticketId);
+  //   console.log(this.subtasks);
+  // }
 
 
   logout() {
@@ -73,20 +73,27 @@ export class CurrentBoardComponent {
     this.router.navigateByUrl('boards');
   }
 
-  async openDetailView(ticketId) {
+  openDetailView(ticketId) {
     this.ticketId = ticketId;
     this.detailView = true;
     console.log(this.detailView);
-    this.currentTicket = await this.ticketsService.loadCurrentTicket(ticketId);
-    console.log(this.currentTicket);
-    this.filterSubtasks();
+
+    // this.currentTicket = await this.ticketsService.loadCurrentTicket(ticketId);
+    // console.log(this.currentTicket);
+    // this.filterSubtasks();
   }
 
-  closeDetailView() {
-    this.detailView = false;
+  // child-component card-detail-view
+
+  closeView($event) {
+    this.detailView = $event;
   }
 
-  doNotClose(e:Event) {
-    e.stopPropagation();
-  }
+  // closeDetailView() {
+  //   this.detailView = false;
+  // }
+
+  // doNotClose(e:Event) {
+  //   e.stopPropagation();
+  // }
 }

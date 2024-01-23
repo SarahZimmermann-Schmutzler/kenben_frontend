@@ -92,7 +92,9 @@
 
 
         <!-- card detail view -->
-        <div *ngIf="detailView" class="pop-up-container" (click)="closeDetailView()">
+        <app-card-detail-view *ngIf="detailView" (detailView)="closeView($event)" [ticketId]="ticketId"></app-card-detail-view>
+
+        <!-- <div *ngIf="detailView" class="pop-up-container" (click)="closeDetailView()">
             <div class="popUp-content-container" (click)="doNotClose($event)">
                 <div class="dv-close-container">
                     <div (click)="closeDetailView()">X</div>
@@ -129,6 +131,6 @@
                     <div>Edit</div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </main>
 </div>

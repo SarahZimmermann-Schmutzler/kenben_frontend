@@ -1,0 +1,38 @@
+<div class="pop-up-container" (click)="closeDetailView()">
+    <div class="popUp-content-container" (click)="doNotClose($event)">
+        <div class="dv-close-container">
+            <div (click)="closeDetailView()">X</div>
+        </div>
+
+        <div class="dv-title dv-margin-bottom">{{currentTicket.title}}</div>
+
+        <div class="dv-description">{{currentTicket.description}}</div>
+
+        <div class="dv-dd-container dv-margin-bottom">
+            <div class="dv-dd-title">Due date:</div>
+            <div class="dv-dd-date">{{currentTicket.due_date}}</div>
+        </div>
+
+        <div class="dv-dd-container dv-margin-bottom">
+            <div class="dv-dd-title">Priority:</div>
+            <div class="dv-dd-date">{{currentTicket.priority}}</div>
+        </div>
+
+        <div class="dv-margin8">Assigned to:</div>
+        <div *ngFor="let member of currentTicket.assigned_to" class="dv-assigned dv-margin8">
+            <div>{{member}}</div>
+        </div>
+
+        <div class="dv-margin8 dv-subtask-container">Subtasks:</div>
+        <div *ngFor="let subtask of subtasks" class="dv-subtask dv-margin8">
+            <input type="checkbox">
+            <div>{{subtask.title}}</div>
+        </div>
+        
+        <div class="dv-btn-container">
+            <div>Delete</div>
+            <div class="dv-btn-line">|</div>
+            <div>Edit</div>
+        </div>
+    </div>
+</div>

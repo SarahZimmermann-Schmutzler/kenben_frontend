@@ -11,6 +11,7 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { BoardsComponent } from './components/boards/boards.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CurrentBoardComponent } from './components/current-board/current-board.component';
+import { CardDetailViewComponent } from './components/card-detail-view/card-detail-view.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { CurrentBoardComponent } from './components/current-board/current-board.
     BoardsComponent,
     RegisterComponent,
     CurrentBoardComponent,
+    CardDetailViewComponent,
   ],
   imports: [
     BrowserModule,
