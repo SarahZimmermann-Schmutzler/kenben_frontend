@@ -4,14 +4,14 @@
             <div (click)="closeAddTicket()">X</div>
         </div>
 
-        <form>
+        <form (ngSubmit)="createTicket()">
             <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="text" name="title" [(ngModel)]="title" required>
+                <input class="mdl-textfield__input" type="text" name="title" [(ngModel)]="new_title" required>
                 <label class="mdl-textfield__label" for="sample1">title...</label>
             </div>
 
             <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="text" name="description" [(ngModel)]="description">
+                <input class="mdl-textfield__input" type="text" name="description" [(ngModel)]="new_description">
                 <label class="mdl-textfield__label" for="sample1">description... (optional)</label>
             </div>
 
@@ -26,19 +26,26 @@
             </div>
 
             <div class="dv-dd-container dv-margin-bottom">
-                <div class="dv-dd-title">Priority:</div>
-                <div class="dv-dd-date">Auswahl</div>
+                <div class="dv-margin8">Priority:</div>
+                <div class="dv-assigned dv-margin8">
+                    <input type="checkbox" name="low" id="checkbox-low" [(ngModel)]="checkbox_low" [disabled]="isDisabled" (click)="disableCheckbox()">
+                    <label for="low">Low</label>
+                    <input type="checkbox" name="middle" [disabled]="isDisabled" [(ngModel)]="checkbox_middle" (click)="disableCheckbox()">
+                    <label for="middle">Middle</label>
+                    <input type="checkbox" name="high" [disabled]="isDisabled" [(ngModel)]="checkbox_high" (click)="disableCheckbox()">
+                    <label for="high">High</label>
+                </div>
             </div>
 
             <div class="dv-margin8">Assigned to:</div>
             <div class="dv-assigned dv-margin8">
-                <div>Auswahl</div>
+                <div>Auswahl der User</div>
             </div>
 
             <div class="dv-margin8 dv-subtask-container">Subtasks:</div>
             <div class="dv-subtask dv-margin8">
                 <input type="checkbox">
-                <div>Auswahl</div>
+                <div>Mehrere</div>
             </div>
 
             <div class="dv-btn-container">
