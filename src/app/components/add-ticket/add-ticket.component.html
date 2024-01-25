@@ -6,7 +6,7 @@
 
         <form (ngSubmit)="createTicket()">
             <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="text" name="title" [(ngModel)]="new_title" required>
+                <input class="mdl-textfield__input" type="text" name="title" [(ngModel)]="new_title">
                 <label class="mdl-textfield__label" for="sample1">title...</label>
             </div>
 
@@ -28,11 +28,11 @@
             <div class="dv-dd-container dv-margin-bottom">
                 <div class="dv-margin8">Priority:</div>
                 <div class="dv-assigned dv-margin8">
-                    <input type="checkbox" name="low" id="checkbox-low" [(ngModel)]="checkbox_low" [disabled]="isDisabled" (click)="disableCheckbox()">
+                    <input type="checkbox" name="low" [(ngModel)]="checkbox_low" [disabled]="isDisabledLow" (change)="getPrioValue()">
                     <label for="low">Low</label>
-                    <input type="checkbox" name="middle" [disabled]="isDisabled" [(ngModel)]="checkbox_middle" (click)="disableCheckbox()">
+                    <input type="checkbox" name="middle" [disabled]="isDisabledMiddle" [(ngModel)]="checkbox_middle" (change)="getPrioValue()">
                     <label for="middle">Middle</label>
-                    <input type="checkbox" name="high" [disabled]="isDisabled" [(ngModel)]="checkbox_high" (click)="disableCheckbox()">
+                    <input type="checkbox" name="high" [disabled]="isDisabledHigh" [(ngModel)]="checkbox_high" (change)="getPrioValue()">
                     <label for="high">High</label>
                 </div>
             </div>
@@ -50,7 +50,7 @@
 
             <div class="dv-btn-container">
                 <button
-                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Save</button>
+                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" [disabled]="formControl">Save</button>
             </div>
         </form>
     </div>
