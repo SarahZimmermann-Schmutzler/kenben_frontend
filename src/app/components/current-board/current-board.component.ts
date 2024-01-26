@@ -18,7 +18,6 @@ export class CurrentBoardComponent {
   progressTickets: any = [];
   awaitTickets: any = [];
   doneTickets: any = [];
-  assigned: any = [];
   // allSubtasks: any = [];
   // subtasks: any = [];
   ticketId: any = '';
@@ -60,7 +59,7 @@ export class CurrentBoardComponent {
   }
 
   capitalsOfAssigned() {
-    this.assigned = this.todoTickets.filter(s => s.assigned_to)
+   
   }
 
 

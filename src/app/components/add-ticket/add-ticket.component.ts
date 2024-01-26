@@ -1,5 +1,4 @@
-import { Component, EventEmitter, Output, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, Output, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-add-ticket',
@@ -8,6 +7,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class AddTicketComponent {
   @Output() addTask = new EventEmitter();
+  @Input() allUsers = 'allUsers';
   new_title = '';
   new_description = '';
   checkbox_low = false;

@@ -101,7 +101,7 @@
             [ticketId]="ticketId"></app-card-detail-view>
         
         <!-- add task popup -->
-        <app-add-ticket *ngIf="addTask" (addTask)="closeAddTaskView($event)"></app-add-ticket>
+        <app-add-ticket *ngIf="addTask" [allUsers]="allUsers" (addTask)="closeAddTaskView($event)"></app-add-ticket>
 
         <!-- <div *ngIf="detailView" class="pop-up-container" (click)="closeDetailView()">
             <div class="popUp-content-container" (click)="doNotClose($event)">

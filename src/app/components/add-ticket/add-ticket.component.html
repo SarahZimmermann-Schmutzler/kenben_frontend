@@ -38,8 +38,9 @@
             </div>
 
             <div class="dv-margin8">Assigned to:</div>
-            <div class="dv-assigned dv-margin8">
-                <div>Auswahl der User</div>
+            <div class="dv-assigned dv-margin8" *ngFor="let user of allUsers">
+                <input type="checkbox">
+                <label>{{user['username']}}</label>
             </div>
 
             <div class="dv-margin8 dv-subtask-container">Subtasks:</div>
