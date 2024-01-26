@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { BoardService } from 'src/app/services/board.service';
 import { SubtasksService } from 'src/app/services/subtasks.service';
 import { TicketsService } from 'src/app/services/tickets.service';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-current-board',
@@ -24,11 +25,13 @@ export class CurrentBoardComponent {
   detailView: boolean = false;
   // currentTicket: any = [];
   addTask: boolean = false;
+  allUsers: any = [];
 
   constructor(
     public boardService: BoardService, 
     public ticketsService: TicketsService, 
     public subtaskService: SubtasksService,
+    public userService: UsersService,
     private router: Router) { }
   
   async ngOnInit() {
@@ -41,6 +44,8 @@ export class CurrentBoardComponent {
     this.filterTickets();
     // this.allSubtasks = await this.subtaskService.loadSubtasks();
     // console.log(this.allSubtasks);
+    this.allUsers = await this.userService.loadUsers();
+    console.log('all Users are:', this.allUsers);
   }
 
   filterTickets() {
