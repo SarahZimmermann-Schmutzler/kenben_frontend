@@ -19,6 +19,7 @@ export class AddTicketComponent {
   isDisabledHigh = false;
   formControl = true;
   userNames: any = [];
+  isChecked = false;
 
 
   ngOnInit() {
@@ -34,14 +35,24 @@ export class AddTicketComponent {
 
   watchForm() {
     setInterval(() => {
-      if(this.new_prio != '' && this.new_title != '' && this.userNames != '') {
+      if(this.new_prio != '' && this.new_title != '') {
         this.formControl = false;
       }
     }, 1000);
   }
 
-  getUserValue(userName) {
-    this.userNames.push(userName);
+  getUserValue(userName, i) {
+    // let assigned = document.getElementById(`assigned-${i}`);
+    // console.log('assigned', assigned)
+   
+    if(this.isChecked[i] == true) {
+      this.userNames.push(userName);
+    }
+
+    if(this.isChecked[i] == false) {
+      this.userNames.pop(userName);
+    }
+    
     console.log('username is', this.userNames);
   }
 
