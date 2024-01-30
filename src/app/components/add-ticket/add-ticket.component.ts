@@ -19,7 +19,6 @@ export class AddTicketComponent {
   isDisabledHigh = false;
   formControl = true;
   userNames: any = [];
-  isChecked = false;
 
 
   ngOnInit() {
@@ -35,25 +34,20 @@ export class AddTicketComponent {
 
   watchForm() {
     setInterval(() => {
-      if(this.new_prio != '' && this.new_title != '') {
+      if(this.new_prio != '' && this.new_title != '' && this.userNames != '') {
         this.formControl = false;
       }
     }, 1000);
   }
 
-  getUserValue(userName, i) {
-    // let assigned = document.getElementById(`assigned-${i}`);
-    // console.log('assigned', assigned)
-   
-    if(this.isChecked[i] == true) {
+  getUserValue(userName, i, event) {
+    if(event.target.checked == true) {
       this.userNames.push(userName);
     }
 
-    if(this.isChecked[i] == false) {
-      this.userNames.pop(userName);
+    if(event.target.checked == false) {
+      this.userNames.splice(i, 1);
     }
-    
-    console.log('username is', this.userNames);
   }
 
   // get the Value of the Prio --> better: use radiobuttons instead of checkboxes (no multiple selection by default)
