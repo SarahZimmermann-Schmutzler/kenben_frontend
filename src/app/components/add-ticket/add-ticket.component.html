@@ -28,18 +28,18 @@
             <div class="dv-dd-container dv-margin-bottom">
                 <div class="dv-margin8">Priority:</div>
                 <div class="dv-assigned dv-margin8">
-                    <input type="checkbox" name="low" [(ngModel)]="checkbox_low" [disabled]="isDisabledLow" (change)="getPrioValue()">
+                    <input type="radio" name="prio" value="low" (change)="getPrioValue($event)">
                     <label for="low">Low</label>
-                    <input type="checkbox" name="middle" [disabled]="isDisabledMiddle" [(ngModel)]="checkbox_middle" (change)="getPrioValue()">
+                    <input type="radio" name="prio" value="middle" (change)="getPrioValue($event)">
                     <label for="middle">Middle</label>
-                    <input type="checkbox" name="high" [disabled]="isDisabledHigh" [(ngModel)]="checkbox_high" (change)="getPrioValue()">
+                    <input type="radio" name="prio" value="high" (change)="getPrioValue($event)">
                     <label for="high">High</label>
                 </div>
             </div>
 
             <div class="dv-margin8">Assigned to:</div>
             <div class="dv-assigned dv-margin8" *ngFor="let user of allUsers, let i = index">
-                <input type="checkbox" id="assigned-{{i}}" (change)="getUserValue(user['username'], i, $event)" name="assignedUser{{i}}">
+                <input type="checkbox" id="assigned-{{i}}" (change)="getAssignedValue(user, i, $event)" name="assignedUser{{i}}">
                 <label>{{user['username']}}</label>
             </div>
 

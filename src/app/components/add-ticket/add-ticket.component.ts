@@ -10,20 +10,16 @@ export class AddTicketComponent {
   @Input() allUsers = 'allUsers';
   new_title = '';
   new_description = '';
-  checkbox_low = false;
-  checkbox_middle = false;
-  checkbox_high = false;
   new_prio = '';
-  isDisabledLow = false;
-  isDisabledMiddle = false;
-  isDisabledHigh = false;
   formControl = true;
   userNames: any = [];
+  user;
 
 
   ngOnInit() {
     this.watchForm();
   }
+
 
   createTicket() {
     console.log(this.new_title);
@@ -32,92 +28,33 @@ export class AddTicketComponent {
     console.log(this.userNames);
   }
 
+
   watchForm() {
     setInterval(() => {
-      if(this.new_prio != '' && this.new_title != '' && this.userNames != '') {
+      if (this.new_prio != '' && this.new_title != '' && this.userNames != '') {
         this.formControl = false;
       }
     }, 1000);
   }
 
-  getUserValue(userName, i, event) {
-    if(event.target.checked == true) {
-      this.userNames.push(userName);
+
+  getAssignedValue(user, i, event) {
+    if (event.target.checked == true) {
+      this.userNames.push(user.username);
     }
 
-    if(event.target.checked == false) {
+    if (event.target.checked == false) {
       this.userNames.splice(i, 1);
     }
   }
 
-  // get the Value of the Prio --> better: use radiobuttons instead of checkboxes (no multiple selection by default)
-  getPrioValue() {
-    if (this.checkbox_low == true && this.checkbox_middle == false && this.checkbox_high == false) {
-      this.setPrioLow();
+
+  getPrioValue(event) {
+    if (event.target.checked == true) {
+      this.new_prio = event.target.value;
     }
-
-    if (this.checkbox_low == false && this.checkbox_middle == false && this.checkbox_high == false) {
-      this.activateMiddleAndHigh();
-      this.unsetNewPrio();
-    }
-
-    if (this.checkbox_middle == true && this.checkbox_low == false && this.checkbox_high == false) {
-      this.setPrioMiddle();
-    }
-
-    if (this.checkbox_middle == false && this.checkbox_low == false && this.checkbox_high == false) {
-      this.activateLowAndHigh();
-      this.unsetNewPrio();
-    }
-
-    if (this.checkbox_high == true && this.checkbox_middle == false && this.checkbox_low == false) {
-      this.setPrioHigh();
-    }
-
-    if (this.checkbox_high == false && this.checkbox_middle == false && this.checkbox_low == false) {
-      this.activateMiddleAndLow();
-      this.unsetNewPrio();
-    }
-
-    console.log(this.new_prio)
   }
 
-  setPrioLow() {
-    this.new_prio = 'low';
-    this.isDisabledMiddle = true;
-    this.isDisabledHigh = true;
-  }
-
-  setPrioMiddle() {
-    this.new_prio = 'middle';
-    this.isDisabledLow = true;
-    this.isDisabledHigh = true;
-  }
-
-  setPrioHigh() {
-    this.new_prio = 'high';
-    this.isDisabledLow = true;
-    this.isDisabledMiddle = true;
-  }
-
-  activateMiddleAndHigh() {
-    this.isDisabledMiddle = false;
-    this.isDisabledHigh = false;
-  }
-
-  activateLowAndHigh() {
-    this.isDisabledLow = false;
-    this.isDisabledHigh = false;
-  }
-
-  activateMiddleAndLow() {
-    this.isDisabledLow = false;
-    this.isDisabledMiddle = false;
-  }
-
-  unsetNewPrio() {
-    this.new_prio='';
-  }
 
   closeAddTicket() {
     this.addTask.emit(false);
