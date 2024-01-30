@@ -10,6 +10,7 @@ export class AddTicketComponent {
   @Input() allUsers = 'allUsers';
   new_title = '';
   new_description = '';
+  new_dueDate = '';
   new_prio = '';
   formControl = true;
   userNames: any = [];
@@ -26,12 +27,13 @@ export class AddTicketComponent {
     console.log(this.new_description);
     console.log(this.new_prio);
     console.log(this.userNames);
+    console.log(this.new_dueDate);
   }
 
 
   watchForm() {
     setInterval(() => {
-      if (this.new_prio != '' && this.new_title != '' && this.userNames != '') {
+      if (this.new_prio != '' && this.new_title != '' && this.userNames != '' && this.new_dueDate != '') {
         this.formControl = false;
       }
     }, 1000);
