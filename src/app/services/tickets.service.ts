@@ -19,4 +19,17 @@ export class TicketsService {
     const url = `${environment.baseURL}/api/tickets/${ticketId}/`;
     return lastValueFrom(this.http.get(url));
   }
+
+  createTicket(new_title, new_description, assigned_to, new_prio, new_dueDate, boardId) {
+    const url = environment.baseURL + '/api/tickets/';
+    const body = {
+      'title': new_title,
+      'description': new_description,
+      'assigned_to': assigned_to,
+      'priority': new_prio,
+      'due_date': new_dueDate,
+      'board': boardId,
+    }
+    return lastValueFrom(this.http.post(url, body));
+  }
 }

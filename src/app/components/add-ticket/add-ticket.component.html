@@ -5,20 +5,15 @@
         </div>
 
         <form (ngSubmit)="createTicket()">
-            <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="text" name="title" [(ngModel)]="new_title">
-                <label class="mdl-textfield__label" for="sample1">title...</label>
+            <div class="">
+                <input class="" type="text" name="title" [(ngModel)]="new_title">
+                <label class="" for="sample1">title...</label>
             </div>
 
-            <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="text" name="description" [(ngModel)]="new_description">
-                <label class="mdl-textfield__label" for="sample1">description... (optional)</label>
+            <div class="">
+                <input class="" type="text" name="description" [(ngModel)]="new_description">
+                <label class="" for="sample1">description... (optional)</label>
             </div>
-
-            <div>creator = user</div>
-            <div>created at = today</div>
-            <div>Status Todo</div>
-            <div>board = current board</div>
 
             <div class="dv-dd-container dv-margin-bottom">
                 <div class="dv-dd-title">Due date:</div>
@@ -29,11 +24,12 @@
             <div class="dv-dd-container dv-margin-bottom">
                 <div class="dv-margin8">Priority:</div>
                 <div class="dv-assigned dv-margin8">
-                    <input type="radio" name="prio" value="low" (change)="getPrioValue($event)">
+                    <input type="radio" name="prio" value="Low" (change)="getPrioValue($event)">
+                    <!-- hier Low großgeschrieben, weil auch im Model groß -->
                     <label for="low">Low</label>
-                    <input type="radio" name="prio" value="middle" (change)="getPrioValue($event)">
+                    <input type="radio" name="prio" value="Middle" (change)="getPrioValue($event)">
                     <label for="middle">Middle</label>
-                    <input type="radio" name="prio" value="high" (change)="getPrioValue($event)">
+                    <input type="radio" name="prio" value="High" (change)="getPrioValue($event)">
                     <label for="high">High</label>
                 </div>
             </div>

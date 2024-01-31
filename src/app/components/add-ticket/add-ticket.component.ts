@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output, OnInit, Input } from '@angular/core';
+import { TicketsService } from 'src/app/services/tickets.service';
 
 @Component({
   selector: 'app-add-ticket',
@@ -8,32 +9,25 @@ import { Component, EventEmitter, Output, OnInit, Input } from '@angular/core';
 export class AddTicketComponent {
   @Output() addTask = new EventEmitter();
   @Input() allUsers = 'allUsers';
+  @Input() boardId = 'boardId';
   new_title = '';
   new_description = '';
   new_dueDate = '';
   new_prio = '';
   formControl = true;
-  userNames: any = [];
+  assigned_to: any = [];
   user;
 
+  constructor( public ticketsService: TicketsService,) {}
 
   ngOnInit() {
     this.watchForm();
   }
 
 
-  createTicket() {
-    console.log(this.new_title);
-    console.log(this.new_description);
-    console.log(this.new_prio);
-    console.log(this.userNames);
-    console.log(this.new_dueDate);
-  }
-
-
   watchForm() {
     setInterval(() => {
-      if (this.new_prio != '' && this.new_title != '' && this.userNames != '' && this.new_dueDate != '') {
+      if (this.new_prio != '' && this.new_title != '' && this.assigned_to != '' && this.new_dueDate != '') {
         this.formControl = false;
       }
     }, 1000);
@@ -42,11 +36,11 @@ export class AddTicketComponent {
 
   getAssignedValue(user, i, event) {
     if (event.target.checked == true) {
-      this.userNames.push(user.username);
+      this.assigned_to.push(user.id);
     }
 
     if (event.target.checked == false) {
-      this.userNames.splice(i, 1);
+      this.assigned_to.splice(i, 1);
     }
   }
 
@@ -54,6 +48,27 @@ export class AddTicketComponent {
   getPrioValue(event) {
     if (event.target.checked == true) {
       this.new_prio = event.target.value;
+    }
+  }
+
+  async createTicket() {
+    try {
+      let resp = await this.ticketsService.createTicket(
+        this.new_title, 
+        this.new_description, 
+        this.assigned_to,
+        this.new_prio,
+        this.new_dueDate,
+        this.boardId
+      );
+      // sendet title an backend
+      // empfängt als response das neue board als Array
+      console.log(resp);
+
+      // this.clearTitleField();
+      // this.showNewBoard(resp)
+    } catch (e) {
+      console.error(e);
     }
   }
 
