@@ -25,6 +25,7 @@ export class CurrentBoardComponent {
   // currentTicket: any = [];
   addTask: boolean = false;
   allUsers: any = [];
+ 
 
   constructor(
     public boardService: BoardService, 
@@ -58,17 +59,6 @@ export class CurrentBoardComponent {
     console.log(this.doneTickets);
   }
 
-  capitalsOfAssigned() {
-   
-  }
-
-
-  // filterSubtasks() {
-  //   this.subtasks = this.allSubtasks.filter(s => s.tickets == this.ticketId);
-  //   console.log(this.subtasks);
-  // }
-
-
   logout() {
     this.router.navigateByUrl('/');
   }
@@ -96,17 +86,10 @@ export class CurrentBoardComponent {
 
   closeAddTaskView($event) {
     this.addTask = $event;
+    
   }
 
   openTaskCreateView() {
     this.addTask = true;
   }
-
-  // closeDetailView() {
-  //   this.detailView = false;
-  // }
-
-  // doNotClose(e:Event) {
-  //   e.stopPropagation();
-  // }
 }

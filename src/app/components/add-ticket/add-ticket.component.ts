@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { TicketsService } from 'src/app/services/tickets.service';
 
 @Component({
@@ -17,8 +18,9 @@ export class AddTicketComponent {
   formControl = true;
   assigned_to: any = [];
   user;
+  newTickets = [];
 
-  constructor( public ticketsService: TicketsService,) {}
+  constructor( public ticketsService: TicketsService, private router: Router) {}
 
   ngOnInit() {
     this.watchForm();
@@ -63,15 +65,18 @@ export class AddTicketComponent {
       );
       // sendet title an backend
       // empfängt als response das neue board als Array
-      console.log(resp);
-
-      // this.clearTitleField();
-      // this.showNewBoard(resp)
+      // console.log(resp);
+      this.getBack();
     } catch (e) {
       console.error(e);
     }
   }
 
+  getBack() {
+    this.router.navigateByUrl('/currentBoard').then(() => {
+      window.location.reload();
+    });
+  }
 
   closeAddTicket() {
     this.addTask.emit(false);

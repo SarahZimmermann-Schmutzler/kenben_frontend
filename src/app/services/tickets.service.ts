@@ -10,6 +10,7 @@ export class TicketsService {
 
   constructor(private http: HttpClient) { }
 
+
   loadTickets() {
     const url = environment.baseURL + '/api/tickets/';
     return lastValueFrom(this.http.get(url));
