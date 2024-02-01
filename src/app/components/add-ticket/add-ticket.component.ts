@@ -15,12 +15,14 @@ export class AddTicketComponent {
   new_description = '';
   new_dueDate = '';
   new_prio = '';
+  new_subtask_title = '';
   formControl = true;
   assigned_to: any = [];
   user;
   newTickets = [];
+  newSubtaskField = false;
 
-  constructor( public ticketsService: TicketsService, private router: Router) {}
+  constructor(public ticketsService: TicketsService, private router: Router) { }
 
   ngOnInit() {
     this.watchForm();
@@ -56,8 +58,8 @@ export class AddTicketComponent {
   async createTicket() {
     try {
       let resp = await this.ticketsService.createTicket(
-        this.new_title, 
-        this.new_description, 
+        this.new_title,
+        this.new_description,
         this.assigned_to,
         this.new_prio,
         this.new_dueDate,
@@ -77,6 +79,14 @@ export class AddTicketComponent {
       window.location.reload();
     });
   }
+
+  // addSubtaskField() {
+  //   this.newSubtaskField = true;
+  // }
+
+  // removeSubtaskField() {
+  //   this.newSubtaskField = false;
+  // }
 
   closeAddTicket() {
     this.addTask.emit(false);

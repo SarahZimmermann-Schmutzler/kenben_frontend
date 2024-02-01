@@ -14,4 +14,13 @@ export class SubtasksService {
     const url = environment.baseURL + '/api/subtasks/';
     return lastValueFrom(this.http.get(url));
   }
+
+  createSubtasks(new_subtask_title, ticketId) {
+    const url = environment.baseURL + '/api/subtasks/';
+    const body = {
+      'title': new_subtask_title,
+      'tickets': ticketId,
+    }
+    return lastValueFrom(this.http.post(url, body));
+  }
 }
