@@ -33,4 +33,9 @@ export class TicketsService {
     }
     return lastValueFrom(this.http.post(url, body));
   }
+
+  deleteTicket(ticketId) {
+    const url = `${environment.baseURL}/api/tickets/${ticketId}/`;
+    return lastValueFrom(this.http.delete(url));
+  }
 }

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { SubtasksService } from 'src/app/services/subtasks.service';
 import { TicketsService } from 'src/app/services/tickets.service';
 
@@ -32,11 +33,23 @@ export class CardDetailViewComponent {
   constructor(
     public ticketsService: TicketsService,
     public subtaskService: SubtasksService,
+    private router: Router,
   ) { }
 
   filterSubtasks() {
     this.subtasks = this.allSubtasks.filter(s => s.tickets == this.ticketId);
     console.log(this.subtasks);
+  }
+
+  async deleteTicket() {
+    await this.ticketsService.deleteTicket(this.ticketId);
+    this.getBack();
+  }
+
+  getBack() {
+    this.router.navigateByUrl('/currentBoard').then(() => {
+      window.location.reload();
+    });
   }
 
   closeDetailView() {
