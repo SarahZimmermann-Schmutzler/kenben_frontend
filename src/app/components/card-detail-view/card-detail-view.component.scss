@@ -76,7 +76,14 @@
 .dv-btn-container{
     display: flex;
     justify-content: flex-end;
+}
+
+.highlight {
     cursor: pointer;
+
+    &:hover {
+        color: red;
+    }
 }
 
 .dv-btn-line {

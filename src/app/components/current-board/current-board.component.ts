@@ -22,6 +22,7 @@ export class CurrentBoardComponent {
   // subtasks: any = [];
   ticketId: any = '';
   detailView: boolean = false;
+  editView: boolean = false;
   // currentTicket: any = [];
   addTask: boolean = false;
   allUsers: any = [];
@@ -80,8 +81,17 @@ export class CurrentBoardComponent {
 
   // child-component card-detail-view
 
-  closeView($event) {
+  closeDetailView($event) {
     this.detailView = $event;
+  }
+
+  closeEditView($event) {
+    this.editView = $event;
+  }
+
+  openEditView($event) {
+    this.editView = $event;
+    console.log(this.editView);
   }
 
   closeAddTaskView($event) {

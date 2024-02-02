@@ -15,12 +15,11 @@ export class AddTicketComponent {
   new_description = '';
   new_dueDate = '';
   new_prio = '';
-  new_subtask_title = '';
   formControl = true;
   assigned_to: any = [];
   user;
   newTickets = [];
-  newSubtaskField = false;
+  
 
   constructor(public ticketsService: TicketsService, private router: Router) { }
 
@@ -80,13 +79,7 @@ export class AddTicketComponent {
     });
   }
 
-  // addSubtaskField() {
-  //   this.newSubtaskField = true;
-  // }
-
-  // removeSubtaskField() {
-  //   this.newSubtaskField = false;
-  // }
+ 
 
   closeAddTicket() {
     this.addTask.emit(false);

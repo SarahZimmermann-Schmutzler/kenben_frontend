@@ -10,10 +10,9 @@ import { TicketsService } from 'src/app/services/tickets.service';
 })
 
 
-
-
 export class CardDetailViewComponent {
   @Output() detailView = new EventEmitter();
+  @Output() editView = new EventEmitter();
   // @Input() detailView;
   // @Input() currentTicket;
   // @Input() subtasks;
@@ -58,6 +57,10 @@ export class CardDetailViewComponent {
 
   doNotClose(e: Event) {
     e.stopPropagation();
+  }
+
+  openEditView() {
+    this.editView.emit(true);
   }
 
 }

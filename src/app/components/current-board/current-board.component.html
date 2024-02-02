@@ -97,11 +97,15 @@
 
 
         <!-- card detail view popup -->
-        <app-card-detail-view *ngIf="detailView" (detailView)="closeView($event)"
-            [ticketId]="ticketId"></app-card-detail-view>
+        <app-card-detail-view *ngIf="detailView" (detailView)="closeDetailView($event)"
+            [ticketId]="ticketId" (editView)="openEditView($event)"></app-card-detail-view>
         
         <!-- add task popup -->
         <app-add-ticket *ngIf="addTask" [allUsers]="allUsers" [boardId]="boardId" (addTask)="closeAddTaskView($event)"></app-add-ticket>
+
+        <!-- edit ticket popup -->
+        <app-edit-ticket *ngIf="editView" (editView)="closeEditView($event)"
+            [ticketId]="ticketId"></app-edit-ticket>
 
         <!-- <div *ngIf="detailView" class="pop-up-container" (click)="closeDetailView()">
             <div class="popUp-content-container" (click)="doNotClose($event)">
