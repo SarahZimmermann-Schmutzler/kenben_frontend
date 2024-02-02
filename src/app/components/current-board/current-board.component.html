@@ -104,8 +104,12 @@
         <app-add-ticket *ngIf="addTask" [allUsers]="allUsers" [boardId]="boardId" (addTask)="closeAddTaskView($event)"></app-add-ticket>
 
         <!-- edit ticket popup -->
-        <app-edit-ticket *ngIf="editView" (editView)="closeEditView($event)"
+        <app-edit-ticket *ngIf="editView" (editView)="closeEditView($event)" (addSubtask)="openAddSubtaskView($event)"
             [ticketId]="ticketId"></app-edit-ticket>
+        
+        <!-- add subtask popup -->
+        <app-add-subtask *ngIf="addSubtask"
+            [ticketId]="ticketId"></app-add-subtask>
 
         <!-- <div *ngIf="detailView" class="pop-up-container" (click)="closeDetailView()">
             <div class="popUp-content-container" (click)="doNotClose($event)">

@@ -14,6 +14,7 @@ import { CurrentBoardComponent } from './components/current-board/current-board.
 import { CardDetailViewComponent } from './components/card-detail-view/card-detail-view.component';
 import { AddTicketComponent } from './components/add-ticket/add-ticket.component';
 import { EditTicketComponent } from './components/edit-ticket/edit-ticket.component';
+import { AddSubtaskComponent } from './components/add-subtask/add-subtask.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { EditTicketComponent } from './components/edit-ticket/edit-ticket.compon
     CardDetailViewComponent,
     AddTicketComponent,
     EditTicketComponent,
+    AddSubtaskComponent,
   ],
   imports: [
     BrowserModule,

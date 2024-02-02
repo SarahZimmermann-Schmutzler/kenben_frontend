@@ -11,12 +11,15 @@ import { TicketsService } from 'src/app/services/tickets.service';
 
 export class EditTicketComponent {
   @Output() editView = new EventEmitter();
+  @Output() addSubtask = new EventEmitter();
   @Input() ticketId;
   currentTicket: any = '';
   allSubtasks: any = [];
   subtasks: any = [];
   newSubtaskFields:any = [];
   new_subtask_title = '';
+  subtask_input;
+  
 
   async ngOnInit() {
     this.currentTicket = await this.ticketsService.loadCurrentTicket(this.ticketId);
@@ -51,12 +54,25 @@ export class EditTicketComponent {
     e.stopPropagation();
   }
 
-  addSubtaskField() {
-    this.newSubtaskFields = [...this.newSubtaskFields, this.newSubtaskFields.length];
+  // addSubtaskField() {
+  //   this.newSubtaskFields = [...this.newSubtaskFields, this.newSubtaskFields.length];
+  // }
+
+  // removeSubtaskField(i) {
+  //   this.newSubtaskFields.splice(i, 1);
+  // }
+
+  editTicket() {
   }
 
-  removeSubtaskField(i) {
-    this.newSubtaskFields.splice(i, 1);
+  // createSubtask(i) {
+  //   this.subtask_input = document.getElementById(`new-subtask-${i}`);
+  //   this.new_subtask_title = this.subtask_input.value;
+  //   console.log(this.subtask_input.value);
+  // }
+
+  openAddSubtask() {
+    this.addSubtask.emit(true);
   }
 
 }

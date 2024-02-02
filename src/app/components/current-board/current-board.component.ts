@@ -26,6 +26,7 @@ export class CurrentBoardComponent {
   // currentTicket: any = [];
   addTask: boolean = false;
   allUsers: any = [];
+  addSubtask: boolean = false;
  
 
   constructor(
@@ -101,5 +102,9 @@ export class CurrentBoardComponent {
 
   openTaskCreateView() {
     this.addTask = true;
+  }
+
+  openAddSubtaskView($event) {
+    this.addSubtask = $event;
   }
 }
