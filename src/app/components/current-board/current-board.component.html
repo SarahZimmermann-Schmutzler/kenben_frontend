@@ -105,7 +105,7 @@
 
         <!-- edit ticket popup -->
         <app-edit-ticket *ngIf="editView" (editView)="closeEditView($event)" (addSubtask)="openAddSubtaskView($event)"
-            [ticketId]="ticketId"></app-edit-ticket>
+            [ticketId]="ticketId" [allUsers]="allUsers" [boardId]="boardId"></app-edit-ticket>
         
         <!-- add subtask popup -->
         <app-add-subtask *ngIf="addSubtask"

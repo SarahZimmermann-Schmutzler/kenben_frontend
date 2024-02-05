@@ -16,7 +16,6 @@ export class AddSubtaskComponent {
   formControl = true;
   new_subtask_assigned: any = [];
   user;
-  newTickets = [];
   
 
   constructor(public subtasksService: SubtasksService, private router: Router) { }
@@ -76,4 +75,18 @@ export class AddSubtaskComponent {
   doNotClose(e: Event) {
     e.stopPropagation();
   }
+
+   // addSubtaskField() {
+  //   this.newSubtaskFields = [...this.newSubtaskFields, this.newSubtaskFields.length];
+  // }
+
+  // removeSubtaskField(i) {
+  //   this.newSubtaskFields.splice(i, 1);
+  // }
+
+   // createSubtask(i) {
+  //   this.subtask_input = document.getElementById(`new-subtask-${i}`);
+  //   this.new_subtask_title = this.subtask_input.value;
+  //   console.log(this.subtask_input.value);
+  // }
 }
