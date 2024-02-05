@@ -1,8 +1,8 @@
-<div class="pop-up-container" (click)="closeDetailView()">
+<div class="pop-up-container" (click)="closeEditView()">
     <div class="popUp-content-container" (click)="doNotClose($event)">
         <form (onsubmit)="editTicket()">
             <div class="dv-close-container">
-                <div (click)="closeDetailView()">X</div>
+                <div (click)="closeEditView()">X</div>
             </div>
 
             <div class="dv-title dv-margin-bottom">{{currentTicket.title}}</div>

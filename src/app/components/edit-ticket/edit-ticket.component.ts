@@ -46,7 +46,7 @@ export class EditTicketComponent {
     });
   }
 
-  closeDetailView() {
+  closeEditView() {
     this.editView.emit(false);
   }
 

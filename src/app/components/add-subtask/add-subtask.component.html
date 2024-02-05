@@ -1,1 +1,31 @@
-<p>add-subtask works!</p>
+<div class="pop-up-container" (click)="closeAddSubtask()">
+    <div class="popUp-content-container" (click)="doNotClose($event)">
+        <div class="dv-close-container">
+            <div (click)="closeAddSubtask()">X</div>
+        </div>
+
+        <form (ngSubmit)="createSubtask()">
+            <div class="">
+                <input class="" type="text" name="title" [(ngModel)]="new_subtask_title">
+                <label class="" for="sample1">title...</label>
+            </div>
+
+            <div class="dv-dd-container dv-margin-bottom">
+                <div class="dv-dd-title">Due date:</div>
+                <div class="dv-dd-date"></div>
+                <input type="date" [(ngModel)]="new_subtask_duedate" name="due-date">
+            </div>
+
+            <div class="dv-margin8">Assigned to:</div>
+            <div class="dv-assigned dv-margin8" *ngFor="let user of allUsers, let i = index">
+                <input type="checkbox" id="assigned-{{i}}" (change)="getAssignedValue(user, i, $event)" name="assignedUser{{i}}">
+                <label>{{user['username']}}</label>
+            </div>
+
+            <div class="dv-btn-container">
+                <button
+                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" [disabled]="formControl">Save</button>
+            </div>
+        </form>
+    </div>
+</div>

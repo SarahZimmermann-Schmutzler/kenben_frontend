@@ -107,4 +107,8 @@ export class CurrentBoardComponent {
   openAddSubtaskView($event) {
     this.addSubtask = $event;
   }
+
+  closeAddSubtaskView($event) {
+    this.addSubtask = $event;
+  }
 }

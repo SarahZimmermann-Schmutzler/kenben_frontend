@@ -15,10 +15,12 @@ export class SubtasksService {
     return lastValueFrom(this.http.get(url));
   }
 
-  createSubtasks(new_subtask_title, ticketId) {
+  createSubtask(new_subtask_title, new_subtask_assigned, new_subtask_duedate, ticketId) {
     const url = environment.baseURL + '/api/subtasks/';
     const body = {
       'title': new_subtask_title,
+      'assigned': new_subtask_assigned,
+      'due_date': new_subtask_duedate,
       'tickets': ticketId,
     }
     return lastValueFrom(this.http.post(url, body));
