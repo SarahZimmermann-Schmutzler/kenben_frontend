@@ -18,7 +18,7 @@ export class EditTicketComponent {
   currentTicket: any = '';
   allSubtasks: any = [];
   subtasks: any = [];
-  newSubtaskFields:any = [];
+  newSubtaskFields: any = [];
   new_subtask_title = '';
   subtask_input;
 
@@ -28,7 +28,7 @@ export class EditTicketComponent {
   new_ticket_prio = '';
   new_ticket_assigned: any = [];
   formControl = true;
-  
+
 
   async ngOnInit() {
     this.currentTicket = await this.ticketsService.loadCurrentTicket(this.ticketId);
@@ -72,10 +72,7 @@ export class EditTicketComponent {
     e.stopPropagation();
   }
 
- 
-
   async editTicket() {
-    console.log('hallo', this.new_ticket_prio);
     try {
       let resp = await this.ticketsService.editTicket(
         this.ticketId,
@@ -84,10 +81,7 @@ export class EditTicketComponent {
         this.new_ticket_assigned,
         this.new_ticket_prio,
         this.new_ticket_dueDate,
-        this.boardId
       );
-      // sendet title an backend
-      // empfängt als response das neue board als Array
       console.log(resp);
       // this.getBack();
     } catch (e) {

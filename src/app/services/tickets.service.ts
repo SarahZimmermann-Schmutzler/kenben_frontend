@@ -34,15 +34,15 @@ export class TicketsService {
     return lastValueFrom(this.http.post(url, body));
   }
 
-  editTicket(ticketId, new_ticket_title, new_ticket_description, new_ticket_assigned, new_ticket_prio, new_ticket_dueDate, boardId) {
+  
+  editTicket(ticketId, send_title, send_description, send_assigned, send_prio, send_dueDate) {
     const url = `${environment.baseURL}/api/tickets/${ticketId}/`;
     const body = {
-      'title': new_ticket_title,
-      'description': new_ticket_description,
-      'assigned_to': new_ticket_assigned,
-      'priority': new_ticket_prio,
-      'due_date': new_ticket_dueDate,
-      'board': boardId,
+      'title': send_title,
+      'description': send_description,
+      'assigned_to': send_assigned,
+      'priority': send_prio,
+      'due_date': send_dueDate,
     }
     return lastValueFrom(this.http.patch(url, body));
   }
