@@ -23,11 +23,17 @@ export class EditTicketComponent {
   subtask_input;
 
   new_ticket_title = '';
+  send_title = '';
   new_ticket_description = '';
+  send_description = '';
   new_ticket_dueDate = '';
+  send_dueDate = '';
   new_ticket_prio = '';
+  send_prio = '';
   new_ticket_assigned: any = [];
+  send_assigned: any = [];
   formControl = true;
+  editedData: any = [];
 
 
   async ngOnInit() {
@@ -47,7 +53,7 @@ export class EditTicketComponent {
 
   watchForm() {
     setInterval(() => {
-      if (this.new_ticket_prio != '' || this.new_ticket_title != '' || this.new_ticket_assigned != '' || this.new_ticket_dueDate != '') {
+      if (this.new_ticket_prio != '' || this.new_ticket_title != '' || this.new_ticket_assigned != '' || this.new_ticket_dueDate != '' || this.new_ticket_description != '') {
         this.formControl = false;
       }
     }, 1000);
@@ -72,42 +78,100 @@ export class EditTicketComponent {
     e.stopPropagation();
   }
 
-  async editTicket() {
-    try {
-      let resp = await this.ticketsService.editTicket(
-        this.ticketId,
-        this.new_ticket_title,
-        this.new_ticket_description,
-        this.new_ticket_assigned,
-        this.new_ticket_prio,
-        this.new_ticket_dueDate,
-      );
-      console.log(resp);
-      // this.getBack();
-    } catch (e) {
-      console.error(e);
-    }
-  }
+//   async editTicket() {
+//     this.getEditedData();
+//     console.log(this.send_title);
 
+//     try {
+//       let resp = await this.ticketsService.editTicket(
+//       this.ticketId,
+//       this.send_title,
+//       this.send_description,
+//       this.send_assigned,
+//       this.send_prio,
+//       this.send_dueDate,
+//       );
+//     console.log('this is the resp', resp);
+//     // this.getBack();
+//   } catch(e) {
+//     console.error(e);
+//   }
+// }
 
-  openAddSubtask() {
-    this.addSubtask.emit(true);
-  }
-
-  getPrioValue(event) {
-    if (event.target.checked == true) {
-      this.new_ticket_prio = event.target.value;
-    }
-  }
-
-  getAssignedValue(user, i, event) {
-    if (event.target.checked == true) {
-      this.new_ticket_assigned.push(user.id);
+async editTicket() {
+  try {
+    if(this.new_ticket_title != this.currentTicket.title && this.new_ticket_title != '') {
+      let resp_title = await this.ticketsService.editTitle(this.ticketId,this.new_ticket_title);
+      console.log('this is the resp_title', resp_title);
     }
 
-    if (event.target.checked == false) {
-      this.new_ticket_assigned.splice(i, 1);
+    if((this.new_ticket_description != '' && this.currentTicket.description == '')) {
+      let resp_desc = await this.ticketsService.editDescription(this.ticketId,this.new_ticket_description);
+      console.log('this is the resp_desc', resp_desc);
     }
+
+    if(this.new_ticket_prio != this.currentTicket.priority && this.new_ticket_prio != '') {
+      let resp_prio = await this.ticketsService.editPrio(this.ticketId,this.new_ticket_prio);
+      console.log('this is the resp_prio', resp_prio);
+    }
+    
+    if(this.new_ticket_dueDate != this.currentTicket.due_date && this.new_ticket_dueDate != '') {
+      let resp_dueDate = await this.ticketsService.editDueDate(this.ticketId,this.new_ticket_dueDate);
+      console.log('this is the resp_dueDate', resp_dueDate);
+    }
+  
+  // this.getBack();
+} catch(e) {
+  console.error(e);
+}
+}
+
+getEditedData() {
+  if (this.new_ticket_title != this.currentTicket.title && this.new_ticket_title != '') {
+    this.send_title = this.new_ticket_title;
+    this.editedData.push(this.send_title);
   }
+
+  if (this.new_ticket_description != this.currentTicket.description) {
+    this.send_description = this.new_ticket_description;
+    this.editedData.push(this.send_description);
+  }
+
+  if (this.new_ticket_dueDate != this.currentTicket.due_date) {
+    this.send_dueDate = this.new_ticket_dueDate;
+    this.editedData.push(this.send_dueDate);
+  }
+
+  if (this.new_ticket_prio != this.currentTicket.priority && this.new_ticket_prio != '') {
+    this.send_prio = this.new_ticket_prio;
+    this.editedData.push(this.send_prio);
+  }
+
+  if (this.new_ticket_assigned != this.currentTicket.assigned_to && this.new_ticket_assigned != '') {
+    this.send_assigned = this.new_ticket_assigned;
+    this.editedData.push(this.send_assigned);
+  }
+}
+
+
+openAddSubtask() {
+  this.addSubtask.emit(true);
+}
+
+getPrioValue(event) {
+  if (event.target.checked == true) {
+    this.new_ticket_prio = event.target.value;
+  }
+}
+
+getAssignedValue(user, i, event) {
+  if (event.target.checked == true) {
+    this.new_ticket_assigned.push(user.id);
+  }
+
+  if (event.target.checked == false) {
+    this.new_ticket_assigned.splice(i, 1);
+  }
+}
 
 }

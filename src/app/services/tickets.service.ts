@@ -38,11 +38,43 @@ export class TicketsService {
   editTicket(ticketId, send_title, send_description, send_assigned, send_prio, send_dueDate) {
     const url = `${environment.baseURL}/api/tickets/${ticketId}/`;
     const body = {
-      'title': send_title,
+      'title': send_title, 
       'description': send_description,
       'assigned_to': send_assigned,
       'priority': send_prio,
       'due_date': send_dueDate,
+    }
+    return lastValueFrom(this.http.patch(url, body));
+  }
+
+  editTitle(ticketId, new_ticket_title) {
+    const url = `${environment.baseURL}/api/tickets/${ticketId}/`;
+    const body = {
+      'title': new_ticket_title,
+    }
+    return lastValueFrom(this.http.patch(url, body));
+  }
+
+  editDescription(ticketId, new_ticket_description) {
+    const url = `${environment.baseURL}/api/tickets/${ticketId}/`;
+    const body = {
+      'description': new_ticket_description,
+    }
+    return lastValueFrom(this.http.patch(url, body));
+  }
+
+  editPrio(ticketId, new_ticket_prio) {
+    const url = `${environment.baseURL}/api/tickets/${ticketId}/`;
+    const body = {
+      'priority': new_ticket_prio,
+    }
+    return lastValueFrom(this.http.patch(url, body));
+  }
+
+  editDueDate(ticketId, new_ticket_dueDate) {
+    const url = `${environment.baseURL}/api/tickets/${ticketId}/`;
+    const body = {
+      'due_date': new_ticket_dueDate,
     }
     return lastValueFrom(this.http.patch(url, body));
   }
