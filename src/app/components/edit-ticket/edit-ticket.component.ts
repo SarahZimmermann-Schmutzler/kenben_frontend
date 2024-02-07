@@ -105,7 +105,7 @@ async editTicket() {
       console.log('this is the resp_title', resp_title);
     }
 
-    if((this.new_ticket_description != '' && this.currentTicket.description == '')) {
+    if((this.new_ticket_description != '' && this.currentTicket.description == '') || (this.new_ticket_description != '' && this.currentTicket.description != '')) {
       let resp_desc = await this.ticketsService.editDescription(this.ticketId,this.new_ticket_description);
       console.log('this is the resp_desc', resp_desc);
     }
