@@ -28,7 +28,7 @@ export class EditTicketComponent {
   new_ticket_prio = '';
   new_ticket_assigned: any = [];
   formControl = true;
-  editedData: any = [];
+  deleteDescription = false; 
 
 
   async ngOnInit() {
@@ -48,10 +48,12 @@ export class EditTicketComponent {
 
   watchForm() {
     setInterval(() => {
-      if (this.new_ticket_prio != '' || this.new_ticket_title != '' || this.new_ticket_assigned != '' || this.new_ticket_dueDate != '' || this.new_ticket_description != '') {
+      if (this.new_ticket_prio != '' || this.new_ticket_title != '' || this.new_ticket_assigned != '' || this.new_ticket_dueDate != '' || this.new_ticket_description != '' || this.deleteDescription == true) {
         this.formControl = false;
+      } else {
+        this.formControl = true;
       }
-    }, 1000);
+    }, 500);
   }
 
   filterSubtasks() {
@@ -73,58 +75,75 @@ export class EditTicketComponent {
     e.stopPropagation();
   }
 
-  
-async editTicket() {
-  try {
-    if(this.new_ticket_title != this.currentTicket.title && this.new_ticket_title != '') {
-      let resp_title = await this.ticketsService.editTitle(this.ticketId,this.new_ticket_title);
-      console.log('this is the resp_title', resp_title);
+
+  async editTicket() {
+    try {
+      if (this.new_ticket_title != this.currentTicket.title && this.new_ticket_title != '') {
+        let resp_title = await this.ticketsService.editTitle(this.ticketId, this.new_ticket_title);
+        console.log('this is the resp_title', resp_title);
+      }
+
+      if ((this.new_ticket_description != '' && this.currentTicket.description == '') || (this.new_ticket_description != '' && this.currentTicket.description != '')) {
+        let resp_desc = await this.ticketsService.editDescription(this.ticketId, this.new_ticket_description);
+        console.log('this is the resp_desc', resp_desc);
+      }
+
+      if (this.deleteDescription == true) {
+        this.new_ticket_description = '';
+        console.log(this.new_ticket_description)
+        let resp_desc = await this.ticketsService.editDescription(this.ticketId, this.new_ticket_description);
+        console.log('this is the resp_desc', resp_desc);
+      }
+
+      if (this.new_ticket_prio != this.currentTicket.priority && this.new_ticket_prio != '') {
+        let resp_prio = await this.ticketsService.editPrio(this.ticketId, this.new_ticket_prio);
+        console.log('this is the resp_prio', resp_prio);
+      }
+
+      if (this.new_ticket_dueDate != this.currentTicket.due_date && this.new_ticket_dueDate != '') {
+        let resp_dueDate = await this.ticketsService.editDueDate(this.ticketId, this.new_ticket_dueDate);
+        console.log('this is the resp_dueDate', resp_dueDate);
+      }
+
+      if (this.new_ticket_assigned != this.currentTicket.assigned_to && this.new_ticket_assigned != '') {
+        let resp_assigned = await this.ticketsService.editAssignedTo(this.ticketId, this.new_ticket_assigned);
+        console.log('this is the resp_assignes', resp_assigned);
+      }
+
+      this.getBack();
+    } catch (e) {
+      console.error(e);
     }
-
-    if((this.new_ticket_description != '' && this.currentTicket.description == '') || (this.new_ticket_description != '' && this.currentTicket.description != '')) {
-      let resp_desc = await this.ticketsService.editDescription(this.ticketId,this.new_ticket_description);
-      console.log('this is the resp_desc', resp_desc);
-    }
-
-    if(this.new_ticket_prio != this.currentTicket.priority && this.new_ticket_prio != '') {
-      let resp_prio = await this.ticketsService.editPrio(this.ticketId,this.new_ticket_prio);
-      console.log('this is the resp_prio', resp_prio);
-    }
-    
-    if(this.new_ticket_dueDate != this.currentTicket.due_date && this.new_ticket_dueDate != '') {
-      let resp_dueDate = await this.ticketsService.editDueDate(this.ticketId,this.new_ticket_dueDate);
-      console.log('this is the resp_dueDate', resp_dueDate);
-    }
-
-    if(this.new_ticket_assigned != this.currentTicket.assigned_to && this.new_ticket_assigned != '') {
-      let resp_assigned = await this.ticketsService.editAssignedTo(this.ticketId,this.new_ticket_assigned);
-      console.log('this is the resp_assignes', resp_assigned);
-    }
-  
-  this.getBack();
-} catch(e) {
-  console.error(e);
-}
-}
-
-openAddSubtask() {
-  this.addSubtask.emit(true);
-}
-
-getPrioValue(event) {
-  if (event.target.checked == true) {
-    this.new_ticket_prio = event.target.value;
-  }
-}
-
-getAssignedValue(user, i, event) {
-  if (event.target.checked == true) {
-    this.new_ticket_assigned.push(user.id);
   }
 
-  if (event.target.checked == false) {
-    this.new_ticket_assigned.splice(i, 1);
+  clearDescription(event) {
+    console.log(event.target.checked);
+    if(event.target.checked == true) {
+      this.deleteDescription = true;
+    } else {
+      this.deleteDescription = false;
+    }
+
   }
-}
+
+  openAddSubtask() {
+    this.addSubtask.emit(true);
+  }
+
+  getPrioValue(event) {
+    if (event.target.checked == true) {
+      this.new_ticket_prio = event.target.value;
+    }
+  }
+
+  getAssignedValue(user, i, event) {
+    if (event.target.checked == true) {
+      this.new_ticket_assigned.push(user.id);
+    }
+
+    if (event.target.checked == false) {
+      this.new_ticket_assigned.splice(i, 1);
+    }
+  }
 
 }
