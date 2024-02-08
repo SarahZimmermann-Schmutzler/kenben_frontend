@@ -23,15 +23,10 @@ export class EditTicketComponent {
   subtask_input;
 
   new_ticket_title = '';
-  send_title = '';
   new_ticket_description = '';
-  send_description = '';
   new_ticket_dueDate = '';
-  send_dueDate = '';
   new_ticket_prio = '';
-  send_prio = '';
   new_ticket_assigned: any = [];
-  send_assigned: any = [];
   formControl = true;
   editedData: any = [];
 
@@ -78,26 +73,7 @@ export class EditTicketComponent {
     e.stopPropagation();
   }
 
-//   async editTicket() {
-//     this.getEditedData();
-//     console.log(this.send_title);
-
-//     try {
-//       let resp = await this.ticketsService.editTicket(
-//       this.ticketId,
-//       this.send_title,
-//       this.send_description,
-//       this.send_assigned,
-//       this.send_prio,
-//       this.send_dueDate,
-//       );
-//     console.log('this is the resp', resp);
-//     // this.getBack();
-//   } catch(e) {
-//     console.error(e);
-//   }
-// }
-
+  
 async editTicket() {
   try {
     if(this.new_ticket_title != this.currentTicket.title && this.new_ticket_title != '') {
@@ -119,40 +95,17 @@ async editTicket() {
       let resp_dueDate = await this.ticketsService.editDueDate(this.ticketId,this.new_ticket_dueDate);
       console.log('this is the resp_dueDate', resp_dueDate);
     }
+
+    if(this.new_ticket_assigned != this.currentTicket.assigned_to && this.new_ticket_assigned != '') {
+      let resp_assigned = await this.ticketsService.editAssignedTo(this.ticketId,this.new_ticket_assigned);
+      console.log('this is the resp_assignes', resp_assigned);
+    }
   
-  // this.getBack();
+  this.getBack();
 } catch(e) {
   console.error(e);
 }
 }
-
-getEditedData() {
-  if (this.new_ticket_title != this.currentTicket.title && this.new_ticket_title != '') {
-    this.send_title = this.new_ticket_title;
-    this.editedData.push(this.send_title);
-  }
-
-  if (this.new_ticket_description != this.currentTicket.description) {
-    this.send_description = this.new_ticket_description;
-    this.editedData.push(this.send_description);
-  }
-
-  if (this.new_ticket_dueDate != this.currentTicket.due_date) {
-    this.send_dueDate = this.new_ticket_dueDate;
-    this.editedData.push(this.send_dueDate);
-  }
-
-  if (this.new_ticket_prio != this.currentTicket.priority && this.new_ticket_prio != '') {
-    this.send_prio = this.new_ticket_prio;
-    this.editedData.push(this.send_prio);
-  }
-
-  if (this.new_ticket_assigned != this.currentTicket.assigned_to && this.new_ticket_assigned != '') {
-    this.send_assigned = this.new_ticket_assigned;
-    this.editedData.push(this.send_assigned);
-  }
-}
-
 
 openAddSubtask() {
   this.addSubtask.emit(true);
