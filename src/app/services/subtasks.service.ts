@@ -25,4 +25,12 @@ export class SubtasksService {
     }
     return lastValueFrom(this.http.post(url, body));
   }
+
+  editSubtask(subtaskId, subtask_checked) {
+    const url = `${environment.baseURL}/api/subtasks/${subtaskId}/`;
+    const body = {
+      'checked': subtask_checked,
+    }
+    return lastValueFrom(this.http.patch(url, body));
+  }
 }

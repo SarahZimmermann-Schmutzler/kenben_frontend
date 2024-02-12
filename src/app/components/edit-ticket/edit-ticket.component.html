@@ -68,7 +68,7 @@
 
             <div class="dv-margin8 dv-subtask-container">Subtasks:</div>
             <div *ngFor="let subtask of subtasks" class="dv-subtask dv-margin8">
-                <input type="checkbox">
+                <input type="checkbox" (click)="checkSubtask($event, subtask.id)" [checked]="subtask.checked">
                 <label>{{subtask.title}}</label>
             </div>
 
