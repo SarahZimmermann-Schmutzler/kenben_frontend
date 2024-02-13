@@ -87,6 +87,14 @@ export class TicketsService {
     return lastValueFrom(this.http.patch(url, body));
   }
 
+  editStatus(ticketId, new_ticket_status) {
+    const url = `${environment.baseURL}/api/tickets/${ticketId}/`;
+    const body = {
+      'status': new_ticket_status,
+    }
+    return lastValueFrom(this.http.patch(url, body));
+  }
+
   deleteTicket(ticketId) {
     const url = `${environment.baseURL}/api/tickets/${ticketId}/`;
     return lastValueFrom(this.http.delete(url));

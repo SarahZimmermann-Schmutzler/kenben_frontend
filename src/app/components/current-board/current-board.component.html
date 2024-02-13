@@ -29,7 +29,8 @@
         <div class="page-content">
             <!-- Your content goes here -->
             <div class="add-btn-container">
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" (click)="openTaskCreateView()">Add Ticket</button>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                    (click)="openTaskCreateView()">Add Ticket</button>
             </div>
 
 
@@ -39,9 +40,99 @@
                     <div class="container-headline">
                         <span>To do</span>
                     </div>
-                    <div class="card-container" id="todo">
+                    <div class="card-container" id="todo" (drop)="moveTo('Todo')" (dragover)="allowDrop($event)">
                         <div class="card" *ngFor="let ticket of todoTickets" id='{{ticket.id}}'
-                            (click)="openDetailView(ticket.id)">
+                            (click)="openDetailView(ticket.id)" draggable="true" (dragstart)="startDragging($event,ticket.id)">
+                            <div class="one-row">
+                                <div class="c-title"><span>{{ticket.title}}</span></div>
+                                <div><span>{{ticket.time_till_due}}</span></div>
+                            </div>
+                            <div class="c-description"><span>{{ticket.description}}</span></div>
+                            <div class="one-row">
+                                <div class="c-assigned-container">
+                                    <div class="c-margin" *ngFor="let assigned of ticket.assigned_to">
+                                        <div class="c-assigned">{{assigned}}</div>
+                                    </div>
+                                </div>
+
+                                <div class="c-prio"
+                                    [ngClass]="{'c-low': ticket.priority === 'Low', 'c-middle': ticket.priority === 'Middle', 'c-high': ticket.priority === 'High'}">
+                                    <span>{{ticket.priority}}</span>
+                                </div>
+                            </div>
+                            <span>Subtasks {{ticket.subtasks.length}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!------ in progress ------>
+                <div class="task-sub-container">
+                    <div class="container-headline">
+                        <span>In Progress</span>
+                    </div>
+                    <div class="card-container" id="progress" (drop)="moveTo('In Progress')" (dragover)="allowDrop($event)">
+                        <div class="card" *ngFor="let ticket of progressTickets" id='{{ticket.id}}'
+                            (click)="openDetailView(ticket.id)" draggable="true" (dragstart)="startDragging($event, ticket.id)">
+                            <div class="one-row">
+                                <div class="c-title"><span>{{ticket.title}}</span></div>
+                                <div><span>{{ticket.time_till_due}}</span></div>
+                            </div>
+                            <div class="c-description"><span>{{ticket.description}}</span></div>
+                            <div class="one-row">
+                                <div class="c-assigned-container">
+                                    <div class="c-margin" *ngFor="let assigned of ticket.assigned_to">
+                                        <div class="c-assigned">{{assigned}}</div>
+                                    </div>
+                                </div>
+
+                                <div class="c-prio"
+                                    [ngClass]="{'c-low': ticket.priority === 'Low', 'c-middle': ticket.priority === 'Middle', 'c-high': ticket.priority === 'High'}">
+                                    <span>{{ticket.priority}}</span>
+                                </div>
+                            </div>
+                            <span>Subtasks {{ticket.subtasks.length}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!------ awaiting feedback ------>
+                <div class="task-sub-container">
+                    <div class="container-headline">
+                        <span>Awaiting Feedback</span>
+                    </div>
+                    <div class="card-container" id="feedback" (drop)="moveTo('Awaiting Feedback')" (dragover)="allowDrop($event)">
+                        <div class="card" *ngFor="let ticket of awaitTickets" id='{{ticket.id}}'
+                            (click)="openDetailView(ticket.id)" draggable="true" (dragstart)="startDragging($event, ticket.id)">
+                            <div class="one-row">
+                                <div class="c-title"><span>{{ticket.title}}</span></div>
+                                <div><span>{{ticket.time_till_due}}</span></div>
+                            </div>
+                            <div class="c-description"><span>{{ticket.description}}</span></div>
+                            <div class="one-row">
+                                <div class="c-assigned-container">
+                                    <div class="c-margin" *ngFor="let assigned of ticket.assigned_to">
+                                        <div class="c-assigned">{{assigned}}</div>
+                                    </div>
+                                </div>
+
+                                <div class="c-prio"
+                                    [ngClass]="{'c-low': ticket.priority === 'Low', 'c-middle': ticket.priority === 'Middle', 'c-high': ticket.priority === 'High'}">
+                                    <span>{{ticket.priority}}</span>
+                                </div>
+                            </div>
+                            <span>Subtasks {{ticket.subtasks.length}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!------ done ------>
+                <div class="task-sub-container">
+                    <div class="container-headline">
+                        <span>Done</span>
+                    </div>
+                    <div class="card-container" id="done" (drop)="moveTo('Done')" (dragover)="allowDrop($event)">
+                        <div class="card" *ngFor="let ticket of doneTickets" id='{{ticket.id}}'
+                            (click)="openDetailView(ticket.id)" draggable="true" (dragstart)="startDragging($event, ticket.id)">
                             <div class="one-row">
                                 <div class="c-title"><span>{{ticket.title}}</span></div>
                                 <div><span>{{ticket.time_till_due}}</span></div>
@@ -65,50 +156,24 @@
                         </div>
                     </div>
                 </div>
-
-                <!------ in progress ------>
-                <div class="task-sub-container">
-                    <div class="container-headline">
-                        <span>In Progress</span>
-                    </div>
-                    <div class="card-container" id="progress">
-                    </div>
-                </div>
-
-                <!------ awaiting feedback ------>
-                <div class="task-sub-container">
-                    <div class="container-headline">
-                        <span>Awaiting Feedback</span>
-                    </div>
-                    <div class="card-container" id="feedback">
-                    </div>
-                </div>
-
-                <!------ done ------>
-                <div class="task-sub-container">
-                    <div class="container-headline">
-                        <span>Done</span>
-                    </div>
-                    <div class="card-container" id="done">
-                    </div>
-                </div>
             </div>
         </div>
 
 
         <!-- card detail view popup -->
-        <app-card-detail-view *ngIf="detailView" (detailView)="closeDetailView($event)"
-            [ticketId]="ticketId" (editView)="openEditView($event)"></app-card-detail-view>
-        
+        <app-card-detail-view *ngIf="detailView" (detailView)="closeDetailView($event)" [ticketId]="ticketId"
+            (editView)="openEditView($event)"></app-card-detail-view>
+
         <!-- add task popup -->
-        <app-add-ticket *ngIf="addTask" [allUsers]="allUsers" [boardId]="boardId" (addTask)="closeAddTaskView($event)"></app-add-ticket>
+        <app-add-ticket *ngIf="addTask" [allUsers]="allUsers" [boardId]="boardId"
+            (addTask)="closeAddTaskView($event)"></app-add-ticket>
 
         <!-- edit ticket popup -->
         <app-edit-ticket *ngIf="editView" (editView)="closeEditView($event)" (addSubtask)="openAddSubtaskView($event)"
             [ticketId]="ticketId" [allUsers]="allUsers" [boardId]="boardId"></app-edit-ticket>
-        
+
         <!-- add subtask popup -->
-        <app-add-subtask *ngIf="addSubtask"
-            [ticketId]="ticketId" (addSubtask)="closeAddSubtaskView($event)" [allUsers]="allUsers"></app-add-subtask>
+        <app-add-subtask *ngIf="addSubtask" [ticketId]="ticketId" (addSubtask)="closeAddSubtaskView($event)"
+            [allUsers]="allUsers"></app-add-subtask>
     </main>
 </div>

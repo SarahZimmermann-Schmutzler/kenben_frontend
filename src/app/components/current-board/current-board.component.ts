@@ -27,15 +27,18 @@ export class CurrentBoardComponent {
   addTask: boolean = false;
   allUsers: any = [];
   addSubtask: boolean = false;
- 
+  currentDraggedElement = '';
+  currentDraggedTicket = '';
+  currentDraggedTicket_id = '';
+
 
   constructor(
-    public boardService: BoardService, 
-    public ticketsService: TicketsService, 
+    public boardService: BoardService,
+    public ticketsService: TicketsService,
     public subtaskService: SubtasksService,
     public userService: UsersService,
     private router: Router) { }
-  
+
   async ngOnInit() {
     this.boardId = localStorage.getItem('boardId')
     // console.log(this.boardId)
@@ -97,7 +100,7 @@ export class CurrentBoardComponent {
 
   closeAddTaskView($event) {
     this.addTask = $event;
-    
+
   }
 
   openTaskCreateView() {
@@ -110,5 +113,28 @@ export class CurrentBoardComponent {
 
   closeAddSubtaskView($event) {
     this.addSubtask = $event;
+  }
+
+  startDragging(event, cardId) {
+    this.currentDraggedElement = cardId;
+    console.log('element', this.currentDraggedElement)
+  }
+
+  allowDrop(event) {
+    event.preventDefault();
+  }
+
+  async moveTo(status) {
+    try {
+      this.currentDraggedTicket = this.tickets.find(ticket => ticket.id == this.currentDraggedElement);
+      console.log('funktioniert?', this.currentDraggedTicket['id'])
+      console.log('funktioniert?', status)
+      this.currentDraggedTicket_id = this.currentDraggedTicket['id']
+      let resp_ = await this.ticketsService.editStatus(this.currentDraggedTicket_id, status);
+    }
+    catch (e) {
+      console.error(e);
+    }
+
   }
 }
