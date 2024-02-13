@@ -70,6 +70,9 @@
             <div *ngFor="let subtask of subtasks" class="dv-subtask dv-margin8">
                 <input type="checkbox" (click)="checkSubtask($event, subtask.id)" [checked]="subtask.checked">
                 <label>{{subtask.title}}</label>
+                <!-- <input type="checkbox" (click)="deleteSubtask($event, subtask.id)">
+                <label>delete</label> -->
+                <button (click)="deleteSubtask(subtask.id)">DELETE</button>
             </div>
 
             <span style="font-size: 36px;" (click)="openAddSubtask()">+</span>

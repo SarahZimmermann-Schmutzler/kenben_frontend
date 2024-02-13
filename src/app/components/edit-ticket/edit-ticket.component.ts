@@ -28,8 +28,9 @@ export class EditTicketComponent {
   new_ticket_prio = '';
   new_ticket_assigned: any = [];
   formControl = true;
-  deleteDescription = false; 
+  deleteDescription = false;
   subtask_ckecked: boolean;
+  subtask_delete = false;
 
 
   async ngOnInit() {
@@ -119,7 +120,7 @@ export class EditTicketComponent {
 
   clearDescription(event) {
     console.log(event.target.checked);
-    if(event.target.checked == true) {
+    if (event.target.checked == true) {
       this.deleteDescription = true;
     } else {
       this.deleteDescription = false;
@@ -148,21 +149,34 @@ export class EditTicketComponent {
 
   async checkSubtask(event, subtaskId) {
     try {
-      if(event.target.checked == true) {
-      this.subtask_ckecked = true;
-    }
+      if (event.target.checked == true) {
+        this.subtask_ckecked = true;
+      }
 
-    if(event.target.checked == false) {
-      this.subtask_ckecked = false;
-    }
+      if (event.target.checked == false) {
+        this.subtask_ckecked = false;
+      }
 
-    let resp = await this.subtaskService.editSubtask(subtaskId, this.subtask_ckecked);
+      let resp = await this.subtaskService.editSubtask(subtaskId, this.subtask_ckecked);
     }
 
     catch (e) {
       console.error(e);
     }
-    
+
+  }
+
+
+
+  async deleteSubtask(subtaskId) {
+    try {
+      this.subtask_delete = true;
+      let resp = await this.subtaskService.deleteSubtask(subtaskId);
+    }
+
+    catch (e) {
+      console.error(e);
+    }
   }
 
 }

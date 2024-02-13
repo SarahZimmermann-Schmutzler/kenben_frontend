@@ -33,4 +33,9 @@ export class SubtasksService {
     }
     return lastValueFrom(this.http.patch(url, body));
   }
+
+  deleteSubtask(subtaskId) {
+    const url = `${environment.baseURL}/api/subtasks/${subtaskId}/`;
+    return lastValueFrom(this.http.delete(url));
+  }
 }
