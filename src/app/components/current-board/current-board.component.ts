@@ -30,6 +30,10 @@ export class CurrentBoardComponent {
   currentDraggedElement = '';
   currentDraggedTicket = '';
   currentDraggedTicket_id = '';
+  isNotDraggedTodo = true;
+  isDraggedProgress = false;
+  isDraggedAwait = false;
+  isNotDraggedDone = true;
 
 
   constructor(
@@ -124,13 +128,34 @@ export class CurrentBoardComponent {
     event.preventDefault();
   }
 
-  async moveTo(status) {
+  async moveTo(new_ticket_status) {
     try {
       this.currentDraggedTicket = this.tickets.find(ticket => ticket.id == this.currentDraggedElement);
-      console.log('funktioniert?', this.currentDraggedTicket['id'])
-      console.log('funktioniert?', status)
       this.currentDraggedTicket_id = this.currentDraggedTicket['id']
-      let resp_ = await this.ticketsService.editStatus(this.currentDraggedTicket_id, status);
+      let resp_ = await this.ticketsService.editStatus(this.currentDraggedTicket_id, new_ticket_status);
+      // if(new_ticket_status == 'Todo') {
+      //   this.isNotDraggedTodo = false;
+      // }
+
+      if(this.currentDraggedTicket['status'] == 'In Progress' && new_ticket_status == 'Todo' || 'Awaiting Feedback' || 'Done') {
+        this.isDraggedProgress = true;
+      }
+
+      if(this.currentDraggedTicket['status'] == 'Awaiting Feedback' && new_ticket_status == 'Todo' || 'In Progress' || 'Done') {
+        this.isDraggedAwait = true;
+      }
+
+      // if(new_ticket_status == 'Todo' || 'Done' || 'In Progress') {
+      //   this.isNotDraggedAwait = false;
+      // }
+
+      // if(new_ticket_status == 'Awaiting Feedback') {
+      //   this.isNotDraggedAwait = false;
+      // }
+
+      // if(new_ticket_status == 'Done') {
+      //   this.isNotDraggedDone = false;
+      // }
     }
     catch (e) {
       console.error(e);
