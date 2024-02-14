@@ -30,10 +30,6 @@ export class CurrentBoardComponent {
   currentDraggedElement = '';
   currentDraggedTicket = '';
   currentDraggedTicket_id = '';
-  isNotDraggedTodo = true;
-  isDraggedProgress = false;
-  isDraggedAwait = false;
-  isNotDraggedDone = true;
 
 
   constructor(
@@ -133,29 +129,8 @@ export class CurrentBoardComponent {
       this.currentDraggedTicket = this.tickets.find(ticket => ticket.id == this.currentDraggedElement);
       this.currentDraggedTicket_id = this.currentDraggedTicket['id']
       let resp_ = await this.ticketsService.editStatus(this.currentDraggedTicket_id, new_ticket_status);
-      // if(new_ticket_status == 'Todo') {
-      //   this.isNotDraggedTodo = false;
-      // }
-
-      if(this.currentDraggedTicket['status'] == 'In Progress' && new_ticket_status == 'Todo' || 'Awaiting Feedback' || 'Done') {
-        this.isDraggedProgress = true;
-      }
-
-      if(this.currentDraggedTicket['status'] == 'Awaiting Feedback' && new_ticket_status == 'Todo' || 'In Progress' || 'Done') {
-        this.isDraggedAwait = true;
-      }
-
-      // if(new_ticket_status == 'Todo' || 'Done' || 'In Progress') {
-      //   this.isNotDraggedAwait = false;
-      // }
-
-      // if(new_ticket_status == 'Awaiting Feedback') {
-      //   this.isNotDraggedAwait = false;
-      // }
-
-      // if(new_ticket_status == 'Done') {
-      //   this.isNotDraggedDone = false;
-      // }
+     
+      document.getElementById(this.currentDraggedTicket_id).classList.add('hide')
     }
     catch (e) {
       console.error(e);
