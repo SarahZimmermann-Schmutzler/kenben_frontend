@@ -18,6 +18,10 @@ export class CurrentBoardComponent {
   progressTickets: any = [];
   awaitTickets: any = [];
   doneTickets: any = [];
+  cloneTodo: any = [];
+  cloneProgress: any = [];
+  cloneAwait: any = [];
+  cloneDone: any = [];
   // allSubtasks: any = [];
   // subtasks: any = [];
   ticketId: any = '';
@@ -58,10 +62,10 @@ export class CurrentBoardComponent {
     this.progressTickets = this.tickets.filter(s => s.board == this.boardId && s.status == 'In Progress');
     this.awaitTickets = this.tickets.filter(s => s.board == this.boardId && s.status == 'Awaiting Feedback');
     this.doneTickets = this.tickets.filter(s => s.board == this.boardId && s.status == 'Done');
-    console.log(this.todoTickets);
-    console.log(this.progressTickets);
-    console.log(this.awaitTickets);
-    console.log(this.doneTickets);
+    // console.log(this.todoTickets);
+    // console.log(this.progressTickets);
+    // console.log(this.awaitTickets);
+    // console.log(this.doneTickets);
   }
 
   logout() {
@@ -129,12 +133,40 @@ export class CurrentBoardComponent {
       this.currentDraggedTicket = this.tickets.find(ticket => ticket.id == this.currentDraggedElement);
       this.currentDraggedTicket_id = this.currentDraggedTicket['id']
       let resp_ = await this.ticketsService.editStatus(this.currentDraggedTicket_id, new_ticket_status);
-     
-      document.getElementById(this.currentDraggedTicket_id).classList.add('hide')
+      
+      this.hideDraggedTicket(this.currentDraggedTicket_id);
+      this.showCloneTicket(new_ticket_status);
+      
+      
+
+      
     }
     catch (e) {
       console.error(e);
     }
+  }
+
+  hideDraggedTicket(draggedTicketId){
+    document.getElementById(draggedTicketId).classList.add('hide');
+  }
+
+  showCloneTicket(new_ticket_status) {
+    if(new_ticket_status == 'Todo') {
+      this.cloneTodo.push(this.currentDraggedTicket);
+    }
+
+    if(new_ticket_status == 'In Progress') {
+      this.cloneProgress.push(this.currentDraggedTicket);
+    }
+
+    if(new_ticket_status == 'Awaiting Feedback') {
+      this.cloneAwait.push(this.currentDraggedTicket);
+    }
+
+    if(new_ticket_status == 'Done') {
+      this.cloneDone.push(this.currentDraggedTicket);
+    }
+
 
   }
 }
