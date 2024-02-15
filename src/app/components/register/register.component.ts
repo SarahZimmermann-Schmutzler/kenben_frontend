@@ -11,11 +11,16 @@ export class RegisterComponent {
   username = '';
   email = '';
   password = '';
+  formControl = true;
 
   constructor(
     public authservice: AuthService,
     private router: Router,
   ) { }
+
+  ngOnInit() {
+    this.watchForm();
+  }
 
   async register() {
     try{
@@ -29,6 +34,18 @@ export class RegisterComponent {
   }
 
   backToLogin() {
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('/login').then(() => {
+      window.location.reload();
+    });;
+  }
+
+  watchForm() {
+    setInterval(() => {
+      if (this.username != '' && this.password != '' && this.email != '') {
+        this.formControl = false;
+      } else {
+        this.formControl = true;
+      }
+    }, 500);
   }
 }

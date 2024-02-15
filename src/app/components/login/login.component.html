@@ -19,17 +19,17 @@
         <form class="form-login" (ngSubmit)="login()">
             <span>PLEASE LOGIN</span>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name="username" [(ngModel)]="username" required>
+                <input class="mdl-textfield__input" type="text" name="username" [(ngModel)]="username">
                 <label class="mdl-textfield__label" for="username">Username</label>
             </div>
 
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="password" name="password" [(ngModel)]="password" required>
+                <input class="mdl-textfield__input" type="password" name="password" [(ngModel)]="password">
                 <label class="mdl-textfield__label" for="password">Password</label>
             </div>
 
             <div>
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Login</button>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" [disabled]="formControl">Login</button>
             </div>
         </form>
 

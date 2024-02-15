@@ -69,12 +69,16 @@ export class CurrentBoardComponent {
   }
 
   logout() {
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/').then(() => {
+      window.location.reload();
+    });;
   }
 
   backToWorkspace() {
     localStorage.setItem('boardId', '');
-    this.router.navigateByUrl('boards');
+    this.router.navigateByUrl('boards').then(() => {
+      window.location.reload();
+    });;
   }
 
   openDetailView(ticketId) {

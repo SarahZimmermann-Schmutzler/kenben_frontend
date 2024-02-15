@@ -48,11 +48,15 @@ export class BoardsComponent implements OnInit {
 
 
   logout() {
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/').then(() => {
+      window.location.reload();
+    });;
   }
 
   openCurrentBoard(boardId) {
     localStorage.setItem('boardId', boardId);
-    this.router.navigateByUrl('currentBoard');
+    this.router.navigateByUrl('currentBoard').then(() => {
+      window.location.reload();
+    });
   }
 }
