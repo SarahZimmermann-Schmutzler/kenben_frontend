@@ -13,10 +13,13 @@
 
 .task-main-container {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     position: relative;
-    // background-color: aqua;
+
+    @media(max-width: 870px) {
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 .task-sub-container {
@@ -29,6 +32,10 @@
     border-right: 1px solid #3F51B5;
     border-left: 1px solid #3F51B5;
     // background-color: yellow;
+
+    @media(max-width: 870px) {
+        width: 100%;
+    }
 }
 
 .container-headline {
@@ -143,93 +150,6 @@
 .hide {
     display: none;
 }
-
-// card detail view pop up
-
-// .pop-up-container {
-//     position: absolute;
-//     top: 0;
-//     right: 0;
-//     background-color: #F6F7F8;
-//     width: 100%;
-//     height: 92.25vh;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     z-index: 5;
-//     box-sizing: border-box;
-//     cursor: pointer;
-// }
-
-// .popUp-content-container {
-//     background-color: white;
-//     width: 500px;
-//     height: 500px;
-//     border-radius: 10px;
-//     padding: 20px;
-//     box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.04);
-//     cursor: default;
-// }
-
-// .dv-margin-bottom {
-//     margin-bottom: 16px;
-// }
-
-// .dv-margin8 {
-//     margin-bottom: 8px;
-// }
-
-// .dv-close-container {
-//     display: flex;
-//     justify-content: flex-end;
-// }
-
-// .dv-title {
-//     font-size: 25px;
-//     font-weight: 700;
-//     color:#3F51B5;
-// }
-
-// .dv-description {
-//     color: rgba(0,0,0,0.4);
-//     margin-bottom: 24px;
-// }
-
-// .dv-dd-container {
-//     display: flex;
-// }
-
-// .dv-dd-title {
-//     width: 25%;
-// }
-
-// .dv-dd-date {
-//     width: 75%;
-// }
-
-// .dv-assigned {
-//     display: flex;
-//     margin-left: 25px;
-// }
-
-// .dv-subtask-container {
-//     margin-top: 16px;
-// }
-
-// .dv-subtask {
-//     display: flex;
-//     margin-left: 25px;
-// }
-
-// .dv-btn-container{
-//     display: flex;
-//     justify-content: flex-end;
-// }
-
-// .dv-btn-line {
-//     margin-left: 8px;
-//     margin-right: 8px;
-// }
 
 
 
