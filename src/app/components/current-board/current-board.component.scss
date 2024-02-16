@@ -35,6 +35,12 @@
 
     @media(max-width: 870px) {
         width: 100%;
+        border-left: none;
+        border-right: none;
+        min-height: 50px;
+        overflow: scroll;
+        border-bottom: 1px solid #3F51B5;
+        margin-top: 20px;
     }
 }
 
@@ -46,6 +52,10 @@
     color: #3F51B5;
     font-size: 18px;
     // background-color: aqua;
+
+    @media(max-width: 870px) {
+        font-weight: 700;
+    }
 }
 
 .card-container {
@@ -145,6 +155,10 @@
     display: flex;
     justify-content: flex-end;
     margin-bottom: 50px;
+
+    @media(max-width: 870px) {
+        justify-content: center;
+    }
 }
 
 .hide {
