@@ -47,6 +47,22 @@
                 </div>
             </div>
 
+            <div class="dv-dd-container dv-margin-bottom">
+                <div class="dv-margin8">Status:</div>
+                <div class="dv-dd-date">{{currentTicket.status}}</div>
+                <div class="dv-assigned dv-margin8">
+                    <input type="radio" name="status" value="Todo" (change)="getStatusValue($event)">
+                    <!-- hier Low großgeschrieben, weil auch im Model groß -->
+                    <label for="todo">Todo</label>
+                    <input type="radio" name="status" value="In Progress" (change)="getStatusValue($event)">
+                    <label for="progress">In Progress</label>
+                    <input type="radio" name="status" value="Awaiting Feedback" (change)="getStatusValue($event)">
+                    <label for="await">Awaiting Feedback</label>
+                    <input type="radio" name="status" value="Done" (change)="getStatusValue($event)">
+                    <label for="done">Done</label>
+                </div>
+            </div>
+
             <!-- <div class="dv-dd-container dv-margin-bottom">
                 <div class="dv-dd-title">Priority:</div>
                 <div class="dv-dd-date">{{currentTicket.priority}}</div>

@@ -126,6 +126,7 @@ export class CurrentBoardComponent {
   startDragging(event, cardId) {
     this.currentDraggedElement = cardId;
     console.log('element', this.currentDraggedElement)
+    document.getElementById(cardId).classList.add('rotate');
   }
 
   allowDrop(event) {
@@ -137,40 +138,43 @@ export class CurrentBoardComponent {
       this.currentDraggedTicket = this.tickets.find(ticket => ticket.id == this.currentDraggedElement);
       this.currentDraggedTicket_id = this.currentDraggedTicket['id']
       let resp_ = await this.ticketsService.editStatus(this.currentDraggedTicket_id, new_ticket_status);
-      
+
       this.hideDraggedTicket(this.currentDraggedTicket_id);
       this.showCloneTicket(new_ticket_status);
-      
-      
-
-      
+      this.removeHighlight(new_ticket_status);
     }
     catch (e) {
       console.error(e);
     }
   }
 
-  hideDraggedTicket(draggedTicketId){
+  hideDraggedTicket(draggedTicketId) {
     document.getElementById(draggedTicketId).classList.add('hide');
   }
 
   showCloneTicket(new_ticket_status) {
-    if(new_ticket_status == 'Todo') {
+    if (new_ticket_status == 'Todo') {
       this.cloneTodo.push(this.currentDraggedTicket);
     }
 
-    if(new_ticket_status == 'In Progress') {
+    if (new_ticket_status == 'In Progress') {
       this.cloneProgress.push(this.currentDraggedTicket);
     }
 
-    if(new_ticket_status == 'Awaiting Feedback') {
+    if (new_ticket_status == 'Awaiting Feedback') {
       this.cloneAwait.push(this.currentDraggedTicket);
     }
 
-    if(new_ticket_status == 'Done') {
+    if (new_ticket_status == 'Done') {
       this.cloneDone.push(this.currentDraggedTicket);
     }
+  }
 
+  highlight(index) {
+    document.getElementById(index).classList.add('highlight');
+  }
 
+  removeHighlight(index) {
+    document.getElementById(index).classList.remove('highlight');
   }
 }

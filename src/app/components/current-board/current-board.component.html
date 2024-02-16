@@ -39,7 +39,7 @@
                     <div class="container-headline">
                         <span>To do</span>
                     </div>
-                    <div class="card-container" id="todo" (drop)="moveTo('Todo')" (dragover)="allowDrop($event)">
+                    <div class="card-container" id="Todo" (drop)="moveTo('Todo')" (dragover)="allowDrop($event); highlight('Todo')" (dragleave)="removeHighlight('Todo')">
                             <div class="card" *ngFor="let ticket of todoTickets" id='{{ticket.id}}'
                                 (click)="openDetailView(ticket.id)" draggable="true"
                                 (dragstart)="startDragging($event,ticket.id)">
@@ -93,8 +93,8 @@
                     <div class="container-headline">
                         <span>In Progress</span>
                     </div>
-                    <div class="card-container" id="progress" (drop)="moveTo('In Progress')"
-                        (dragover)="allowDrop($event)">
+                    <div class="card-container" id="In Progress" (drop)="moveTo('In Progress')"
+                        (dragover)="allowDrop($event); highlight('In Progress')" (dragleave)="removeHighlight('In Progress')">
                         <div class="card" *ngFor="let ticket of progressTickets, let i = index"
                             id='{{ticket.id}}' (click)="openDetailView(ticket.id)" draggable="true"
                             (dragstart)="startDragging($event, ticket.id)">
@@ -148,8 +148,8 @@
                     <div class="container-headline">
                         <span>Awaiting Feedback</span>
                     </div>
-                    <div class="card-container" id="feedback" (drop)="moveTo('Awaiting Feedback')"
-                        (dragover)="allowDrop($event)">
+                    <div class="card-container" id="Awaiting Feedback" (drop)="moveTo('Awaiting Feedback')"
+                        (dragover)="allowDrop($event); highlight('Awaiting Feedback')" (dragleave)="removeHighlight('Awaiting Feedback')">
                         <div class="card" *ngFor="let ticket of awaitTickets"
                             id='{{ticket.id}}' (click)="openDetailView(ticket.id)" draggable="true"
                             (dragstart)="startDragging($event, ticket.id)">
@@ -203,7 +203,7 @@
                     <div class="container-headline">
                         <span>Done</span>
                     </div>
-                    <div class="card-container" id="done" (drop)="moveTo('Done')" (dragover)="allowDrop($event)">
+                    <div class="card-container" id="Done" (drop)="moveTo('Done')" (dragover)="allowDrop($event); highlight('Done')" (dragleave)="removeHighlight('Done')">
                             <div class="card" *ngFor="let ticket of doneTickets" id='{{ticket.id}}'
                                 (click)="openDetailView(ticket.id)" draggable="true"
                                 (dragstart)="startDragging($event, ticket.id)">

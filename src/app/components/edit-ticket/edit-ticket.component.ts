@@ -26,6 +26,7 @@ export class EditTicketComponent {
   new_ticket_description = '';
   new_ticket_dueDate = '';
   new_ticket_prio = '';
+  new_ticket_status = '';
   new_ticket_assigned: any = [];
   formControl = true;
   deleteDescription = false;
@@ -50,7 +51,7 @@ export class EditTicketComponent {
 
   watchForm() {
     setInterval(() => {
-      if (this.new_ticket_prio != '' || this.new_ticket_title != '' || this.new_ticket_assigned != '' || this.new_ticket_dueDate != '' || this.new_ticket_description != '' || this.deleteDescription == true || this.subtask_ckecked == true || this.subtask_ckecked == false) {
+      if (this.new_ticket_prio != '' || this.new_ticket_status != '' || this.new_ticket_title != '' || this.new_ticket_assigned != '' || this.new_ticket_dueDate != '' || this.new_ticket_description != '' || this.deleteDescription == true || this.subtask_ckecked == true || this.subtask_ckecked == false) {
         this.formControl = false;
       } else {
         this.formControl = true;
@@ -102,6 +103,11 @@ export class EditTicketComponent {
         console.log('this is the resp_prio', resp_prio);
       }
 
+      if (this.new_ticket_status != this.currentTicket.status && this.new_ticket_status != '') {
+        let resp_status = await this.ticketsService.editStatus(this.ticketId, this.new_ticket_status);
+        console.log('this is the resp_prio', resp_status);
+      }
+
       if (this.new_ticket_dueDate != this.currentTicket.due_date && this.new_ticket_dueDate != '') {
         let resp_dueDate = await this.ticketsService.editDueDate(this.ticketId, this.new_ticket_dueDate);
         console.log('this is the resp_dueDate', resp_dueDate);
@@ -134,6 +140,12 @@ export class EditTicketComponent {
   getPrioValue(event) {
     if (event.target.checked == true) {
       this.new_ticket_prio = event.target.value;
+    }
+  }
+
+  getStatusValue(event) {
+    if (event.target.checked == true) {
+      this.new_ticket_status = event.target.value;
     }
   }
 
