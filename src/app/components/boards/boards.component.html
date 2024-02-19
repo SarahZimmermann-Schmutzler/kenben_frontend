@@ -43,13 +43,13 @@
             <span class="title">New Board</span>
 
             <div class="mdl-textfield mdl-js-textfield">
-              <input class="mdl-textfield__input" type="text" name="title" [(ngModel)]="title" required>
+              <input class="mdl-textfield__input" type="text" name="title" [(ngModel)]="title">
               <label class="mdl-textfield__label" for="sample1">name...</label>
             </div>
           </div>
 
           <button
-            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Create</button>
+            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" [disabled]="formControl">Create</button>
         </form>
       </div>
     </div>

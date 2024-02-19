@@ -12,12 +12,14 @@ export class BoardsComponent implements OnInit {
   boards: any = [];
   newBoards: any = [];
   title: any = '';
+  formControl = true;
 
   constructor(private http: HttpClient, public boardService: BoardService, private router: Router) { }
 
   async ngOnInit() {
     this.boards = await this.boardService.loadBoards();
     // console.log(this.boards);
+    this.watchForm();
   }
 
   async createBoard() {
@@ -58,5 +60,15 @@ export class BoardsComponent implements OnInit {
     this.router.navigateByUrl('currentBoard').then(() => {
       window.location.reload();
     });
+  }
+
+  watchForm() {
+    setInterval(() => {
+      if (this.title != '') {
+        this.formControl = false;
+      } else {
+        this.formControl = true;
+      }
+    }, 500);
   }
 }
