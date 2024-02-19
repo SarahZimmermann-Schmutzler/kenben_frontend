@@ -5,17 +5,17 @@
         </div>
 
         <form (ngSubmit)="editTicket()">
-            <div class="">
-                <input class="" type="text" name="title" [(ngModel)]="new_ticket_title" placeholder="{{currentTicket.title}}">
-                <label class="" for="sample1">title...</label>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" name="title" [(ngModel)]="new_ticket_title">
+                <label class="mdl-textfield__label" for="sample1">{{currentTicket.title}}</label>
             </div>
 
             <!-- <div class="dv-title dv-margin-bottom">{{currentTicket.title}}</div> -->
 
-            <div class="">
-                <input class="" type="text" name="description" [(ngModel)]="new_ticket_description" placeholder="{{currentTicket.description}}">
-                <label class="" for="sample1">description... (optional)</label>
-                <input type="checkbox" (change)="clearDescription($event)">
+            <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" name="description" [(ngModel)]="new_ticket_description">
+                <label class="mdl-textfield__label" for="sample1">{{currentTicket.description}}</label>
+                <input class="dv-description" type="checkbox" (change)="clearDescription($event)">
                 <label class="" for="sample1">delete description</label>
             </div>
 
@@ -24,25 +24,20 @@
             <div class="dv-dd-container dv-margin-bottom">
                 <div class="dv-dd-title">Due date:</div>
                 <div class="dv-dd-date"></div>
-                <input type="date" [(ngModel)]="new_ticket_dueDate" name="due-date">
-                <label>{{currentTicket.due_date}}</label>
+                <input type="date" [(ngModel)]="new_ticket_dueDate" name="due-date" value="{{currentTicket.due_date}}">
+                <!-- <label>{{currentTicket.due_date}}</label> -->
             </div>
-
-            <!-- <div class="dv-dd-container dv-margin-bottom">
-                <div class="dv-dd-title">Due date:</div>
-                <div class="dv-dd-date">{{currentTicket.due_date}}</div>
-            </div> -->
 
             <div class="dv-dd-container dv-margin-bottom">
                 <div class="dv-margin8">Priority:</div>
-                <div class="dv-dd-date">{{currentTicket.priority}}</div>
+                <!-- <div class="dv-dd-date">{{currentTicket.priority}}</div> -->
                 <div class="dv-assigned dv-margin8">
-                    <input type="radio" name="prio" value="Low" (change)="getPrioValue($event)">
+                    <input type="radio" name="prio" value="Low" (change)="getPrioValue($event)" [checked]="checked_low">
                     <!-- hier Low großgeschrieben, weil auch im Model groß -->
                     <label for="low">Low</label>
-                    <input type="radio" name="prio" value="Middle" (change)="getPrioValue($event)">
+                    <input type="radio" name="prio" value="Middle" (change)="getPrioValue($event)" [checked]="checked_middle">
                     <label for="middle">Middle</label>
-                    <input type="radio" name="prio" value="High" (change)="getPrioValue($event)">
+                    <input type="radio" name="prio" value="High" (change)="getPrioValue($event)" [checked]="checked_high">
                     <label for="high">High</label>
                 </div>
             </div>

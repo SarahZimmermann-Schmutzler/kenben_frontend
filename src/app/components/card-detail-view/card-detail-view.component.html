@@ -19,16 +19,20 @@
         </div>
 
         <div class="dv-margin8">Assigned to:</div>
-        <div *ngFor="let member of currentTicket.assigned_to" class="dv-assigned dv-margin8">
-            <div>{{member}}</div>
+        <div class="scrollable-container">
+            <div *ngFor="let member of currentTicket.assigned_to" class="dv-assigned dv-margin8">
+                <div>{{member}}</div>
+            </div>
         </div>
 
         <div class="dv-margin8 dv-subtask-container">Subtasks:</div>
-        <div *ngFor="let subtask of subtasks" class="dv-subtask dv-margin8">
-            <input type="checkbox" [checked]="subtask.checked" [disabled]="true">
-            <div>{{subtask.title}}</div>
+        <div class="scrollable-container">
+            <div *ngFor="let subtask of subtasks" class="dv-subtask dv-margin8">
+                <input type="checkbox" [checked]="subtask.checked" [disabled]="true">
+                <div>{{subtask.title}}</div>
+            </div>
         </div>
-        
+
         <div class="dv-btn-container">
             <div (click)="deleteTicket()" class="highlight">Delete</div>
             <div class="dv-btn-line">|</div>

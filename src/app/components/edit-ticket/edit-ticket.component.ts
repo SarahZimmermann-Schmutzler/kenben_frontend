@@ -32,15 +32,19 @@ export class EditTicketComponent {
   deleteDescription = false;
   subtask_ckecked: boolean;
   subtask_delete = false;
+  checked_low = false;
+  checked_middle = false;
+  checked_high = false;
 
 
   async ngOnInit() {
     this.currentTicket = await this.ticketsService.loadCurrentTicket(this.ticketId);
-    console.log(this.currentTicket);
+    console.log('current Ticket', this.currentTicket);
     this.allSubtasks = await this.subtaskService.loadSubtasks();
     console.log(this.allSubtasks);
     this.filterSubtasks();
     this.watchForm();
+    this.renderPrio();
   }
 
   constructor(
@@ -178,8 +182,6 @@ export class EditTicketComponent {
 
   }
 
-
-
   async deleteSubtask(subtaskId) {
     try {
       this.subtask_delete = true;
@@ -189,6 +191,30 @@ export class EditTicketComponent {
     catch (e) {
       console.error(e);
     }
+  }
+
+  renderPrio() {
+    if(this.currentTicket['priority'] == 'Low') {
+      this.checked_low = true;
+    } else {
+      this.checked_low = false;
+    }
+
+    if(this.currentTicket['priority'] == 'Middle') {
+      this.checked_middle = true;
+    }else {
+      this.checked_middle = false;
+    }
+
+    if(this.currentTicket['priority'] == 'High') {
+      this.checked_high = true;
+    }else {
+      this.checked_high = false;
+    }
+
+    console.log('render Prio', this.checked_low);
+    console.log('render Prio', this.checked_middle);
+    console.log('render Prio', this.checked_high)
   }
 
 }
