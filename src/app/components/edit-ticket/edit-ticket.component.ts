@@ -14,7 +14,7 @@ export class EditTicketComponent {
   @Output() addSubtask = new EventEmitter();
   @Input() ticketId;
   @Input() boardId;
-  @Input() allUsers = 'allUsers';
+  @Input() allUsers;
   currentTicket: any = '';
   allSubtasks: any = [];
   subtasks: any = [];
@@ -35,6 +35,14 @@ export class EditTicketComponent {
   checked_low = false;
   checked_middle = false;
   checked_high = false;
+  checked_todo = false;
+  checked_progress = false;
+  checked_feedback = false;
+  checked_done = false;
+  assignedTo: any = [];
+  assignedToUsers = [];
+  members: any = [];
+  a: any = [];
 
 
   async ngOnInit() {
@@ -45,6 +53,8 @@ export class EditTicketComponent {
     this.filterSubtasks();
     this.watchForm();
     this.renderPrio();
+    this.renderStatus();
+    this.renderAssignedTo();
   }
 
   constructor(
@@ -215,6 +225,55 @@ export class EditTicketComponent {
     console.log('render Prio', this.checked_low);
     console.log('render Prio', this.checked_middle);
     console.log('render Prio', this.checked_high)
+  }
+
+  renderStatus() {
+    if(this.currentTicket['status'] == 'Todo') {
+      this.checked_todo = true;
+    } else {
+      this.checked_todo = false;
+    }
+
+    if(this.currentTicket['status'] == 'In Progress') {
+      this.checked_progress = true;
+    }else {
+      this.checked_progress = false;
+    }
+
+    if(this.currentTicket['status'] == 'Awaiting Feedback') {
+      this.checked_feedback = true;
+    }else {
+      this.checked_feedback = false;
+    }
+
+    if(this.currentTicket['status'] == 'Done') {
+      this.checked_done = true;
+    }else {
+      this.checked_done = false;
+    }
+  }
+
+  renderAssignedTo() {
+    console.log ('assigned_to', this.currentTicket['assigned_to'])
+
+    for (let i = 0; i < this.allUsers.length; i++) {
+      this.assignedToUsers = this.allUsers[i]['id'];
+      // this.members = this.allUsers.find(s => s.assignedToUsers == this.currentTicket['assigned_to'])
+      // console.log ('assigned_to_users', this.members)
+    }
+
+    // for (let j = 0; j < this.assignedToUsers.length; j++) {
+    //   this.a = this.assignedToUsers['id'];
+    //   // console.log('a', this.a);
+    // }
+
+    // console.log('neues Ergebnis', this.assignedToUsers);
+
+    console.log('a', this.a);
+
+    // this.members = this
+
+    // this.members = this.allUsers.find(s => s.allUsers.id == this.assignedTo)
   }
 
 }

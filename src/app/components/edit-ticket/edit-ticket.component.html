@@ -23,7 +23,7 @@
 
             <div class="dv-dd-container dv-margin-bottom">
                 <div class="dv-dd-title">Due date:</div>
-                <div class="dv-dd-date"></div>
+                <!-- <div class="dv-dd-date"></div> -->
                 <input type="date" [(ngModel)]="new_ticket_dueDate" name="due-date" value="{{currentTicket.due_date}}">
                 <!-- <label>{{currentTicket.due_date}}</label> -->
             </div>
@@ -35,26 +35,37 @@
                     <input type="radio" name="prio" value="Low" (change)="getPrioValue($event)" [checked]="checked_low">
                     <!-- hier Low großgeschrieben, weil auch im Model groß -->
                     <label for="low">Low</label>
-                    <input type="radio" name="prio" value="Middle" (change)="getPrioValue($event)" [checked]="checked_middle">
+                    <input type="radio" name="prio" value="Middle" (change)="getPrioValue($event)"
+                        [checked]="checked_middle">
                     <label for="middle">Middle</label>
-                    <input type="radio" name="prio" value="High" (change)="getPrioValue($event)" [checked]="checked_high">
+                    <input type="radio" name="prio" value="High" (change)="getPrioValue($event)"
+                        [checked]="checked_high">
                     <label for="high">High</label>
                 </div>
             </div>
 
             <div class="dv-dd-container dv-margin-bottom">
-                <div class="dv-margin8">Status:</div>
-                <div class="dv-dd-date">{{currentTicket.status}}</div>
-                <div class="dv-assigned dv-margin8">
-                    <input type="radio" name="status" value="Todo" (change)="getStatusValue($event)">
-                    <!-- hier Low großgeschrieben, weil auch im Model groß -->
-                    <label for="todo">Todo</label>
-                    <input type="radio" name="status" value="In Progress" (change)="getStatusValue($event)">
-                    <label for="progress">In Progress</label>
-                    <input type="radio" name="status" value="Awaiting Feedback" (change)="getStatusValue($event)">
-                    <label for="await">Awaiting Feedback</label>
-                    <input type="radio" name="status" value="Done" (change)="getStatusValue($event)">
-                    <label for="done">Done</label>
+                <div class="dv-margin8 dv-dd-title">Status:</div>
+                <!-- <div class="dv-dd-date">{{currentTicket.status}}</div> -->
+                <div class="dv-status dv-margin8">
+                    <div>
+                        <input type="radio" name="status" value="Todo" (change)="getStatusValue($event)"
+                            [checked]="checked_todo">
+                        <!-- hier Low großgeschrieben, weil auch im Model groß -->
+                        <label for="todo">Todo</label>
+                        <input type="radio" name="status" value="In Progress" (change)="getStatusValue($event)"
+                            [checked]="checked_progress">
+                        <label for="progress">In Progress</label>
+                    </div>
+
+                    <div>
+                        <input type="radio" name="status" value="Awaiting Feedback" (change)="getStatusValue($event)"
+                            [checked]="checked_feedback">
+                        <label for="await">Awaiting Feedback</label>
+                        <input type="radio" name="status" value="Done" (change)="getStatusValue($event)"
+                            [checked]="checked_done">
+                        <label for="done">Done</label>
+                    </div>
                 </div>
             </div>
 
@@ -67,8 +78,10 @@
             <div *ngFor="let member of currentTicket.assigned_to" class="dv-assigned dv-margin8">
                 <div>{{member}}</div>
             </div>
+
             <div class="dv-assigned dv-margin8" *ngFor="let user of allUsers, let i = index">
-                <input type="checkbox" id="assigned-{{i}}" (change)="getAssignedValue(user, i, $event)" name="assignedUser{{i}}">
+                <input type="checkbox" id="assigned-{{i}}" (change)="getAssignedValue(user, i, $event)"
+                    name="assignedUser{{i}}">
                 <label>{{user['username']}}</label>
             </div>
 
