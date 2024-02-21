@@ -54,7 +54,7 @@ export class EditTicketComponent {
     this.watchForm();
     this.renderPrio();
     this.renderStatus();
-    this.renderAssignedTo();
+    // this.renderAssignedTo();
   }
 
   constructor(

@@ -75,15 +75,18 @@
             </div> -->
 
             <div class="dv-margin8">Assigned to:</div>
-            <div *ngFor="let member of currentTicket.assigned_to" class="dv-assigned dv-margin8">
-                <div>{{member}}</div>
+            <div class="assigned-container">
+                <div *ngFor="let member of currentTicket.assigned_to" class="dv-assigned dv-margin8">
+                    <div>{{member}}</div>
+                </div>
+
+                <div class="dv-assigned dv-margin8" *ngFor="let user of allUsers, let i = index">
+                    <input type="checkbox" id="assigned-{{i}}" (change)="getAssignedValue(user, i, $event)"
+                        name="assignedUser{{i}}">
+                    <label>{{user['username']}}</label>
+                </div>
             </div>
 
-            <div class="dv-assigned dv-margin8" *ngFor="let user of allUsers, let i = index">
-                <input type="checkbox" id="assigned-{{i}}" (change)="getAssignedValue(user, i, $event)"
-                    name="assignedUser{{i}}">
-                <label>{{user['username']}}</label>
-            </div>
 
             <!-- <div class="dv-margin8">Assigned to:</div>
             <div *ngFor="let member of currentTicket.assigned_to" class="dv-assigned dv-margin8">
@@ -91,15 +94,18 @@
             </div> -->
 
             <div class="dv-margin8 dv-subtask-container">Subtasks:</div>
-            <div *ngFor="let subtask of subtasks" class="dv-subtask dv-margin8">
-                <input type="checkbox" (click)="checkSubtask($event, subtask.id)" [checked]="subtask.checked">
-                <label>{{subtask.title}}</label>
-                <!-- <input type="checkbox" (click)="deleteSubtask($event, subtask.id)">
+            <div class="assigned-container">
+                <div *ngFor="let subtask of subtasks" class="dv-subtask dv-margin8">
+                    <input type="checkbox" (click)="checkSubtask($event, subtask.id)" [checked]="subtask.checked">
+                    <label>{{subtask.title}}</label>
+                    <!-- <input type="checkbox" (click)="deleteSubtask($event, subtask.id)">
                 <label>delete</label> -->
-                <button (click)="deleteSubtask(subtask.id)">DELETE</button>
+                    <button class="delete-btn" (click)="deleteSubtask(subtask.id)">DELETE</button>
+                </div>
             </div>
 
-            <span style="font-size: 36px;" (click)="openAddSubtask()">+</span>
+
+            <span class="plus-btn" (click)="openAddSubtask()">+</span>
             <!-- <div class="dv-subtask dv-margin8">
                 <div class="new-subtask-container" *ngFor="let input of newSubtaskFields, let i = index">
                     <input type="text" name="new-subtask-{{i}}" id="new-subtask-{{i}}">

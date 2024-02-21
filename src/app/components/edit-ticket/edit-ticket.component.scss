@@ -67,6 +67,11 @@
     margin-left: 25px;
 }
 
+.assigned-container {
+    height: 50px;
+    overflow-y: scroll;
+}
+
 .dv-status {
     display: flex;
     flex-direction: column;
@@ -99,12 +104,31 @@
 .dv-btn-container{
     display: flex;
     justify-content: flex-end;
+    margin-top: 8px;
+}
+
+.delete-btn {
+    margin-left: 8px;
+    background-color: #FF4081;
+    border: none;
+    color: white;
+    border-radius: 2px;
+}
+
+.plus-btn {
+    font-size: 36px;
+    cursor: pointer;
+    margin-left: 25px;
+
+    &:hover {
+        color: #FF4081;
+    }
 }
 
 .highlight {
     cursor: pointer;
 
     &:hover {
-        color: red;
+        color: #FF4081;
     }
 }
