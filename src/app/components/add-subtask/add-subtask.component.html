@@ -5,14 +5,14 @@
         </div>
 
         <form (ngSubmit)="createSubtask()">
-            <div class="">
-                <input class="" type="text" name="title" [(ngModel)]="new_subtask_title">
-                <label class="" for="sample1">title...</label>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" name="title" [(ngModel)]="new_subtask_title">
+                <label class="mdl-textfield__label" for="sample1">title...</label>
             </div>
 
             <div class="dv-dd-container dv-margin-bottom">
                 <div class="dv-dd-title">Due date:</div>
-                <div class="dv-dd-date"></div>
+                <!-- <div class="dv-dd-date"></div> -->
                 <input type="date" [(ngModel)]="new_subtask_duedate" name="due-date">
             </div>
 
