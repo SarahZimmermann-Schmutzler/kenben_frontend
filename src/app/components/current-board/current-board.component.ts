@@ -34,6 +34,7 @@ export class CurrentBoardComponent {
   currentDraggedElement = '';
   currentDraggedTicket = '';
   currentDraggedTicket_id = '';
+  currentDraggedTicket_status = '';
 
 
   constructor(
@@ -136,9 +137,8 @@ export class CurrentBoardComponent {
   async moveTo(new_ticket_status) {
     try {
       this.currentDraggedTicket = this.tickets.find(ticket => ticket.id == this.currentDraggedElement);
-      this.currentDraggedTicket_id = this.currentDraggedTicket['id']
-      let resp_ = await this.ticketsService.editStatus(this.currentDraggedTicket_id, new_ticket_status);
-
+      this.currentDraggedTicket_id = this.currentDraggedTicket['id'];
+      let resp = await this.ticketsService.editStatus(this.currentDraggedTicket_id, new_ticket_status);
       this.hideDraggedTicket(this.currentDraggedTicket_id);
       this.showCloneTicket(new_ticket_status);
       this.removeHighlight(new_ticket_status);
@@ -148,6 +148,7 @@ export class CurrentBoardComponent {
     }
   }
 
+
   hideDraggedTicket(draggedTicketId) {
     document.getElementById(draggedTicketId).classList.add('hide');
   }
@@ -155,18 +156,30 @@ export class CurrentBoardComponent {
   showCloneTicket(new_ticket_status) {
     if (new_ticket_status == 'Todo') {
       this.cloneTodo.push(this.currentDraggedTicket);
+      this.cloneProgress = [];
+      this.cloneAwait = [];
+      this.cloneDone = [];
     }
 
     if (new_ticket_status == 'In Progress') {
       this.cloneProgress.push(this.currentDraggedTicket);
+      this.cloneTodo = [];
+      this.cloneAwait = [];
+      this.cloneDone = [];
     }
 
     if (new_ticket_status == 'Awaiting Feedback') {
       this.cloneAwait.push(this.currentDraggedTicket);
+      this.cloneTodo = [];
+      this.cloneProgress = [];
+      this.cloneDone = [];
     }
 
     if (new_ticket_status == 'Done') {
       this.cloneDone.push(this.currentDraggedTicket);
+      this.cloneTodo = [];
+      this.cloneAwait = [];
+      this.cloneProgress = [];
     }
   }
 
