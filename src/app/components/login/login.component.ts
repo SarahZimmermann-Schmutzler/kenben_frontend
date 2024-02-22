@@ -19,10 +19,10 @@ export class LoginComponent {
     this.watchForm();
   }
 
+
   async login() {
     try{
       let resp = await this.authservice.loginWithUserAndPassword(this.username, this.password);
-      console.log(resp);
       localStorage.setItem('token', resp['token'])
       this.router.navigateByUrl('/boards').then(() => {
         window.location.reload();
@@ -32,9 +32,11 @@ export class LoginComponent {
     }
   }
 
+
   goToSignUp() {
     this.router.navigateByUrl('/signUp');
   }
+
 
   watchForm() {
     setInterval(() => {
@@ -45,5 +47,4 @@ export class LoginComponent {
       }
     }, 500);
   }
-
 }

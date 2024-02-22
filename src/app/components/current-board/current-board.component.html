@@ -5,13 +5,6 @@
             <span class="mdl-layout-title">{{board.title}}</span>
             <!-- Add spacer, to align navigation to the right -->
             <div class="mdl-layout-spacer"></div>
-            <!-- Navigation. We hide it in small screens. -->
-            <!-- <nav class="mdl-navigation mdl-layout--large-screen-only">
-          <a class="mdl-navigation__link" href="">Link</a>
-          <a class="mdl-navigation__link" href="">Link</a>
-          <a class="mdl-navigation__link" href="">Link</a>
-          <a class="mdl-navigation__link" href="">LOGOUT</a>
-        </nav> -->
         </div>
     </header>
     <div class="mdl-layout__drawer">
@@ -20,9 +13,6 @@
             (click)="logout()">Logout</button>
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
             (click)="backToWorkspace()">Back to Workspace</button>
-        <!-- <nav class="mdl-navigation">
-        <a class="mdl-navigation__link" href=""></a>
-      </nav> -->
     </div>
 
     <main class="mdl-layout__content">
@@ -33,59 +23,61 @@
                     (click)="openTaskCreateView()">Add Ticket</button>
             </div>
 
-            <div class="task-main-container" >
+            <div class="task-main-container">
                 <div style="border-right: 1px solid #3F51B5;"></div>
+                
                 <!------ to do ------>
                 <div class="task-sub-container">
                     <div class="container-headline">
                         <span>To do</span>
                     </div>
-                    <div class="card-container" id="Todo" (drop)="moveTo('Todo')" (dragover)="allowDrop($event); highlight('Todo')" (dragleave)="removeHighlight('Todo')">
-                            <div class="card" *ngFor="let ticket of todoTickets" id='{{ticket.id}}'
-                                (click)="openDetailView(ticket.id)" draggable="true"
-                                (dragstart)="startDragging($event,ticket.id)">
-                                <div class="one-row">
-                                    <div class="c-title"><span>{{ticket.title}}</span></div>
-                                    <div><span>{{ticket.time_till_due}}</span></div>
-                                </div>
-                                <div class="c-description"><span>{{ticket.description}}</span></div>
-                                <div class="one-row">
-                                    <div class="c-assigned-container">
-                                        <div class="c-margin" *ngFor="let assigned of ticket.assigned_to">
-                                            <div class="c-assigned">{{assigned}}</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="c-prio"
-                                        [ngClass]="{'c-low': ticket.priority === 'Low', 'c-middle': ticket.priority === 'Middle', 'c-high': ticket.priority === 'High'}">
-                                        <span>{{ticket.priority}}</span>
-                                    </div>
-                                </div>
-                                <span>Subtasks {{ticket.subtasks.length}}</span>
+                    <div class="card-container" id="Todo" (drop)="moveTo('Todo')"
+                        (dragover)="allowDrop($event); highlight('Todo')" (dragleave)="removeHighlight('Todo')">
+                        <div class="card" *ngFor="let ticket of todoTickets" id='{{ticket.id}}'
+                            (click)="openDetailView(ticket.id)" draggable="true"
+                            (dragstart)="startDragging($event,ticket.id)">
+                            <div class="one-row">
+                                <div class="c-title"><span>{{ticket.title}}</span></div>
+                                <div><span>{{ticket.time_till_due}}</span></div>
                             </div>
-
-                            <div class="card" *ngFor="let ticket of cloneTodo" id='{{ticket.id}}'
-                                (click)="openDetailView(ticket.id)" draggable="true"
-                                (dragstart)="startDragging($event,ticket.id)">
-                                <div class="one-row">
-                                    <div class="c-title"><span>{{ticket.title}}</span></div>
-                                    <div><span>{{ticket.time_till_due}}</span></div>
-                                </div>
-                                <div class="c-description"><span>{{ticket.description}}</span></div>
-                                <div class="one-row">
-                                    <div class="c-assigned-container">
-                                        <div class="c-margin" *ngFor="let assigned of ticket.assigned_to">
-                                            <div class="c-assigned">{{assigned}}</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="c-prio"
-                                        [ngClass]="{'c-low': ticket.priority === 'Low', 'c-middle': ticket.priority === 'Middle', 'c-high': ticket.priority === 'High'}">
-                                        <span>{{ticket.priority}}</span>
+                            <div class="c-description"><span>{{ticket.description}}</span></div>
+                            <div class="one-row">
+                                <div class="c-assigned-container">
+                                    <div class="c-margin" *ngFor="let assigned of ticket.assigned_to">
+                                        <div class="c-assigned">{{assigned}}</div>
                                     </div>
                                 </div>
-                                <span>Subtasks {{ticket.subtasks.length}}</span>
+
+                                <div class="c-prio"
+                                    [ngClass]="{'c-low': ticket.priority === 'Low', 'c-middle': ticket.priority === 'Middle', 'c-high': ticket.priority === 'High'}">
+                                    <span>{{ticket.priority}}</span>
+                                </div>
                             </div>
+                            <span>Subtasks {{ticket.subtasks.length}}</span>
+                        </div>
+
+                        <div class="card" *ngFor="let ticket of cloneTodo" id='{{ticket.id}}'
+                            (click)="openDetailView(ticket.id)" draggable="true"
+                            (dragstart)="startDragging($event,ticket.id)">
+                            <div class="one-row">
+                                <div class="c-title"><span>{{ticket.title}}</span></div>
+                                <div><span>{{ticket.time_till_due}}</span></div>
+                            </div>
+                            <div class="c-description"><span>{{ticket.description}}</span></div>
+                            <div class="one-row">
+                                <div class="c-assigned-container">
+                                    <div class="c-margin" *ngFor="let assigned of ticket.assigned_to">
+                                        <div class="c-assigned">{{assigned}}</div>
+                                    </div>
+                                </div>
+
+                                <div class="c-prio"
+                                    [ngClass]="{'c-low': ticket.priority === 'Low', 'c-middle': ticket.priority === 'Middle', 'c-high': ticket.priority === 'High'}">
+                                    <span>{{ticket.priority}}</span>
+                                </div>
+                            </div>
+                            <span>Subtasks {{ticket.subtasks.length}}</span>
+                        </div>
                     </div>
                 </div>
 
@@ -95,9 +87,10 @@
                         <span>In Progress</span>
                     </div>
                     <div class="card-container" id="In Progress" (drop)="moveTo('In Progress')"
-                        (dragover)="allowDrop($event); highlight('In Progress')" (dragleave)="removeHighlight('In Progress')">
-                        <div class="card" *ngFor="let ticket of progressTickets, let i = index"
-                            id='{{ticket.id}}' (click)="openDetailView(ticket.id)" draggable="true"
+                        (dragover)="allowDrop($event); highlight('In Progress')"
+                        (dragleave)="removeHighlight('In Progress')">
+                        <div class="card" *ngFor="let ticket of progressTickets, let i = index" id='{{ticket.id}}'
+                            (click)="openDetailView(ticket.id)" draggable="true"
                             (dragstart)="startDragging($event, ticket.id)">
                             <div class="one-row">
                                 <div class="c-title"><span>{{ticket.title}}</span></div>
@@ -119,8 +112,8 @@
                             <span>Subtasks {{ticket.subtasks.length}}</span>
                         </div>
 
-                        <div class="card" *ngFor="let ticket of cloneProgress, let i = index"
-                            id='{{ticket.id}}' (click)="openDetailView(ticket.id)" draggable="true"
+                        <div class="card" *ngFor="let ticket of cloneProgress, let i = index" id='{{ticket.id}}'
+                            (click)="openDetailView(ticket.id)" draggable="true"
                             (dragstart)="startDragging($event, ticket.id)">
                             <div class="one-row">
                                 <div class="c-title"><span>{{ticket.title}}</span></div>
@@ -150,9 +143,10 @@
                         <span>Awaiting Feedback</span>
                     </div>
                     <div class="card-container" id="Awaiting Feedback" (drop)="moveTo('Awaiting Feedback')"
-                        (dragover)="allowDrop($event); highlight('Awaiting Feedback')" (dragleave)="removeHighlight('Awaiting Feedback')">
-                        <div class="card" *ngFor="let ticket of awaitTickets"
-                            id='{{ticket.id}}' (click)="openDetailView(ticket.id)" draggable="true"
+                        (dragover)="allowDrop($event); highlight('Awaiting Feedback')"
+                        (dragleave)="removeHighlight('Awaiting Feedback')">
+                        <div class="card" *ngFor="let ticket of awaitTickets" id='{{ticket.id}}'
+                            (click)="openDetailView(ticket.id)" draggable="true"
                             (dragstart)="startDragging($event, ticket.id)">
                             <div class="one-row">
                                 <div class="c-title"><span>{{ticket.title}}</span></div>
@@ -174,8 +168,8 @@
                             <span>Subtasks {{ticket.subtasks.length}}</span>
                         </div>
 
-                        <div class="card" *ngFor="let ticket of cloneAwait"
-                            id='{{ticket.id}}' (click)="openDetailView(ticket.id)" draggable="true"
+                        <div class="card" *ngFor="let ticket of cloneAwait" id='{{ticket.id}}'
+                            (click)="openDetailView(ticket.id)" draggable="true"
                             (dragstart)="startDragging($event, ticket.id)">
                             <div class="one-row">
                                 <div class="c-title"><span>{{ticket.title}}</span></div>
@@ -204,52 +198,53 @@
                     <div class="container-headline">
                         <span>Done</span>
                     </div>
-                    <div class="card-container" id="Done" (drop)="moveTo('Done')" (dragover)="allowDrop($event); highlight('Done')" (dragleave)="removeHighlight('Done')">
-                            <div class="card" *ngFor="let ticket of doneTickets" id='{{ticket.id}}'
-                                (click)="openDetailView(ticket.id)" draggable="true"
-                                (dragstart)="startDragging($event, ticket.id)">
-                                <div class="one-row">
-                                    <div class="c-title"><span>{{ticket.title}}</span></div>
-                                    <div><span>{{ticket.time_till_due}}</span></div>
-                                </div>
-                                <div class="c-description"><span>{{ticket.description}}</span></div>
-                                <div class="one-row">
-                                    <div class="c-assigned-container">
-                                        <div class="c-margin" *ngFor="let assigned of ticket.assigned_to">
-                                            <div class="c-assigned">{{assigned}}</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="c-prio"
-                                        [ngClass]="{'c-low': ticket.priority === 'Low', 'c-middle': ticket.priority === 'Middle', 'c-high': ticket.priority === 'High'}">
-                                        <span>{{ticket.priority}}</span>
-                                    </div>
-                                </div>
-                                <span>Subtasks {{ticket.subtasks.length}}</span>
+                    <div class="card-container" id="Done" (drop)="moveTo('Done')"
+                        (dragover)="allowDrop($event); highlight('Done')" (dragleave)="removeHighlight('Done')">
+                        <div class="card" *ngFor="let ticket of doneTickets" id='{{ticket.id}}'
+                            (click)="openDetailView(ticket.id)" draggable="true"
+                            (dragstart)="startDragging($event, ticket.id)">
+                            <div class="one-row">
+                                <div class="c-title"><span>{{ticket.title}}</span></div>
+                                <div><span>{{ticket.time_till_due}}</span></div>
                             </div>
-
-                            <div class="card" *ngFor="let ticket of cloneDone" id='{{ticket.id}}'
-                                (click)="openDetailView(ticket.id)" draggable="true"
-                                (dragstart)="startDragging($event, ticket.id)">
-                                <div class="one-row">
-                                    <div class="c-title"><span>{{ticket.title}}</span></div>
-                                    <div><span>{{ticket.time_till_due}}</span></div>
-                                </div>
-                                <div class="c-description"><span>{{ticket.description}}</span></div>
-                                <div class="one-row">
-                                    <div class="c-assigned-container">
-                                        <div class="c-margin" *ngFor="let assigned of ticket.assigned_to">
-                                            <div class="c-assigned">{{assigned}}</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="c-prio"
-                                        [ngClass]="{'c-low': ticket.priority === 'Low', 'c-middle': ticket.priority === 'Middle', 'c-high': ticket.priority === 'High'}">
-                                        <span>{{ticket.priority}}</span>
+                            <div class="c-description"><span>{{ticket.description}}</span></div>
+                            <div class="one-row">
+                                <div class="c-assigned-container">
+                                    <div class="c-margin" *ngFor="let assigned of ticket.assigned_to">
+                                        <div class="c-assigned">{{assigned}}</div>
                                     </div>
                                 </div>
-                                <span>Subtasks {{ticket.subtasks.length}}</span>
+
+                                <div class="c-prio"
+                                    [ngClass]="{'c-low': ticket.priority === 'Low', 'c-middle': ticket.priority === 'Middle', 'c-high': ticket.priority === 'High'}">
+                                    <span>{{ticket.priority}}</span>
+                                </div>
                             </div>
+                            <span>Subtasks {{ticket.subtasks.length}}</span>
+                        </div>
+
+                        <div class="card" *ngFor="let ticket of cloneDone" id='{{ticket.id}}'
+                            (click)="openDetailView(ticket.id)" draggable="true"
+                            (dragstart)="startDragging($event, ticket.id)">
+                            <div class="one-row">
+                                <div class="c-title"><span>{{ticket.title}}</span></div>
+                                <div><span>{{ticket.time_till_due}}</span></div>
+                            </div>
+                            <div class="c-description"><span>{{ticket.description}}</span></div>
+                            <div class="one-row">
+                                <div class="c-assigned-container">
+                                    <div class="c-margin" *ngFor="let assigned of ticket.assigned_to">
+                                        <div class="c-assigned">{{assigned}}</div>
+                                    </div>
+                                </div>
+
+                                <div class="c-prio"
+                                    [ngClass]="{'c-low': ticket.priority === 'Low', 'c-middle': ticket.priority === 'Middle', 'c-high': ticket.priority === 'High'}">
+                                    <span>{{ticket.priority}}</span>
+                                </div>
+                            </div>
+                            <span>Subtasks {{ticket.subtasks.length}}</span>
+                        </div>
                     </div>
                 </div>
                 <div style="border-left: 1px solid #3F51B5;"></div>

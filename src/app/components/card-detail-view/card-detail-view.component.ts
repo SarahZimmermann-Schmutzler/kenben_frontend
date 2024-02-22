@@ -13,9 +13,6 @@ import { TicketsService } from 'src/app/services/tickets.service';
 export class CardDetailViewComponent {
   @Output() detailView = new EventEmitter();
   @Output() editView = new EventEmitter();
-  // @Input() detailView;
-  // @Input() currentTicket;
-  // @Input() subtasks;
   @Input() ticketId;
   currentTicket: any = '';
   allSubtasks: any = [];
@@ -23,9 +20,7 @@ export class CardDetailViewComponent {
 
   async ngOnInit() {
     this.currentTicket = await this.ticketsService.loadCurrentTicket(this.ticketId);
-    console.log(this.currentTicket);
     this.allSubtasks = await this.subtaskService.loadSubtasks();
-    console.log(this.allSubtasks);
     this.filterSubtasks();
   }
 
@@ -37,7 +32,6 @@ export class CardDetailViewComponent {
 
   filterSubtasks() {
     this.subtasks = this.allSubtasks.filter(s => s.tickets == this.ticketId);
-    console.log(this.subtasks);
   }
 
   async deleteTicket() {
@@ -62,5 +56,4 @@ export class CardDetailViewComponent {
   openEditView() {
     this.editView.emit(true);
   }
-
 }

@@ -27,7 +27,6 @@
 }
 
 .task-sub-container {
-    // position: relative;
     display: flex;
     flex-direction: column;
     padding: 10px;
@@ -35,7 +34,6 @@
     min-height: 500px;
     border-right: 1px solid #3F51B5;
     border-left: 1px solid #3F51B5;
-    // background-color: yellow;
 
     @media(max-width: 870px) {
         width: 100%;
@@ -55,7 +53,6 @@
     margin-bottom: 40px;
     color: #3F51B5;
     font-size: 18px;
-    // background-color: aqua;
 
     @media(max-width: 870px) {
         font-weight: 700;
@@ -70,13 +67,14 @@
     border-radius: 30px;
     height: 100%;
     padding: 10px;
-    // background-color:antiquewhite;
 }
 
 .highlight {
     background-color: #E9EBED !important;
 }
 
+
+// card style
 .card {
     display: flex;
     flex-direction: column;
@@ -93,13 +91,11 @@
     justify-content: space-between;
     margin-bottom: 8px;
     align-items: center;
-    // background-color: aqua;
 }
 
 .c-title {
     background-color: #3F51B5;
     color: white;
-    // min-width: fit-content;
     max-width: 100px;
     border-radius: 10px;
     padding: 2px 5px;
@@ -113,13 +109,11 @@
     margin-bottom: 8px;
     overflow: hidden;
     text-overflow: ellipsis;
-    // color: grey;
 }
 
 .c-assigned-container {
     display: flex;
     width: 75%;
-    // background-color: chartreuse;
 }
 
 .c-assigned {
@@ -176,6 +170,3 @@
 .rotate {
     transform: rotatez(5deg);
  }
-
-
-

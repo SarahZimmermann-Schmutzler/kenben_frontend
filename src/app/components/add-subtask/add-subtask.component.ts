@@ -44,6 +44,7 @@ export class AddSubtaskComponent {
     }
   }
 
+
   async createSubtask() {
     try {
       let resp = await this.subtasksService.createSubtask(
@@ -52,14 +53,12 @@ export class AddSubtaskComponent {
         this.new_subtask_duedate,
         this.ticketId,
       );
-      // sendet title an backend
-      // empfängt als response das neue board als Array
-      // console.log(resp);
       this.getBack();
     } catch (e) {
       console.error(e);
     }
   }
+
 
   getBack() {
     this.router.navigateByUrl('/currentBoard').then(() => {
@@ -72,21 +71,8 @@ export class AddSubtaskComponent {
     this.addSubtask.emit(false);
   }
 
+
   doNotClose(e: Event) {
     e.stopPropagation();
   }
-
-   // addSubtaskField() {
-  //   this.newSubtaskFields = [...this.newSubtaskFields, this.newSubtaskFields.length];
-  // }
-
-  // removeSubtaskField(i) {
-  //   this.newSubtaskFields.splice(i, 1);
-  // }
-
-   // createSubtask(i) {
-  //   this.subtask_input = document.getElementById(`new-subtask-${i}`);
-  //   this.new_subtask_title = this.subtask_input.value;
-  //   console.log(this.subtask_input.value);
-  // }
 }

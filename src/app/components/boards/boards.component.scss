@@ -3,7 +3,6 @@
     padding: 50px;
     justify-content: center;
     align-items: flex-start;
-    // background-color: aqua;
 
     @media(max-width: 700px) {
         flex-direction: column;
@@ -20,7 +19,6 @@
     display: flex;
     justify-content: flex-start;
     margin-left: 50px;
-    // background-color: aquamarine;
 }
 
 .create {
@@ -38,7 +36,6 @@
             width: 50%;
         }
     }
-
 }
 
 .board-list {
@@ -51,7 +48,6 @@
     margin-right: 50px;
     border-right: 5px solid #3F51B5;
     padding-right: 20px;
-    // background-color: yellow;
 
     span:hover {
         color: #FF4081;

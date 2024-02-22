@@ -22,16 +22,17 @@ export class RegisterComponent {
     this.watchForm();
   }
 
+
   async register() {
     try{
       let resp: any = await this.authservice.register(this.username, this.password, this.email)
       // authService siehe services ist Schnittstelle zum Backend
-      console.log(resp);
       this.router.navigateByUrl('/login');
     } catch(e) {
       console.error(e);
     }
   }
+
 
   backToLogin() {
     this.router.navigateByUrl('/login').then(() => {
@@ -39,6 +40,7 @@ export class RegisterComponent {
     });;
   }
 
+  
   watchForm() {
     setInterval(() => {
       if (this.username != '' && this.password != '' && this.email != '') {

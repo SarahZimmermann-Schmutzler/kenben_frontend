@@ -18,16 +18,14 @@ export class BoardsComponent implements OnInit {
 
   async ngOnInit() {
     this.boards = await this.boardService.loadBoards();
-    // console.log(this.boards);
     this.watchForm();
   }
 
   async createBoard() {
     try {
       let resp = await this.boardService.createBoard(this.title);
-      // sendet title an backend
-      // empfängt als response das neue board als Array
-      // console.log(resp);
+      // sends title to backend
+      // feches as response the new board as array
       this.clearTitleField();
       this.showNewBoard(resp)
     } catch (e) {
@@ -45,7 +43,6 @@ export class BoardsComponent implements OnInit {
   showNewBoard(resp) {
     // pusht titel des boards in mein Array newBoards
     this.newBoards.push(resp)
-    console.log(this.newBoards)
   }
 
 
@@ -55,12 +52,14 @@ export class BoardsComponent implements OnInit {
     });;
   }
 
+
   openCurrentBoard(boardId) {
     localStorage.setItem('boardId', boardId);
     this.router.navigateByUrl('currentBoard').then(() => {
       window.location.reload();
     });
   }
+
 
   watchForm() {
     setInterval(() => {

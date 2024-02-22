@@ -21,7 +21,6 @@ export class EditTicketComponent {
   newSubtaskFields: any = [];
   new_subtask_title = '';
   subtask_input;
-
   new_ticket_title = '';
   new_ticket_description = '';
   new_ticket_dueDate = '';
@@ -47,9 +46,7 @@ export class EditTicketComponent {
 
   async ngOnInit() {
     this.currentTicket = await this.ticketsService.loadCurrentTicket(this.ticketId);
-    console.log('current Ticket', this.currentTicket);
     this.allSubtasks = await this.subtaskService.loadSubtasks();
-    console.log(this.allSubtasks);
     this.filterSubtasks();
     this.watchForm();
     this.renderPrio();
@@ -63,6 +60,7 @@ export class EditTicketComponent {
     private router: Router,
   ) { }
 
+
   watchForm() {
     setInterval(() => {
       if (this.new_ticket_prio != '' || this.new_ticket_status != '' || this.new_ticket_title != '' || this.new_ticket_assigned != '' || this.new_ticket_dueDate != '' || this.new_ticket_description != '' || this.deleteDescription == true || this.subtask_ckecked == true || this.subtask_ckecked == false) {
@@ -73,10 +71,12 @@ export class EditTicketComponent {
     }, 500);
   }
 
+
   filterSubtasks() {
     this.subtasks = this.allSubtasks.filter(s => s.tickets == this.ticketId);
     console.log(this.subtasks);
   }
+
 
   getBack() {
     this.router.navigateByUrl('/currentBoard').then(() => {
@@ -84,9 +84,11 @@ export class EditTicketComponent {
     });
   }
 
+
   closeEditView() {
     this.editView.emit(false);
   }
+
 
   doNotClose(e: Event) {
     e.stopPropagation();
@@ -97,39 +99,31 @@ export class EditTicketComponent {
     try {
       if (this.new_ticket_title != this.currentTicket.title && this.new_ticket_title != '') {
         let resp_title = await this.ticketsService.editTitle(this.ticketId, this.new_ticket_title);
-        console.log('this is the resp_title', resp_title);
       }
 
       if ((this.new_ticket_description != '' && this.currentTicket.description == '') || (this.new_ticket_description != '' && this.currentTicket.description != '')) {
         let resp_desc = await this.ticketsService.editDescription(this.ticketId, this.new_ticket_description);
-        console.log('this is the resp_desc', resp_desc);
       }
 
       if (this.deleteDescription == true) {
         this.new_ticket_description = '';
-        console.log(this.new_ticket_description)
         let resp_desc = await this.ticketsService.editDescription(this.ticketId, this.new_ticket_description);
-        console.log('this is the resp_desc', resp_desc);
       }
 
       if (this.new_ticket_prio != this.currentTicket.priority && this.new_ticket_prio != '') {
         let resp_prio = await this.ticketsService.editPrio(this.ticketId, this.new_ticket_prio);
-        console.log('this is the resp_prio', resp_prio);
       }
 
       if (this.new_ticket_status != this.currentTicket.status && this.new_ticket_status != '') {
         let resp_status = await this.ticketsService.editStatus(this.ticketId, this.new_ticket_status);
-        console.log('this is the resp_prio', resp_status);
       }
 
       if (this.new_ticket_dueDate != this.currentTicket.due_date && this.new_ticket_dueDate != '') {
         let resp_dueDate = await this.ticketsService.editDueDate(this.ticketId, this.new_ticket_dueDate);
-        console.log('this is the resp_dueDate', resp_dueDate);
       }
 
       if (this.new_ticket_assigned != this.currentTicket.assigned_to && this.new_ticket_assigned != '') {
         let resp_assigned = await this.ticketsService.editAssignedTo(this.ticketId, this.new_ticket_assigned);
-        console.log('this is the resp_assignes', resp_assigned);
       }
 
       this.getBack();
@@ -138,8 +132,8 @@ export class EditTicketComponent {
     }
   }
 
+
   clearDescription(event) {
-    console.log(event.target.checked);
     if (event.target.checked == true) {
       this.deleteDescription = true;
     } else {
@@ -147,9 +141,11 @@ export class EditTicketComponent {
     }
   }
 
+
   openAddSubtask() {
     this.addSubtask.emit(true);
   }
+
 
   getPrioValue(event) {
     if (event.target.checked == true) {
@@ -157,11 +153,13 @@ export class EditTicketComponent {
     }
   }
 
+
   getStatusValue(event) {
     if (event.target.checked == true) {
       this.new_ticket_status = event.target.value;
     }
   }
+
 
   getAssignedValue(user, i, event) {
     if (event.target.checked == true) {
@@ -172,6 +170,7 @@ export class EditTicketComponent {
       this.new_ticket_assigned.splice(i, 1);
     }
   }
+
 
   async checkSubtask(event, subtaskId) {
     try {
@@ -192,6 +191,7 @@ export class EditTicketComponent {
 
   }
 
+
   async deleteSubtask(subtaskId) {
     try {
       this.subtask_delete = true;
@@ -202,6 +202,7 @@ export class EditTicketComponent {
       console.error(e);
     }
   }
+
 
   renderPrio() {
     if(this.currentTicket['priority'] == 'Low') {
@@ -221,11 +222,8 @@ export class EditTicketComponent {
     }else {
       this.checked_high = false;
     }
-
-    console.log('render Prio', this.checked_low);
-    console.log('render Prio', this.checked_middle);
-    console.log('render Prio', this.checked_high)
   }
+
 
   renderStatus() {
     if(this.currentTicket['status'] == 'Todo') {
@@ -275,5 +273,4 @@ export class EditTicketComponent {
 
     // this.members = this.allUsers.find(s => s.allUsers.id == this.assignedTo)
   }
-
 }

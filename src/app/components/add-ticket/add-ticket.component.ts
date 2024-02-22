@@ -54,6 +54,7 @@ export class AddTicketComponent {
     }
   }
 
+
   async createTicket() {
     try {
       let resp = await this.ticketsService.createTicket(
@@ -64,9 +65,6 @@ export class AddTicketComponent {
         this.new_dueDate,
         this.boardId
       );
-      // sendet title an backend
-      // empfängt als response das neue board als Array
-      // console.log(resp);
       this.getBack();
     } catch (e) {
       console.error(e);
@@ -80,11 +78,11 @@ export class AddTicketComponent {
   }
 
  
-
   closeAddTicket() {
     this.addTask.emit(false);
   }
 
+  
   doNotClose(e: Event) {
     e.stopPropagation();
   }
