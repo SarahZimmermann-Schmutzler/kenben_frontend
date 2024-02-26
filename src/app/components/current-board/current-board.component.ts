@@ -153,30 +153,54 @@ export class CurrentBoardComponent {
   showCloneTicket(new_ticket_status) {
     if (new_ticket_status == 'Todo') {
       this.cloneTodo.push(this.currentDraggedTicket);
-      this.cloneProgress = [];
-      this.cloneAwait = [];
-      this.cloneDone = [];
+      // this.cloneProgress.splice(this.currentDraggedTicket);
+      // this.cloneAwait.splice(this.currentDraggedTicket);
+      // this.cloneDone.splice(this.currentDraggedTicket);
+      // this.cloneProgress = [];
+      // this.cloneAwait = [];
+      // this.cloneDone = [];
+      this.cloneProgress.pop();
+      this.cloneAwait.pop();
+      this.cloneDone.pop();
     }
 
     if (new_ticket_status == 'In Progress') {
       this.cloneProgress.push(this.currentDraggedTicket);
-      this.cloneTodo = [];
-      this.cloneAwait = [];
-      this.cloneDone = [];
+      // this.cloneTodo.splice(this.currentDraggedTicket);
+      // this.cloneAwait.splice(this.currentDraggedTicket);
+      // this.cloneDone.splice(this.currentDraggedTicket);
+      // this.cloneTodo = [];
+      // this.cloneAwait = [];
+      // this.cloneDone = [];
+      this.cloneTodo.pop();
+      this.cloneAwait.pop();
+      this.cloneDone.pop();
     }
 
     if (new_ticket_status == 'Awaiting Feedback') {
       this.cloneAwait.push(this.currentDraggedTicket);
-      this.cloneTodo = [];
-      this.cloneProgress = [];
-      this.cloneDone = [];
+      // this.cloneProgress.splice(this.currentDraggedTicket);
+      // this.cloneTodo.splice(this.currentDraggedTicket);
+      // this.cloneDone.splice(this.currentDraggedTicket);
+      // this.cloneTodo = [];
+      // this.cloneProgress = [];
+      // this.cloneDone = [];
+      this.cloneTodo.pop();
+      this.cloneProgress.pop();
+      this.cloneDone.pop();
     }
 
     if (new_ticket_status == 'Done') {
       this.cloneDone.push(this.currentDraggedTicket);
-      this.cloneTodo = [];
-      this.cloneAwait = [];
-      this.cloneProgress = [];
+      // this.cloneProgress.splice(this.currentDraggedTicket);
+      // this.cloneAwait.splice(this.currentDraggedTicket);
+      // this.cloneTodo.splice(this.currentDraggedTicket);
+      // this.cloneTodo = [];
+      // this.cloneAwait = [];
+      // this.cloneProgress = [];
+      this.cloneTodo.pop();
+      this.cloneProgress.pop();
+      this.cloneAwait.pop();
     }
   }
 

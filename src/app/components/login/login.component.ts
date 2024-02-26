@@ -21,13 +21,13 @@ export class LoginComponent {
 
 
   async login() {
-    try{
+    try {
       let resp = await this.authservice.loginWithUserAndPassword(this.username, this.password);
       localStorage.setItem('token', resp['token'])
       this.router.navigateByUrl('/boards').then(() => {
         window.location.reload();
       });
-    } catch(e) {
+    } catch (e) {
       console.error(e);
     }
   }
@@ -35,7 +35,9 @@ export class LoginComponent {
 
   // navigates to sign-up-page
   goToSignUp() {
-    this.router.navigateByUrl('/signUp');
+    this.router.navigateByUrl('/signUp').then(() => {
+      window.location.reload();
+    });
   }
 
 

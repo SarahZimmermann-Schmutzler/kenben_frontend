@@ -27,7 +27,9 @@ export class RegisterComponent {
     try{
       let resp: any = await this.authservice.register(this.username, this.password, this.email)
       // authService siehe services ist Schnittstelle zum Backend
-      this.router.navigateByUrl('/login');
+      this.router.navigateByUrl('/login').then(() => {
+        window.location.reload();
+      });
     } catch(e) {
       console.error(e);
     }

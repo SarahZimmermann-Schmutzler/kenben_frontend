@@ -89,6 +89,7 @@
                     <div class="card-container" id="In Progress" (drop)="moveTo('In Progress')"
                         (dragover)="allowDrop($event); highlight('In Progress')"
                         (dragleave)="removeHighlight('In Progress')">
+                        
                         <div class="card" *ngFor="let ticket of progressTickets, let i = index" id='{{ticket.id}}'
                             (click)="openDetailView(ticket.id)" draggable="true"
                             (dragstart)="startDragging($event, ticket.id)">
