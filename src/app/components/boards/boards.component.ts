@@ -21,6 +21,8 @@ export class BoardsComponent implements OnInit {
     this.watchForm();
   }
 
+
+  // creates new board
   async createBoard() {
     try {
       let resp = await this.boardService.createBoard(this.title);
@@ -34,14 +36,14 @@ export class BoardsComponent implements OnInit {
   }
 
 
+  // clears inputfield
   clearTitleField() {
-    // löscht Inhalt Inputfeld
     this.title = '';
   }
 
 
+  // pushes new title in array thats shown on board page
   showNewBoard(resp) {
-    // pusht titel des boards in mein Array newBoards
     this.newBoards.push(resp)
   }
 
@@ -53,6 +55,7 @@ export class BoardsComponent implements OnInit {
   }
 
 
+  // opens the board that is clicked on
   openCurrentBoard(boardId) {
     localStorage.setItem('boardId', boardId);
     this.router.navigateByUrl('currentBoard').then(() => {
@@ -61,6 +64,7 @@ export class BoardsComponent implements OnInit {
   }
 
 
+  // activates button after formdata is given
   watchForm() {
     setInterval(() => {
       if (this.title != '') {

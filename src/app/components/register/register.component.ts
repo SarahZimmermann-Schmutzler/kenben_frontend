@@ -22,7 +22,7 @@ export class RegisterComponent {
     this.watchForm();
   }
 
-
+  // registers new user
   async register() {
     try{
       let resp: any = await this.authservice.register(this.username, this.password, this.email)
@@ -34,13 +34,15 @@ export class RegisterComponent {
   }
 
 
+  // navigates back to login-page
   backToLogin() {
     this.router.navigateByUrl('/login').then(() => {
       window.location.reload();
     });;
   }
 
-  
+
+  // activates button after formdata is given
   watchForm() {
     setInterval(() => {
       if (this.username != '' && this.password != '' && this.email != '') {

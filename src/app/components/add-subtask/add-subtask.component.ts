@@ -16,7 +16,7 @@ export class AddSubtaskComponent {
   formControl = true;
   new_subtask_assigned: any = [];
   user;
-  
+
 
   constructor(public subtasksService: SubtasksService, private router: Router) { }
 
@@ -24,7 +24,7 @@ export class AddSubtaskComponent {
     this.watchForm();
   }
 
-
+  // activates button after formdata is given 
   watchForm() {
     setInterval(() => {
       if (this.new_subtask_title != '' && this.new_subtask_assigned != '' && this.new_subtask_duedate != '') {
@@ -34,6 +34,7 @@ export class AddSubtaskComponent {
   }
 
 
+  // checks which users are added to the new subtask
   getAssignedValue(user, i, event) {
     if (event.target.checked == true) {
       this.new_subtask_assigned.push(user.id);
@@ -45,6 +46,7 @@ export class AddSubtaskComponent {
   }
 
 
+  // creates a new subtask
   async createSubtask() {
     try {
       let resp = await this.subtasksService.createSubtask(
@@ -60,18 +62,21 @@ export class AddSubtaskComponent {
   }
 
 
+  // navigates back to the current-board-page
   getBack() {
     this.router.navigateByUrl('/currentBoard').then(() => {
       window.location.reload();
     });
   }
 
- 
+
+  // closes the add-subtask-popup
   closeAddSubtask() {
     this.addSubtask.emit(false);
   }
 
 
+  // prevents closing popup by clicking on formular
   doNotClose(e: Event) {
     e.stopPropagation();
   }

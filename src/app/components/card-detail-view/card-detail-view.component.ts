@@ -29,30 +29,42 @@ export class CardDetailViewComponent {
     public subtaskService: SubtasksService,
     private router: Router,
   ) { }
+  
 
+  // shows the subtasks of the clicked ticket
   filterSubtasks() {
     this.subtasks = this.allSubtasks.filter(s => s.tickets == this.ticketId);
   }
 
+
+  // deletes the clicked ticket
   async deleteTicket() {
     await this.ticketsService.deleteTicket(this.ticketId);
     this.getBack();
   }
 
+
+  // navigates back to the current-board-page
   getBack() {
     this.router.navigateByUrl('/currentBoard').then(() => {
       window.location.reload();
     });
   }
 
+
+  // closes the card-detail-view-popup
   closeDetailView() {
     this.detailView.emit(false);
   }
 
+
+  // prevents closing popup by clicking on formular
   doNotClose(e: Event) {
     e.stopPropagation();
   }
 
+
+  // opens edit-view-popup
   openEditView() {
     this.editView.emit(true);
   }

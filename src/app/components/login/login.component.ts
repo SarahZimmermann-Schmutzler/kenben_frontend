@@ -33,11 +33,13 @@ export class LoginComponent {
   }
 
 
+  // navigates to sign-up-page
   goToSignUp() {
     this.router.navigateByUrl('/signUp');
   }
 
 
+  // activates button after formdata is given
   watchForm() {
     setInterval(() => {
       if (this.username != '' && this.password != '') {
