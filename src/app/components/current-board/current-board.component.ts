@@ -52,6 +52,7 @@ export class CurrentBoardComponent {
   }
 
   
+  // filters tickets by status
   filterTickets() {
     this.todoTickets = this.tickets.filter(s => s.board == this.boardId && s.status == 'Todo');
     this.progressTickets = this.tickets.filter(s => s.board == this.boardId && s.status == 'In Progress');
@@ -67,6 +68,7 @@ export class CurrentBoardComponent {
   }
 
 
+  // navigates back to the board-page
   backToWorkspace() {
     localStorage.setItem('boardId', '');
     this.router.navigateByUrl('boards').then(() => {
@@ -75,7 +77,7 @@ export class CurrentBoardComponent {
   }
 
 
-  // open and close pop-ups
+  // functions to open and close pop-ups
   openDetailView(ticketId) {
     this.ticketId = ticketId;
     this.detailView = true;
@@ -119,17 +121,21 @@ export class CurrentBoardComponent {
 
 
   // drag and drop functions
+
+  // binds the id of the ticket on an variable and let the ticket rotate
   startDragging(event, cardId) {
     this.currentDraggedElement = cardId;
     document.getElementById(cardId).classList.add('rotate');
   }
 
 
+  // allows the ticket to drop
   allowDrop(event) {
     event.preventDefault();
   }
 
 
+  // gets the ticket by id and changes its status in the backend
   async moveTo(new_ticket_status) {
     try {
       this.currentDraggedTicket = this.tickets.find(ticket => ticket.id == this.currentDraggedElement);
@@ -145,71 +151,51 @@ export class CurrentBoardComponent {
   }
 
 
+  // let the dragged ticket disappear 
   hideDraggedTicket(draggedTicketId) {
     document.getElementById(draggedTicketId).classList.add('hide');
   }
 
 
+  // shows a cloned ticket
   showCloneTicket(new_ticket_status) {
     if (new_ticket_status == 'Todo') {
       this.cloneTodo.push(this.currentDraggedTicket);
-      // this.cloneProgress.splice(this.currentDraggedTicket);
-      // this.cloneAwait.splice(this.currentDraggedTicket);
-      // this.cloneDone.splice(this.currentDraggedTicket);
-      // this.cloneProgress = [];
-      // this.cloneAwait = [];
-      // this.cloneDone = [];
-      this.cloneProgress.pop();
-      this.cloneAwait.pop();
-      this.cloneDone.pop();
+      this.cloneProgress = this.cloneProgress.filter(ticket => ticket !== this.currentDraggedTicket);
+      this.cloneAwait = this.cloneAwait.filter(ticket => ticket !== this.currentDraggedTicket);
+      this.cloneDone = this.cloneDone.filter(ticket => ticket !== this.currentDraggedTicket);
     }
 
     if (new_ticket_status == 'In Progress') {
       this.cloneProgress.push(this.currentDraggedTicket);
-      // this.cloneTodo.splice(this.currentDraggedTicket);
-      // this.cloneAwait.splice(this.currentDraggedTicket);
-      // this.cloneDone.splice(this.currentDraggedTicket);
-      // this.cloneTodo = [];
-      // this.cloneAwait = [];
-      // this.cloneDone = [];
-      this.cloneTodo.pop();
-      this.cloneAwait.pop();
-      this.cloneDone.pop();
+      this.cloneTodo = this.cloneTodo.filter(ticket => ticket !== this.currentDraggedTicket);
+      this.cloneAwait = this.cloneAwait.filter(ticket => ticket !== this.currentDraggedTicket);
+      this.cloneDone = this.cloneDone.filter(ticket => ticket !== this.currentDraggedTicket);
     }
 
     if (new_ticket_status == 'Awaiting Feedback') {
       this.cloneAwait.push(this.currentDraggedTicket);
-      // this.cloneProgress.splice(this.currentDraggedTicket);
-      // this.cloneTodo.splice(this.currentDraggedTicket);
-      // this.cloneDone.splice(this.currentDraggedTicket);
-      // this.cloneTodo = [];
-      // this.cloneProgress = [];
-      // this.cloneDone = [];
-      this.cloneTodo.pop();
-      this.cloneProgress.pop();
-      this.cloneDone.pop();
+      this.cloneTodo = this.cloneTodo.filter(ticket => ticket !== this.currentDraggedTicket);
+      this.cloneProgress = this.cloneProgress.filter(ticket => ticket !== this.currentDraggedTicket);
+      this.cloneDone = this.cloneDone.filter(ticket => ticket !== this.currentDraggedTicket);
     }
 
     if (new_ticket_status == 'Done') {
       this.cloneDone.push(this.currentDraggedTicket);
-      // this.cloneProgress.splice(this.currentDraggedTicket);
-      // this.cloneAwait.splice(this.currentDraggedTicket);
-      // this.cloneTodo.splice(this.currentDraggedTicket);
-      // this.cloneTodo = [];
-      // this.cloneAwait = [];
-      // this.cloneProgress = [];
-      this.cloneTodo.pop();
-      this.cloneProgress.pop();
-      this.cloneAwait.pop();
+      this.cloneTodo = this.cloneTodo.filter(ticket => ticket !== this.currentDraggedTicket);
+      this.cloneProgress = this.cloneProgress.filter(ticket => ticket !== this.currentDraggedTicket);
+      this.cloneAwait = this.cloneAwait.filter(ticket => ticket !== this.currentDraggedTicket);
     }
   }
 
 
+  // highlights the columns where the dragged ticket is moved
   highlight(index) {
     document.getElementById(index).classList.add('highlight');
   }
 
 
+  // removes the highlight
   removeHighlight(index) {
     document.getElementById(index).classList.remove('highlight');
   }

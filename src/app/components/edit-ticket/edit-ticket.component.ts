@@ -60,7 +60,8 @@ export class EditTicketComponent {
     private router: Router,
   ) { }
 
-
+  
+  // activates button after formdata is given
   watchForm() {
     setInterval(() => {
       if (this.new_ticket_prio != '' || this.new_ticket_status != '' || this.new_ticket_title != '' || this.new_ticket_assigned != '' || this.new_ticket_dueDate != '' || this.new_ticket_description != '' || this.deleteDescription == true || this.subtask_ckecked == true || this.subtask_ckecked == false) {
@@ -72,12 +73,13 @@ export class EditTicketComponent {
   }
 
 
+  // filters the subtasks that belongs to the ticket
   filterSubtasks() {
     this.subtasks = this.allSubtasks.filter(s => s.tickets == this.ticketId);
-    console.log(this.subtasks);
   }
 
 
+  // navigates back to the current-board-page
   getBack() {
     this.router.navigateByUrl('/currentBoard').then(() => {
       window.location.reload();
@@ -85,6 +87,7 @@ export class EditTicketComponent {
   }
 
 
+  // closes the edit-view-popup
   closeEditView() {
     this.editView.emit(false);
   }
@@ -95,6 +98,7 @@ export class EditTicketComponent {
   }
 
 
+  // sends the new characteristics to the backend
   async editTicket() {
     try {
       if (this.new_ticket_title != this.currentTicket.title && this.new_ticket_title != '') {
@@ -133,6 +137,7 @@ export class EditTicketComponent {
   }
 
 
+  // used when the user wants to delete the description
   clearDescription(event) {
     if (event.target.checked == true) {
       this.deleteDescription = true;
@@ -147,6 +152,7 @@ export class EditTicketComponent {
   }
 
 
+  // checks what the new prio is
   getPrioValue(event) {
     if (event.target.checked == true) {
       this.new_ticket_prio = event.target.value;
@@ -154,6 +160,7 @@ export class EditTicketComponent {
   }
 
 
+  // checks what the new status is
   getStatusValue(event) {
     if (event.target.checked == true) {
       this.new_ticket_status = event.target.value;
@@ -161,6 +168,7 @@ export class EditTicketComponent {
   }
 
 
+  // checks who the new assigned users are
   getAssignedValue(user, i, event) {
     if (event.target.checked == true) {
       this.new_ticket_assigned.push(user.id);
@@ -172,6 +180,7 @@ export class EditTicketComponent {
   }
 
 
+  // checks the checked-status of the subtasks and changes it in the backend
   async checkSubtask(event, subtaskId) {
     try {
       if (event.target.checked == true) {
@@ -192,6 +201,7 @@ export class EditTicketComponent {
   }
 
 
+  // deletes a subtask
   async deleteSubtask(subtaskId) {
     try {
       this.subtask_delete = true;
@@ -204,6 +214,7 @@ export class EditTicketComponent {
   }
 
 
+  // renders former prio in formular
   renderPrio() {
     if(this.currentTicket['priority'] == 'Low') {
       this.checked_low = true;
@@ -225,6 +236,7 @@ export class EditTicketComponent {
   }
 
 
+  // renders former status in formular
   renderStatus() {
     if(this.currentTicket['status'] == 'Todo') {
       this.checked_todo = true;
@@ -251,6 +263,8 @@ export class EditTicketComponent {
     }
   }
 
+
+  // renders former assigned users in formular
   renderAssignedTo() {
     console.log ('assigned_to', this.currentTicket['assigned_to'])
 
