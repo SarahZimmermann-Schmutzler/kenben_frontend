@@ -45,10 +45,8 @@ export class CurrentBoardComponent {
     this.boardId = localStorage.getItem('boardId')
     this.board = await this.boardService.loadCurrentBoard(this.boardId);
     this.tickets = await this.ticketsService.loadTickets();
-    console.log(this.tickets);
     this.filterTickets();
     this.allUsers = await this.userService.loadUsers();
-    console.log('all Users are:', this.allUsers);
   }
 
   
