@@ -29,7 +29,7 @@ export class LoginComponent {
       });
     } catch (e) {
       console.error(e);
-      window.location.reload();
+      // window.location.reload();
     }
   }
 
