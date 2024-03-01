@@ -6,13 +6,11 @@
 
         <form (ngSubmit)="editTicket()">
             <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="text" name="title" [(ngModel)]="new_ticket_title">
-                <label class="mdl-textfield__label" for="sample1">{{currentTicket.title}}</label>
+                <input class="mdl-textfield__input" type="text" name="title" [(ngModel)]="new_ticket_title" placeholder="{{currentTicket.title}}">
             </div>
 
             <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="text" name="description" [(ngModel)]="new_ticket_description">
-                <label class="mdl-textfield__label" for="sample1">{{currentTicket.description}}</label>
+                <input class="mdl-textfield__input" type="text" name="description" [(ngModel)]="new_ticket_description" placeholder="{{currentTicket.description}}">
                 <input class="dv-description" type="checkbox" (change)="clearDescription($event)">
                 <label class="" for="sample1">delete description</label>
             </div>

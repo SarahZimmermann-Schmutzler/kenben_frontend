@@ -6,13 +6,11 @@
 
         <form (ngSubmit)="createTicket()">
             <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="text" name="title" [(ngModel)]="new_title">
-                <label class="mdl-textfield__label" for="sample1">title...</label>
+                <input class="mdl-textfield__input" type="text" name="title" [(ngModel)]="new_title" placeholder="title...">
             </div>
 
             <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="text" name="description" [(ngModel)]="new_description">
-                <label class="mdl-textfield__label" for="sample1">description... (optional)</label>
+                <input class="mdl-textfield__input" type="text" name="description" [(ngModel)]="new_description" placeholder="description... (optional)">
             </div>
 
             <div class="dv-dd-container dv-margin-bottom">
