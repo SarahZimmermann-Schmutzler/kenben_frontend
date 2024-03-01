@@ -94,7 +94,6 @@ export class CurrentBoardComponent {
 
   openEditView($event) {
     this.editView = $event;
-    console.log(this.editView);
   }
 
 
