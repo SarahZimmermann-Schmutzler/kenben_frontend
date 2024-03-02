@@ -62,6 +62,12 @@
     margin-left: 25px;
 }
 
+.dv-assigned-to {
+    display: flex;
+    flex-direction: row;
+    margin-left: 25px;
+}
+
 .assigned-container {
     height: 50px;
     overflow-y: scroll;

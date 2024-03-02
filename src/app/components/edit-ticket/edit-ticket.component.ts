@@ -51,7 +51,6 @@ export class EditTicketComponent {
     this.watchForm();
     this.renderPrio();
     this.renderStatus();
-    // this.renderAssignedTo();
   }
 
   constructor(
@@ -261,30 +260,5 @@ export class EditTicketComponent {
     }else {
       this.checked_done = false;
     }
-  }
-
-
-  // renders former assigned users in formular
-  renderAssignedTo() {
-    console.log ('assigned_to', this.currentTicket['assigned_to'])
-
-    for (let i = 0; i < this.allUsers.length; i++) {
-      this.assignedToUsers = this.allUsers[i]['id'];
-      // this.members = this.allUsers.find(s => s.assignedToUsers == this.currentTicket['assigned_to'])
-      // console.log ('assigned_to_users', this.members)
-    }
-
-    // for (let j = 0; j < this.assignedToUsers.length; j++) {
-    //   this.a = this.assignedToUsers['id'];
-    //   // console.log('a', this.a);
-    // }
-
-    // console.log('neues Ergebnis', this.assignedToUsers);
-
-    console.log('a', this.a);
-
-    // this.members = this
-
-    // this.members = this.allUsers.find(s => s.allUsers.id == this.assignedTo)
   }
 }

@@ -6,11 +6,13 @@
 
         <form (ngSubmit)="editTicket()">
             <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="text" name="title" [(ngModel)]="new_ticket_title" placeholder="{{currentTicket.title}}">
+                <input class="mdl-textfield__input" type="text" name="title" [(ngModel)]="new_ticket_title"
+                    placeholder="{{currentTicket.title}}">
             </div>
 
             <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="text" name="description" [(ngModel)]="new_ticket_description" placeholder="{{currentTicket.description}}">
+                <input class="mdl-textfield__input" type="text" name="description" [(ngModel)]="new_ticket_description"
+                    placeholder="{{currentTicket.description}}">
                 <input class="dv-description" type="checkbox" (change)="clearDescription($event)">
                 <label class="" for="sample1">delete description</label>
             </div>
@@ -61,9 +63,13 @@
 
             <div class="dv-margin8">Assigned to:</div>
             <div class="assigned-container">
-                <div *ngFor="let member of currentTicket.assigned_to" class="dv-assigned dv-margin8">
-                    <div>{{member}}</div>
+                <span>Current assigned to:</span>
+                <div class="dv-assigned-to">
+                    <div *ngFor="let member of currentTicket.assigned_to_usernames" class="dv-margin8">
+                        <div style="margin-right: 8px;">{{member}}</div>
+                    </div>
                 </div>
+
 
                 <div class="dv-assigned dv-margin8" *ngFor="let user of allUsers, let i = index">
                     <input type="checkbox" id="assigned-{{i}}" (change)="getAssignedValue(user, i, $event)"
