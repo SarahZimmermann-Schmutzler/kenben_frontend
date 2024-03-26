@@ -6,6 +6,3 @@ git push
 
 @REM Angular App builden
 ng build
-
-@REM update on FTP Server
-git ftp push
