@@ -47,7 +47,6 @@ export class CurrentBoardComponent {
     this.tickets = await this.ticketsService.loadTickets();
     this.filterTickets();
     this.allUsers = await this.userService.loadUsers();
-    console.log('Tickets', this.tickets)
   }
 
   
