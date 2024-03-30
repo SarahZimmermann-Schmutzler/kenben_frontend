@@ -1,6 +1,6 @@
 export const environment = {
     production: false,
-    baseURL:'https://kenben.backend.s-zimmermann-schmutzler.de',
+    baseURL:'https://backend.s-zimmermann-schmutzler.de',
 };
 
 // Veröffentlichungsmodus 
