@@ -1,0 +1,33 @@
+# Ignore Node.js modules (installed via yarn)
+node_modules
+
+# Ignore all temporary files
+dist
+tmp
+out-tsc
+
+# Ignore IDE/Editor-specific files
+*.idea
+*.vscode
+*.swp
+
+# Ignore test files and folders
+coverage
+*.spec.ts
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Yarn-specific files
+.yarn/*
+!.yarn/releases # Include release files if using Zero-Installs
+.yarn-cache
+
+# Environment files for local development
+.env
+.env.*
+
+# Docker-specific files
+docker-compose.override.yml
+Dockerfile*

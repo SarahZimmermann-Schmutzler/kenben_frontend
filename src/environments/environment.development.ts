@@ -3,4 +3,4 @@ export const environment = {
     baseURL: 'http://localhost:8000',
 };
 
-// Entwicklungsmodus (mein Server)
+// developing mode (local server)
