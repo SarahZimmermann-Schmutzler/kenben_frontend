@@ -22,6 +22,9 @@ RUN npm run build
 # Lightweight Nginx image for serving the application
 FROM nginx:1.26.2-alpine
 
+# Copy custom nginx config
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
 # Copy the built Angular application from the previous stage into the Nginx HTML directory
 COPY --from=build /app/dist/kenben_frontend /usr/share/nginx/html
 
