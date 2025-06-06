@@ -23,7 +23,7 @@ RUN npm run build
 FROM nginx:1.26.2-alpine
 
 # Copy the built Angular application from the previous stage into the Nginx HTML directory
-COPY --from=build /app/dist/portfolio /usr/share/nginx/html
+COPY --from=build /app/dist/kenben_frontend /usr/share/nginx/html
 
 # Expose port 80 for the Nginx server
 EXPOSE 80
